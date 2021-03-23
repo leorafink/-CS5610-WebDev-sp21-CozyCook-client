@@ -7,7 +7,7 @@ const Details = () => {
     const {id} = useParams()
     useEffect(() => {
         recipeService.findRecipeById(id)
-            .then(recipe => setRecipe(recipe))
+            .then(recipe => console.log(setRecipe(recipe)))
     })
     return(
         <div>

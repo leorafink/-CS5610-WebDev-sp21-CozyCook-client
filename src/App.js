@@ -19,7 +19,7 @@ function App() {
         </Route>
         <Route
             exact={true}
-            path={["/details/:imdbID"]}>
+            path={["/details/:id"]}>
           <Details/>
         </Route>
       </BrowserRouter>

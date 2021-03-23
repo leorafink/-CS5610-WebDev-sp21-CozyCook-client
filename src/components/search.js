@@ -13,7 +13,6 @@ const Search = () => {
             recipeService.findRecipesByTitle(title)
                 .then(results => setResults(results.results))
         }
-        console.log(results)
     }, [title])
     return(
         <div>
