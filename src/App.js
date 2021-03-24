@@ -1,5 +1,5 @@
 import Search from "./components/search";
-import Details from "./components/recipe";
+import Details from "./components/details";
 import {BrowserRouter, Route} from "react-router-dom";
 import Home from "./components/home";
 
@@ -19,7 +19,7 @@ function App() {
         </Route>
         <Route
             exact={true}
-            path={["/details/:id"]}>
+            path={["/search/:title/details/:id"]}>
           <Details/>
         </Route>
       </BrowserRouter>

@@ -29,16 +29,36 @@ const Search = () => {
                 Search
             </button>
             <ul className="list-group">
-                {/*
-                    results.Search.map(recipe =>
-                                           <li className="list-group-item" key={recipe.id}>
-                                               <Link to={`/details/${recipe.id}`}>
-                                                   {recipe.title}
-                                               </Link>
-                                           </li>
+                {
+                    results && results.hits && results.hits.map(hit => {
+                                            let id = hit.recipe.uri.substring(51)
+                                            return (
+                                               <li className="list-group-item" key={id}>
+                                                   <Link to={`${title}/details/${id}`}>
+                                                       {hit.recipe.label}
+                                                   </Link>
+                                               </li>
                     )
-                */}
+                })}
+                {/*JSON.stringify(results.hits[0].recipe)*/}
+                results:
                 {JSON.stringify(results)}
+
+                {/*results.hits:
+                {JSON.stringify(results.hits)}
+
+                results.hits[0]:
+                {JSON.stringify(results.hits[0])}
+
+                results.hits[0].recipe:
+                {JSON.stringify(results.hits[0].recipe)}
+
+                results.hits[0].recipe.uri:
+                {JSON.stringify(results.hits[0].recipe.uri)}
+
+                results.hits[0].recipe.uri.substring(51):
+                {JSON.stringify(results.hits[0].recipe.uri.substring(51))}*!/*/}
+                {/*JSON.stringify(results)*/}
             </ul>
         </div>
     )
