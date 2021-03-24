@@ -1,5 +1,5 @@
 import Search from "./components/search";
-import Details from "./components/details";
+import Details from "./components/recipe";
 import {BrowserRouter, Route} from "react-router-dom";
 import Home from "./components/home";
 
