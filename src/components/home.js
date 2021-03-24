@@ -3,11 +3,14 @@ import {Link} from "react-router-dom";
 
 const Home = () => {
     return(
-        <div>
-            <h1>Home</h1>
-            <Link to="/search">
-                Search
-            </Link>
+        <div className="container-xl">
+            <h1 className="wbdv-page-title">Home</h1>
+            <div className="wbdv-horizontal-center">
+                <Link to="/search">
+                    Search
+                </Link>
+            </div>
+
         </div>
     )
 }

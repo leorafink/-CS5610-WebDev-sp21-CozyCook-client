@@ -10,8 +10,11 @@ const Details = () => {
             .then(recipe => setRecipe(recipe))
     }, [])
     return(
-        <div>
-            <h1>{/*JSON.stringify(recipe)*/}</h1>
+        <div className="container-xl">
+            {
+                recipe && recipe[0] &&
+                <h1 className="wbdv-page-title">{recipe[0].label}</h1>
+            }
             <p>
 
             </p>
@@ -19,12 +22,12 @@ const Details = () => {
 {             <ul className="list-group">
                  {
                     recipe && recipe[0] && recipe[0].ingredientLines.map(ingredient =>
-                                                                     <li className="list-group-item">
+                                                                     <li className="list-group-item" key={Math.random()}>
                                                                          {ingredient}
                                                                      </li>)
                  }
              </ul> }
-            {/*JSON.stringify(recipe)*/}
+
         </div>
     )
 }

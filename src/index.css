@@ -5,9 +5,34 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: mediumseagreen;
+  color: dimgrey;
+
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.wbdv-page-title {
+  margin: 30px;
+  text-align: center;
+  color: whitesmoke;
+}
+
+.wbdv-search-input {
+  margin-bottom: 10px;
+}
+
+.wbdv-search-btn {
+  margin-bottom: 30px;
+  background-color: orange;
+  color: whitesmoke;
+  border: none;
+}
+
+.wbdv-horizontal-center {
+  text-align: center;
+}
+
