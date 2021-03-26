@@ -18,25 +18,41 @@ const Search = () => {
     const doSetFilters = () => {
         let filterArray = []
         if (isVegetarian) {
-            filterArray.push("Vegetarian")
+            filterArray.push("vegetarian")
         }
         if (isEggFree) {
-            filterArray.push("Egg-Free")
+            filterArray.push("egg-free")
         }
         if(isKosher) {
-            filterArray.push("Kosher")
+            filterArray.push("kosher")
         }
         if(isPeanutFree) {
-            filterArray.push("Peanut-Free")
+            filterArray.push("peanut-free")
         }
         return filterArray
+    }
+
+    const setPath = () => {
+        let path = `/${title}`
+        if (isVegetarian) {
+            path += `/`
+        }
+        if (isEggFree) {
+            filterArray.push("egg-free")
+        }
+        if(isKosher) {
+            filterArray.push("kosher")
+        }
+        if(isPeanutFree) {
+            filterArray.push("peanut-free")
+        }
     }
 
     useEffect(() => {
         setSearchTitle(title)
         if(title) {
             recipeService.findRecipesByTitle(title, doSetFilters())
-                .then(results => setResults(results /*.results*/ ))
+                .then(results => setResults(results))
         }
     }, [title])
     return(
@@ -79,7 +95,7 @@ const Search = () => {
             </ToggleButton>
 
             <button
-                onClick={() => {history.push(`/search/${searchTitle}`)}}
+                onClick={() => {{history.push(`/search/${searchTitle}`)};{recipeService.findRecipesByTitle(title, doSetFilters())}}}
                 className="btn btn-block wbdv-search-btn">
                 Search
             </button>
