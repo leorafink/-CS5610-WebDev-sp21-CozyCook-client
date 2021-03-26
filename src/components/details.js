@@ -26,16 +26,19 @@ const Details = () => {
             <p>
 
             </p>
-
-{             <ul className="list-group">
-                 {
-                    recipe && recipe[0] && recipe[0].ingredientLines.map(ingredient =>
-                                                                     <li className="list-group-item" key={Math.random()}>
-                                                                         {ingredient}
-                                                                     </li>)
-                 }
-             </ul> }
-
+            <div className = "container-fluid">
+                <h3 className = "wbdv-ingredients-heading">Ingredients:</h3>
+                {
+                    <ul className="list-group">
+                        {
+                            recipe && recipe[0] && recipe[0].ingredientLines.map(ingredient =>
+                                 <li className="list-group-item" key={Math.random()}>
+                                     {ingredient}
+                                 </li>)
+                        }
+                    </ul>
+                }
+            </div>
         </div>
     )
 }
