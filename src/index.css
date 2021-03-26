@@ -58,3 +58,16 @@ code {
 .wbdv-ingredients-heading {
   color: white;
 }
+
+.wbdv-full-recipe-button-area {
+  text-align: center;
+  margin: 5px;
+  padding: 5px;
+}
+
+.wbdv-details-area {
+  text-align: center;
+  align-content: center;
+  margin: 5px;
+  padding: 5px;
+}
