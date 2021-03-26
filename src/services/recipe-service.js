@@ -13,14 +13,14 @@
 const EDAMAM_URL = "https://api.edamam.com/search?app_id=8bc332bb&app_key=c65adc373fa0821d289b38c395b4a129"
 
 export const findRecipesByTitle = (title, health) => {
-    alert(health)
     let url = EDAMAM_URL + `&q=${title}`
     for (let i = 0; i < health.length; i++) {
         url = url + `&health=${health[i]}`
     }
     return(
-        /*fetch(`https://api.spoonacular.com/recipes/complexSearch?titleMatch=${title}&apiKey=aef88fbe31534cf4b349ff44279f3fcb`)
-            .then(response => response.json())*/
+        console.log(url),
+    /*fetch(`https://api.spoonacular.com/recipes/complexSearch?titleMatch=${title}&apiKey=aef88fbe31534cf4b349ff44279f3fcb`)
+        .then(response => response.json())*/
         fetch(url)
             .then(response => response.json())
     )

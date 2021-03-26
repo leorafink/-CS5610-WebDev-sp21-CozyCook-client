@@ -5,7 +5,7 @@ import Home from "./components/home";
 
 function App() {
   return(
-    <div className = "container-fluid ">
+    <div className = "container-fluid">
       <BrowserRouter>
         <Route
             exact={true}
@@ -14,7 +14,12 @@ function App() {
         </Route>
         <Route
             exact={true}
-            path={["/search", "/search/:title"]}>
+            path={["/search",
+                   "/search/:title",
+                   "/search/:title/health/:health1",
+                   "/search/:title/health/:health1/health/:health2",
+                   "/search/:title/health/:health1/health/:health2/health/:health3",
+                   "/search/:title/health/:health1/health/:health2/health/:health3/health/:health4"]}>
           <Search/>
         </Route>
         <Route

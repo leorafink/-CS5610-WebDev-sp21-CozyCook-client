@@ -6,8 +6,8 @@ import ToggleButton from "react-bootstrap/ToggleButton";
 import '../index.css'
 
 const Search = () => {
-    const {title} = useParams()
-    const [searchTitle, setSearchTitle] = useState("")
+    const {title, health} = useParams()
+    const [searchTitle, setSearchTitle] = useState(title)
     const [results, setResults] = useState({Search: []})
     const [isVegetarian, setVegetarian] = React.useState(false);
     const [isEggFree, setEggFree] = React.useState(false);
@@ -18,27 +18,43 @@ const Search = () => {
     const doSetFilters = () => {
         let filterArray = []
         if (isVegetarian) {
-            filterArray.push("Vegetarian")
+            filterArray.push("vegetarian")
         }
         if (isEggFree) {
-            filterArray.push("Egg-Free")
+            filterArray.push("egg-free")
         }
         if(isKosher) {
-            filterArray.push("Kosher")
+            filterArray.push("kosher")
         }
         if(isPeanutFree) {
-            filterArray.push("Peanut-Free")
+            filterArray.push("peanut-free")
         }
         return filterArray
     }
 
-    useEffect(() => {
-        setSearchTitle(title)
-        if(title) {
-            recipeService.findRecipesByTitle(title, doSetFilters())
-                .then(results => setResults(results /*.results*/ ))
+    const setPath = () => {
+        let path = `/search/${searchTitle}`
+        if (isVegetarian) {
+            path = path + `/health/vegetarian`
         }
-    }, [title])
+        if (isEggFree) {
+            path = path + `/health/egg-free`
+        }
+        if(isKosher) {
+            path = path + `/health/kosher`
+        }
+        if(isPeanutFree) {
+            path = path + `/health/peanut-free`
+        }
+        return path;
+    }
+
+    useEffect(() => {
+        if(searchTitle) {
+            recipeService.findRecipesByTitle(searchTitle, doSetFilters())
+                .then(results => setResults(results))
+        }
+    }, [searchTitle])
     return(
         <div className="container-xl ">
             <h1 className="wbdv-page-title">Search</h1>
@@ -78,11 +94,15 @@ const Search = () => {
                 Peanut-Free
             </ToggleButton>
 
-            <button
-                onClick={() => {history.push(`/search/${searchTitle}`)}}
-                className="btn btn-block wbdv-search-btn">
-                Search
-            </button>
+            <Link to={setPath()}>
+                <button
+                    onClick={() => {{history.push(`/search/${searchTitle}`)}}}
+                    className="btn btn-block wbdv-search-btn">
+                    Search
+                </button>
+            </Link>
+
+
             <ul className="list-group">
                 {
                     results && results.hits && results.hits.map(hit => {
