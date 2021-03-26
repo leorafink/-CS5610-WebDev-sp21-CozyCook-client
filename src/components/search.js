@@ -7,11 +7,12 @@ const Search = () => {
     const {title} = useParams()
     const [searchTitle, setSearchTitle] = useState("")
     const [results, setResults] = useState({Search: []})
+    const [health, setHealth] = useState([])
     const history = useHistory()
     useEffect(() => {
         setSearchTitle(title)
         if(title) {
-            recipeService.findRecipesByTitle(title)
+            recipeService.findRecipesByTitle(title, health)
                 .then(results => setResults(results /*.results*/ ))
         }
     }, [title])
@@ -24,6 +25,28 @@ const Search = () => {
                 }}
                 className="form-control wbdv-search-input"
                 value={searchTitle}/>
+            <div className="form-check">
+                <input className="form-check-input"
+                       type="checkbox"
+                       value="vegetarian"
+                       id="flexCheckDefault"
+                       onChange={(event) => {
+                           setHealth(event.target.value)
+                }}/>
+                    <label className="form-check-label" htmlFor="flexCheckDefault">
+                        Vegetarian
+                    </label>
+            </div>
+            <div className="form-check">
+                <input className="form-check-input"
+                       type="checkbox"
+                       value="egg-free"
+                       id="flexCheckChecked"/>
+                    <label className="form-check-label" htmlFor="flexCheckChecked">
+                        Egg-Free
+                    </label>
+            </div>
+
             <button
                 onClick={() => {history.push(`/search/${searchTitle}`)}}
                 className="btn btn-block wbdv-search-btn">
