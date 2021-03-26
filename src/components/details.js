@@ -27,16 +27,25 @@ const Details = () => {
 
             </p>
             <div className = "container-fluid">
-                <h3 className = "wbdv-ingredients-heading">Ingredients:</h3>
                 {
-                    <ul className="list-group">
-                        {
-                            recipe && recipe[0] && recipe[0].ingredientLines.map(ingredient =>
-                                 <li className="list-group-item" key={Math.random()}>
-                                     {ingredient}
-                                 </li>)
-                        }
-                    </ul>
+                    recipe && recipe[0] && recipe[0].ingredientLines &&
+                        <div className = "container-fluid row">
+                            <span className = "container-fluid col-4">
+                                <img src = {recipe[0].image}/>
+                            </span>
+
+                            <span className = "container-fluid col-8">
+                                <h3 className = "wbdv-ingredients-heading">Ingredients:</h3>
+                                <ul className="list-group">
+                                    {
+                                        recipe && recipe[0] && recipe[0].ingredientLines.map(ingredient =>
+                                            <li className="list-group-item" key={Math.random()}>
+                                                {ingredient}
+                                            </li>)
+                                    }
+                                </ul>
+                            </span>
+                        </div>
                 }
             </div>
         </div>
