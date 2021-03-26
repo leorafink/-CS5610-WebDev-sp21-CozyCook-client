@@ -63,7 +63,9 @@ const Search = () => {
                     setSearchTitle(event.target.value)
                 }}
                 className="form-control wbdv-search-input"
-                value={searchTitle}/>
+                value={searchTitle}
+                title = "Input search terms here"
+                placeholder = "Search..."/>
 
             <ToggleButton className="wbdv-health-check-box"
                           type="checkbox"
