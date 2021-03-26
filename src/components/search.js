@@ -1,18 +1,41 @@
 import React, {useState, useEffect} from 'react'
 import recipeService from '../services/recipe-service'
 import {Link, useParams, useHistory} from "react-router-dom";
+import ToggleButton from "react-bootstrap/ToggleButton";
+
 import '../index.css'
 
 const Search = () => {
     const {title} = useParams()
     const [searchTitle, setSearchTitle] = useState("")
     const [results, setResults] = useState({Search: []})
-    const [health, setHealth] = useState([])
+    const [isVegetarian, setVegetarian] = React.useState(false);
+    const [isEggFree, setEggFree] = React.useState(false);
+    const [isKosher, setKosher] = React.useState(false);
+    const [isPeanutFree, setPeanutFree] = React.useState(false);
     const history = useHistory()
+
+    const doSetFilters = () => {
+        let filterArray = []
+        if (isVegetarian) {
+            filterArray.push("Vegetarian")
+        }
+        if (isEggFree) {
+            filterArray.push("Egg-Free")
+        }
+        if(isKosher) {
+            filterArray.push("Kosher")
+        }
+        if(isPeanutFree) {
+            filterArray.push("Peanut-Free")
+        }
+        return filterArray
+    }
+
     useEffect(() => {
         setSearchTitle(title)
         if(title) {
-            recipeService.findRecipesByTitle(title, health)
+            recipeService.findRecipesByTitle(title, doSetFilters())
                 .then(results => setResults(results /*.results*/ ))
         }
     }, [title])
@@ -25,27 +48,35 @@ const Search = () => {
                 }}
                 className="form-control wbdv-search-input"
                 value={searchTitle}/>
-            <div className="form-check">
-                <input className="form-check-input"
-                       type="checkbox"
-                       value="vegetarian"
-                       id="flexCheckDefault"
-                       onChange={(event) => {
-                           setHealth(event.target.value)
-                }}/>
-                    <label className="form-check-label" htmlFor="flexCheckDefault">
-                        Vegetarian
-                    </label>
-            </div>
-            <div className="form-check">
-                <input className="form-check-input"
-                       type="checkbox"
-                       value="egg-free"
-                       id="flexCheckChecked"/>
-                    <label className="form-check-label" htmlFor="flexCheckChecked">
-                        Egg-Free
-                    </label>
-            </div>
+
+            <ToggleButton className="wbdv-health-check-box"
+                          type="checkbox"
+                          checked={isVegetarian}
+                          value="1"
+                          onChange={e => setVegetarian(e.currentTarget.checked)}>
+                Vegetarian
+            </ToggleButton>
+            <ToggleButton className="wbdv-health-check-box"
+                          type="checkbox"
+                          checked={isEggFree}
+                          value="1"
+                          onChange={e => setEggFree(e.currentTarget.checked)}>
+                Egg-Free
+            </ToggleButton>
+            <ToggleButton className="wbdv-health-check-box"
+                          type="checkbox"
+                          checked={isKosher}
+                          value="1"
+                          onChange={e => setKosher(e.currentTarget.checked)}>
+                Kosher
+            </ToggleButton>
+            <ToggleButton className="wbdv-health-check-box"
+                          type="checkbox"
+                          checked={isPeanutFree}
+                          value="1"
+                          onChange={e => setPeanutFree(e.currentTarget.checked)}>
+                Peanut-Free
+            </ToggleButton>
 
             <button
                 onClick={() => {history.push(`/search/${searchTitle}`)}}
