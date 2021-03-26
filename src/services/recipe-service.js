@@ -19,8 +19,8 @@ export const findRecipesByTitle = (title, health) => {
     }
     return(
         console.log(url),
-        /*fetch(`https://api.spoonacular.com/recipes/complexSearch?titleMatch=${title}&apiKey=aef88fbe31534cf4b349ff44279f3fcb`)
-            .then(response => response.json())*/
+    /*fetch(`https://api.spoonacular.com/recipes/complexSearch?titleMatch=${title}&apiKey=aef88fbe31534cf4b349ff44279f3fcb`)
+        .then(response => response.json())*/
         fetch(url)
             .then(response => response.json())
     )

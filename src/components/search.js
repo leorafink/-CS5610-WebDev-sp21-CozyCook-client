@@ -6,8 +6,8 @@ import ToggleButton from "react-bootstrap/ToggleButton";
 import '../index.css'
 
 const Search = () => {
-    const {title} = useParams()
-    const [searchTitle, setSearchTitle] = useState("")
+    const {title, health} = useParams()
+    const [searchTitle, setSearchTitle] = useState(title)
     const [results, setResults] = useState({Search: []})
     const [isVegetarian, setVegetarian] = React.useState(false);
     const [isEggFree, setEggFree] = React.useState(false);
@@ -33,28 +33,28 @@ const Search = () => {
     }
 
     const setPath = () => {
-        let path = `/${title}`
+        let path = `/search/${searchTitle}`
         if (isVegetarian) {
-            path += `/`
+            path = path + `/health/vegetarian`
         }
         if (isEggFree) {
-            filterArray.push("egg-free")
+            path = path + `/health/egg-free`
         }
         if(isKosher) {
-            filterArray.push("kosher")
+            path = path + `/health/kosher`
         }
         if(isPeanutFree) {
-            filterArray.push("peanut-free")
+            path = path + `/health/peanut-free`
         }
+        return path;
     }
 
     useEffect(() => {
-        setSearchTitle(title)
-        if(title) {
-            recipeService.findRecipesByTitle(title, doSetFilters())
+        if(searchTitle) {
+            recipeService.findRecipesByTitle(searchTitle, doSetFilters())
                 .then(results => setResults(results))
         }
-    }, [title])
+    }, [searchTitle])
     return(
         <div className="container-xl ">
             <h1 className="wbdv-page-title">Search</h1>
@@ -94,11 +94,15 @@ const Search = () => {
                 Peanut-Free
             </ToggleButton>
 
-            <button
-                onClick={() => {{history.push(`/search/${searchTitle}`)};{recipeService.findRecipesByTitle(title, doSetFilters())}}}
-                className="btn btn-block wbdv-search-btn">
-                Search
-            </button>
+            <Link to={setPath()}>
+                <button
+                    onClick={() => {{history.push(`/search/${searchTitle}`)}}}
+                    className="btn btn-block wbdv-search-btn">
+                    Search
+                </button>
+            </Link>
+
+
             <ul className="list-group">
                 {
                     results && results.hits && results.hits.map(hit => {
