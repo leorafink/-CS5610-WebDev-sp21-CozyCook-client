@@ -58,6 +58,7 @@ code {
   color: white;
   font-weight: bold;
   float: left;
+  width: 100%;
 }
 
 .wbdv-go-back:hover {
@@ -105,14 +106,11 @@ code {
 }
 
 .wbdv-details-image {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
   padding: 10px;
 }
 
 .wbdv-details-image-container {
-  margin-left: -70px;
+  text-align: center;
 }
 
 .wbdv-details-heading-area {
