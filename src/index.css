@@ -88,3 +88,13 @@ code {
   background-color: #0f281e;
   border: #0f281e;
 }
+
+.wbdv-details-image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.wbdv-details-image-container {
+  align-content: center;
+}

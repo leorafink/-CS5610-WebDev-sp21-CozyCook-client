@@ -28,9 +28,10 @@ const Details = () => {
                     recipe && recipe[0] && recipe[0].ingredientLines && recipe[0].url && recipe[0].image &&
                     <div className="container-fluid">
 
-                    <span className = "container-fluid">
-                        <img src = {recipe[0].image}/>
-                    </span>
+                    <div className = "container-fluid wbdv-details-image-container">
+                        <img className = "wbdv-details-image"
+                             src = {recipe[0].image}/>
+                    </div>
 
                     <span className = "container-fluid wbdv-details-area">
                         <h3 className = "wbdv-ingredients-heading">Ingredients:</h3>
