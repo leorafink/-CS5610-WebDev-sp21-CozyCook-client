@@ -13,7 +13,7 @@
 const EDAMAM_URL = "https://api.edamam.com/search?app_id=8bc332bb&app_key=c65adc373fa0821d289b38c395b4a129"
 
 export const findRecipesByTitle = (title, health) => {
-    alert(health)
+    alert(title)
     let url = EDAMAM_URL + `&q=${title}`
     for (let i = 0; i < health.length; i++) {
         url = url + `&health=${health[i]}`

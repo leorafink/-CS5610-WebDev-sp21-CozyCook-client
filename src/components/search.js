@@ -62,10 +62,10 @@ const Search = () => {
             <h1 className="wbdv-page-title">Search</h1>
             <input
                 onChange={(event) => {
-                    setTypedTitle(event.target.value)
+                    setSearchTitle(event.target.value)
                 }}
                 className="form-control wbdv-search-input"
-                value={typedTitle}
+                value={searchTitle}
                 title = "Input search terms here"
                 placeholder = "Search..."/>
 
@@ -100,7 +100,7 @@ const Search = () => {
 
             <Link to={setPath()}>
                 <button
-                    onClick={() => { {setSearchTitle(typedTitle)}; {history.push(`/search/${searchTitle}`)};{recipeService.findRecipesByTitle(searchTitle, doSetFilters()).then(results => setResults(results))}}}
+                    onClick={() => {  {history.push(`/search/${searchTitle}`)};{recipeService.findRecipesByTitle(searchTitle, doSetFilters()).then(results => setResults(results))}}}
                     className="btn btn-block wbdv-search-btn">
                     Search
                 </button>
