@@ -8,6 +8,7 @@ import '../index.css'
 const Search = () => {
     const {title, health} = useParams()
     const [searchTitle, setSearchTitle] = useState(title)
+    const [typedTitle, setTypedTitle] = useState("")
     const [results, setResults] = useState({Search: []})
     const [isVegetarian, setVegetarian] = React.useState(false);
     const [isEggFree, setEggFree] = React.useState(false);
@@ -49,21 +50,22 @@ const Search = () => {
         return path;
     }
 
-    useEffect(() => {
-        if(searchTitle) {
-            recipeService.findRecipesByTitle(searchTitle, doSetFilters())
-                .then(results => setResults(results))
-        }
-    }, [searchTitle])
+    // useEffect(() => {
+    //     if(searchTitle) {
+    //         alert("arielle")
+    //         recipeService.findRecipesByTitle(searchTitle, doSetFilters())
+    //             .then(results => setResults(results))
+    //     }
+    // }, [searchTitle])
     return(
         <div className="container-xl ">
             <h1 className="wbdv-page-title">Search</h1>
             <input
                 onChange={(event) => {
-                    setSearchTitle(event.target.value)
+                    setTypedTitle(event.target.value)
                 }}
                 className="form-control wbdv-search-input"
-                value={searchTitle}
+                value={typedTitle}
                 title = "Input search terms here"
                 placeholder = "Search..."/>
 
@@ -98,7 +100,7 @@ const Search = () => {
 
             <Link to={setPath()}>
                 <button
-                    onClick={() => {{history.push(`/search/${searchTitle}`)}}}
+                    onClick={() => { {setSearchTitle(typedTitle)}; {history.push(`/search/${searchTitle}`)};{recipeService.findRecipesByTitle(searchTitle, doSetFilters()).then(results => setResults(results))}}}
                     className="btn btn-block wbdv-search-btn">
                     Search
                 </button>
