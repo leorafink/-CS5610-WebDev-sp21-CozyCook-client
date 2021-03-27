@@ -24,7 +24,11 @@ function App() {
         </Route>
         <Route
             exact={true}
-            path={["/search/:title/details/:id"]}>
+            path={["/search/:title/details/:id",
+                   "/search/:title/health/:health1/details/:id",
+                   "/search/:title/health/:health1/health/:health2/details/:id",
+                   "/search/:title/health/:health1/health/:health2/health/:health3/details/:id",
+                   "/search/:title/health/:health1/health/:health2/health/:health3/health/:health4/details/:id"]}>
           <Details/>
         </Route>
       </BrowserRouter>
