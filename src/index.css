@@ -31,7 +31,6 @@ code {
   color: whitesmoke;
   margin: 10px;
   align-self: center;
-  float: left;
 }
 
 .wbdv-search-btn:hover {
@@ -148,5 +147,4 @@ code {
 }
 
 .wbdv-search-button-area {
-  background-color: teal;
 }

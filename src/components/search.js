@@ -108,20 +108,21 @@ const Search = ({recipes = [], findRecipesForSearch
                     </Link>
                 </div>
 
-                <ul className="list-group">
-                    {
-                        recipes && recipes.hits && recipes.hits.map(hit => {
-                                                let id = hit.recipe.uri.substring(51)
-                                                return (
-                                                   <li className="list-group-item" key={id}>
-                                                       <Link to={`${title}/details/${id}`}>
-                                                           {hit.recipe.label}
-                                                       </Link>
-                                                   </li>
-                        )
-                    })}
-
-                </ul>
+                <div className = "container-fluid">
+                    <ul className="list-group">
+                        {
+                            recipes && recipes.hits && recipes.hits.map(hit => {
+                                                    let id = hit.recipe.uri.substring(51)
+                                                    return (
+                                                       <li className="list-group-item" key={id}>
+                                                           <Link to={`${title}/details/${id}`}>
+                                                               {hit.recipe.label}
+                                                           </Link>
+                                                       </li>
+                            )
+                        })}
+                    </ul>
+                </div>
             </div>
         </div>
     )
