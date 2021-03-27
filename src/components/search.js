@@ -54,69 +54,75 @@ const Search = ({recipes = [], findRecipesForSearch
     }
 
     return(
-        <div className="container-xl ">
-            <h1 className="wbdv-page-title">Search</h1>
-            <input
-                onChange={(event) => {
-                    setSearchTitle(event.target.value)
-                }}
-                className="form-control wbdv-search-input"
-                value={searchTitle}
-                title = "Input search terms here"
-                placeholder = "Search..."/>
+        <div className = "container-fluid">
+            <h1 className="wbdv-page-title wbdv-search-heading">Search</h1>
+            <div className="container-xl wbdv-search-main-area">
+                <input
+                    onChange={(event) => {
+                        setSearchTitle(event.target.value)
+                    }}
+                    className="form-control wbdv-search-input"
+                    value={searchTitle}
+                    title = "Input search terms here"
+                    placeholder = "Search..."/>
 
-            <ToggleButton className="wbdv-health-check-box"
-                          type="checkbox"
-                          checked={isVegetarian}
-                          value="1"
-                          onChange={e => setVegetarian(e.currentTarget.checked)}>
-                Vegetarian
-            </ToggleButton>
-            <ToggleButton className="wbdv-health-check-box"
-                          type="checkbox"
-                          checked={isEggFree}
-                          value="1"
-                          onChange={e => setEggFree(e.currentTarget.checked)}>
-                Egg-Free
-            </ToggleButton>
-            <ToggleButton className="wbdv-health-check-box"
-                          type="checkbox"
-                          checked={isKosher}
-                          value="1"
-                          onChange={e => setKosher(e.currentTarget.checked)}>
-                Kosher
-            </ToggleButton>
-            <ToggleButton className="wbdv-health-check-box"
-                          type="checkbox"
-                          checked={isPeanutFree}
-                          value="1"
-                          onChange={e => setPeanutFree(e.currentTarget.checked)}>
-                Peanut-Free
-            </ToggleButton>
+                <div className = "wbdv-search-health-buttons">
+                    <ToggleButton className="wbdv-health-check-box"
+                                  type="checkbox"
+                                  checked={isVegetarian}
+                                  value="1"
+                                  onChange={e => setVegetarian(e.currentTarget.checked)}>
+                        Vegetarian
+                    </ToggleButton>
+                    <ToggleButton className="wbdv-health-check-box"
+                                  type="checkbox"
+                                  checked={isEggFree}
+                                  value="1"
+                                  onChange={e => setEggFree(e.currentTarget.checked)}>
+                        Egg-Free
+                    </ToggleButton>
+                    <ToggleButton className="wbdv-health-check-box"
+                                  type="checkbox"
+                                  checked={isKosher}
+                                  value="1"
+                                  onChange={e => setKosher(e.currentTarget.checked)}>
+                        Kosher
+                    </ToggleButton>
+                    <ToggleButton className="wbdv-health-check-box"
+                                  type="checkbox"
+                                  checked={isPeanutFree}
+                                  value="1"
+                                  textOn = "test"
+                                  onChange={e => setPeanutFree(e.currentTarget.checked)}>
+                        Peanut-Free
+                    </ToggleButton>
+                </div>
 
-            <Link to={setPath()}>
-                <button
-                    onClick={() => {{history.push(`/search/${searchTitle}`)};{findRecipesForSearch(searchTitle, doSetFilters())}}}
-                    className="btn btn-block wbdv-search-btn">
-                    Search
-                </button>
-            </Link>
+                <div className = "wbdv-search-button-area">
+                    <Link to={setPath()}>
+                        <button
+                            onClick={() => {{history.push(`/search/${searchTitle}`)};{findRecipesForSearch(searchTitle, doSetFilters())}}}
+                            className="btn btn-block wbdv-search-btn">
+                            Search
+                        </button>
+                    </Link>
+                </div>
 
+                <ul className="list-group">
+                    {
+                        recipes && recipes.hits && recipes.hits.map(hit => {
+                                                let id = hit.recipe.uri.substring(51)
+                                                return (
+                                                   <li className="list-group-item" key={id}>
+                                                       <Link to={`${title}/details/${id}`}>
+                                                           {hit.recipe.label}
+                                                       </Link>
+                                                   </li>
+                        )
+                    })}
 
-            <ul className="list-group">
-                {
-                    recipes && recipes.hits && recipes.hits.map(hit => {
-                                            let id = hit.recipe.uri.substring(51)
-                                            return (
-                                               <li className="list-group-item" key={id}>
-                                                   <Link to={`${title}/details/${id}`}>
-                                                       {hit.recipe.label}
-                                                   </Link>
-                                               </li>
-                    )
-                })}
-
-            </ul>
+                </ul>
+            </div>
         </div>
     )
 }

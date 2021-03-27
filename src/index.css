@@ -26,10 +26,19 @@ code {
 }
 
 .wbdv-search-btn {
-  margin-bottom: 30px;
-  background-color: orange;
+  background-color: darkorange;
+  border: darkorange;
   color: whitesmoke;
-  border: none;
+  margin: 10px;
+  align-self: center;
+  float: left;
+}
+
+.wbdv-search-btn:hover {
+  background-color: #bc6400;
+  border: #bc6400;
+  color: whitesmoke;
+  text-decoration: none;
 }
 
 .wbdv-horizontal-center {
@@ -111,11 +120,33 @@ code {
 }
 
 .wbdv-details-button-recipe {
-  background-color: #1e5a37;
-  border: #1e5a37;
+  background-color: darkorange;
+  border: darkorange;
 }
 
 .wbdv-details-button-recipe:hover {
+  background-color: #bc6400;
+  border: #bc6400;
+}
+
+.wbdv-search-heading {
+  background-color: #1e5a37;
+}
+
+.wbdv-health-check-box {
+  background-color: #1e5a37;
+  border: #1e5a37;
+  margin: 2px;
+}
+
+.wbdv-health-check-box:hover {
   background-color: #0f281e;
   border: #0f281e;
+}
+
+.wbdv-search-main-area {
+}
+
+.wbdv-search-button-area {
+  background-color: teal;
 }
