@@ -55,7 +55,7 @@ const Search = ({recipes = [], findRecipesForSearch
 
     return(
         <div className = "container-fluid">
-            <h1 className="wbdv-page-title wbdv-search-heading">Search</h1>
+            <h1 className="wbdv-page-title wbdv-page-heading">Search</h1>
             <div className="container-xl wbdv-search-main-area">
                 <div className="wbdv-input-area">
                     <input

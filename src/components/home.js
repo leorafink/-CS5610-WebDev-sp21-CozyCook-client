@@ -4,9 +4,7 @@ import {Link} from "react-router-dom";
 const Home = () => {
     return(
         <div className = "container-fluid wbdv-home-page-container">
-            <div className = "container-fluid wbdv-home-heading-container">
-                <h1 className = "wbdv-page-title">Home</h1>
-            </div>
+            <h1 className = "wbdv-page-heading">Home</h1>
             <div className = "container-fluid wbdv-horizontal-center">
                 <Link to = "/search">
                     <button type = "button"

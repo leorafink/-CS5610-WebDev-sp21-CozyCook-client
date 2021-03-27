@@ -82,6 +82,13 @@ code {
 
 .wbdv-home-heading-container {
   background-color: #1e5a37;
+  margin-top: 0px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-left: -30px;
+  margin-right: -30px;
+  text-align: center;
+  color: whitesmoke;
 }
 
 .wbdv-home-page-container {
@@ -105,7 +112,7 @@ code {
 }
 
 .wbdv-details-image-container {
-  align-content: center;
+  margin-left: -70px;
 }
 
 .wbdv-details-heading-area {
@@ -125,8 +132,15 @@ code {
   border: #bc6400;
 }
 
-.wbdv-search-heading {
+.wbdv-page-heading {
   background-color: #1e5a37;
+  margin-top: 0px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-left: -30px;
+  margin-right: -30px;
+  text-align: center;
+  color: whitesmoke;
 }
 
 .wbdv-health-check-box {
@@ -153,4 +167,8 @@ code {
 
 .wbdv-search-health-buttons {
   margin-bottom: 10px;
+}
+
+.wvdv-details-page-contents {
+  background-color: darkred;
 }

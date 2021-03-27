@@ -14,19 +14,20 @@ const Details = () => {
 
     return(
         <div className="container-fluid">
-            <div className = "container-fluid wbdv-details-heading-area">
-                <div className = "wbdv-go-back"
-                      onClick = {() => history.goBack()}>
-                    <i className = "fas fa-arrow-left fa-2x wbdv-action-icon"/>
-                    Go Back
-                </div>
-                <span>
+
+                <div>
                     {
                         recipe && recipe[0] &&
-                        <h1 className="wbdv-page-title">{recipe[0].label}</h1>
+                        <>
+                        <h1 className="wbdv-page-heading">{recipe[0].label}</h1>
+                        <div className = "wbdv-go-back"
+                                              onClick = {() => history.goBack()}>
+                                            <i className = "fas fa-arrow-left fa-2x wbdv-action-icon"/>
+                                            Go Back
+                                        </div>
+                                        </>
                     }
-                </span>
-            </div>
+                </div>
             <div className = "container-fluid">
                 {
                     recipe && recipe[0] && recipe[0].ingredientLines && recipe[0].url && recipe[0].image &&
