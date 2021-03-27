@@ -1,14 +1,17 @@
 import React, {useState, useEffect} from 'react'
 import recipeService from '../services/recipe-service'
+import {connect} from 'react-redux'
 import {Link, useParams, useHistory} from "react-router-dom";
 import ToggleButton from "react-bootstrap/ToggleButton";
+import recipeActions, {FIND_RECIPES_FOR_SEARCH} from "../actions/recipes-actions";
 
 import '../index.css'
 
-const Search = () => {
+const Search = ({recipes = [], findRecipesForSearch
+            }) => {
+
     const {title, health} = useParams()
     const [searchTitle, setSearchTitle] = useState(title)
-    const [typedTitle, setTypedTitle] = useState("")
     const [results, setResults] = useState({Search: []})
     const [isVegetarian, setVegetarian] = React.useState(false);
     const [isEggFree, setEggFree] = React.useState(false);
@@ -50,13 +53,6 @@ const Search = () => {
         return path;
     }
 
-    // useEffect(() => {
-    //     if(searchTitle) {
-    //         alert("arielle")
-    //         recipeService.findRecipesByTitle(searchTitle, doSetFilters())
-    //             .then(results => setResults(results))
-    //     }
-    // }, [searchTitle])
     return(
         <div className="container-xl ">
             <h1 className="wbdv-page-title">Search</h1>
@@ -100,7 +96,7 @@ const Search = () => {
 
             <Link to={setPath()}>
                 <button
-                    onClick={() => {  {history.push(`/search/${searchTitle}`)};{recipeService.findRecipesByTitle(searchTitle, doSetFilters()).then(results => setResults(results))}}}
+                    onClick={() => {{history.push(`/search/${searchTitle}`)};{findRecipesForSearch(searchTitle, doSetFilters())}}}
                     className="btn btn-block wbdv-search-btn">
                     Search
                 </button>
@@ -109,7 +105,7 @@ const Search = () => {
 
             <ul className="list-group">
                 {
-                    results && results.hits && results.hits.map(hit => {
+                    recipes && recipes.hits && recipes.hits.map(hit => {
                                             let id = hit.recipe.uri.substring(51)
                                             return (
                                                <li className="list-group-item" key={id}>
@@ -125,4 +121,14 @@ const Search = () => {
     )
 }
 
-export default Search
+const stateToPropMapper = (state) => {
+    return ({
+        recipes: state.recipeReducer.recipes
+    })
+}
+
+const dispatchToPropMapper = (dispatch) => ({
+    findRecipesForSearch: (searchTitle, healthFilters) => recipeActions.findRecipesForSearchTitle(dispatch, searchTitle, healthFilters)
+})
+
+export default connect(stateToPropMapper, dispatchToPropMapper)(Search)
