@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import recipeService from '../services/recipe-service'
 import {connect} from 'react-redux'
 import {Link, useParams, useHistory} from "react-router-dom";
-import ToggleButton from "react-bootstrap/ToggleButton";
+import ToggleButton from 'react-bootstrap/ToggleButton';
 import recipeActions, {FIND_RECIPES_FOR_SEARCH} from "../actions/recipes-actions";
 
 import '../index.css'
