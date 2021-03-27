@@ -57,56 +57,59 @@ const Search = ({recipes = [], findRecipesForSearch
         <div className = "container-fluid">
             <h1 className="wbdv-page-title wbdv-search-heading">Search</h1>
             <div className="container-xl wbdv-search-main-area">
-                <input
-                    onChange={(event) => {
-                        setSearchTitle(event.target.value)
-                    }}
-                    className="form-control wbdv-search-input"
-                    value={searchTitle}
-                    title = "Input search terms here"
-                    placeholder = "Search..."/>
+                <div className="wbdv-input-area">
+                    <input
+                        onChange={(event) => {
+                            setSearchTitle(event.target.value)
+                        }}
+                        className="form-control wbdv-search-input"
+                        value={searchTitle}
+                        title = "Input search terms here"
+                        placeholder = "Search..."/>
 
-                <div className = "wbdv-search-health-buttons">
-                    <ToggleButton className="wbdv-health-check-box"
-                                  type="checkbox"
-                                  checked={isVegetarian}
-                                  value="1"
-                                  onChange={e => setVegetarian(e.currentTarget.checked)}>
-                        Vegetarian
-                    </ToggleButton>
-                    <ToggleButton className="wbdv-health-check-box"
-                                  type="checkbox"
-                                  checked={isEggFree}
-                                  value="1"
-                                  onChange={e => setEggFree(e.currentTarget.checked)}>
-                        Egg-Free
-                    </ToggleButton>
-                    <ToggleButton className="wbdv-health-check-box"
-                                  type="checkbox"
-                                  checked={isKosher}
-                                  value="1"
-                                  onChange={e => setKosher(e.currentTarget.checked)}>
-                        Kosher
-                    </ToggleButton>
-                    <ToggleButton className="wbdv-health-check-box"
-                                  type="checkbox"
-                                  checked={isPeanutFree}
-                                  value="1"
-                                  textOn = "test"
-                                  onChange={e => setPeanutFree(e.currentTarget.checked)}>
-                        Peanut-Free
-                    </ToggleButton>
+                    <div className = "wbdv-search-health-buttons">
+                        <ToggleButton className="wbdv-health-check-box"
+                                      type="checkbox"
+                                      checked={isVegetarian}
+                                      value="1"
+                                      onChange={e => setVegetarian(e.currentTarget.checked)}>
+                            Vegetarian
+                        </ToggleButton>
+                        <ToggleButton className="wbdv-health-check-box"
+                                      type="checkbox"
+                                      checked={isEggFree}
+                                      value="1"
+                                      onChange={e => setEggFree(e.currentTarget.checked)}>
+                            Egg-Free
+                        </ToggleButton>
+                        <ToggleButton className="wbdv-health-check-box"
+                                      type="checkbox"
+                                      checked={isKosher}
+                                      value="1"
+                                      onChange={e => setKosher(e.currentTarget.checked)}>
+                            Kosher
+                        </ToggleButton>
+                        <ToggleButton className="wbdv-health-check-box"
+                                      type="checkbox"
+                                      checked={isPeanutFree}
+                                      value="1"
+                                      textOn = "test"
+                                      onChange={e => setPeanutFree(e.currentTarget.checked)}>
+                            Peanut-Free
+                        </ToggleButton>
+                    </div>
+
+                    <div className = "wbdv-search-button-area">
+                        <Link to={setPath()}>
+                            <button
+                                onClick={() => {{history.push(`/search/${searchTitle}`)};{findRecipesForSearch(searchTitle, doSetFilters())}}}
+                                className="btn btn-block wbdv-search-btn">
+                                Search
+                            </button>
+                        </Link>
+                    </div>
                 </div>
 
-                <div className = "wbdv-search-button-area">
-                    <Link to={setPath()}>
-                        <button
-                            onClick={() => {{history.push(`/search/${searchTitle}`)};{findRecipesForSearch(searchTitle, doSetFilters())}}}
-                            className="btn btn-block wbdv-search-btn">
-                            Search
-                        </button>
-                    </Link>
-                </div>
 
                 <div className = "container-fluid">
                     <ul className="list-group">
