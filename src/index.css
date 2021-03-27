@@ -48,15 +48,21 @@ code {
 }
 
 .wbdv-go-back {
-  text-align: center;
   align-items: center;
   display: inline-flex;
   color: white;
   font-weight: bold;
+  float: left;
+}
+
+.wbdv-go-back:hover {
+  cursor: pointer;
 }
 
 .wbdv-ingredients-heading {
   color: white;
+  background-color: #1e5a37;
+  padding: 5px;
 }
 
 .wbdv-full-recipe-button-area {
@@ -67,9 +73,6 @@ code {
 
 .wbdv-details-area {
   text-align: center;
-  align-content: center;
-  margin: 5px;
-  padding: 5px;
 }
 
 .wbdv-home-heading-container {
@@ -93,8 +96,26 @@ code {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  padding: 10px;
 }
 
 .wbdv-details-image-container {
   align-content: center;
+}
+
+.wbdv-details-heading-area {
+  background-color: #1e5a37;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.wbdv-details-button-recipe {
+  background-color: #1e5a37;
+  border: #1e5a37;
+}
+
+.wbdv-details-button-recipe:hover {
+  background-color: #0f281e;
+  border: #0f281e;
 }
