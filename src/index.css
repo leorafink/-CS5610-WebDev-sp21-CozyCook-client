@@ -92,13 +92,13 @@ code {
 }
 
 .wbdv-home-button-search {
-  background-color: #1e5a37;
-  border: #1e5a37;
+  background-color: darkorange;
+  border: darkorange;
 }
 
 .wbdv-home-button-search:hover {
-  background-color: #0f281e;
-  border: #0f281e;
+  background-color: #bc6400;
+  border: #bc6400;
 }
 
 .wbdv-details-image {
