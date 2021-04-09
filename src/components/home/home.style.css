@@ -1,0 +1,15 @@
+.wbdv-link {
+    color: whitesmoke !important;
+}
+
+.wbdv-home-button {
+    background-color: darkorange;
+    border: darkorange;
+    color: whitesmoke;
+}
+
+.wbdv-home-button:hover {
+    background-color: #bc6400;
+    border: #bc6400;
+    color: whitesmoke;
+}

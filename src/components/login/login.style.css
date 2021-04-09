@@ -1,0 +1,47 @@
+
+
+.wbdv-link {
+    color: whitesmoke !important;
+}
+
+.wbdv-login-button {
+    background-color: darkorange;
+    border: darkorange;
+    color: whitesmoke;
+    margin-bottom: 10px;
+}
+
+.wbdv-login-button:hover {
+    background-color: #bc6400;
+    border: #bc6400;
+    color: whitesmoke;
+    margin-bottom: 10px;
+}
+
+.wbdv-signup-pw-button {
+    background-color: #bf4504;
+    border: #bf4504;
+    color: whitesmoke;
+    margin-bottom: 10px;
+}
+
+.wbdv-signup-pw-button:hover {
+    background-color: #8a3203;
+    border: #8a3203;
+    color: whitesmoke;
+    margin-bottom: 10px;
+}
+
+.wbdv-home-btn {
+    align-self: center;
+    color: whitesmoke !important;
+}
+
+.wbdv-home-btn:hover {
+    align-self: center;
+    color: lightgrey !important;
+}
+
+.wbdv-label {
+    color: whitesmoke;
+}

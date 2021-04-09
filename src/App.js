@@ -1,10 +1,12 @@
 import Search from "./components/search";
 import Details from "./components/details";
 import {BrowserRouter, Route} from "react-router-dom";
-import Home from "./components/home";
+import Home from "./components/home/home";
 import {Provider} from 'react-redux';
 import {combineReducers, createStore} from 'redux';
 import RecipeReducer from "./reducers/recipe-reducer";
+import LoginPage from "./components/login/login-page";
+import Register from "./components/register/register";
 
 const reducer = combineReducers({recipeReducer: RecipeReducer});
 const store = createStore(reducer);
@@ -16,7 +18,8 @@ function App() {
               <BrowserRouter>
                   <Route
                       exact={true}
-                      path={["/"]}>
+                      path={["/",
+                             "/home"]}>
                       <Home/>
                   </Route>
                   <Route
@@ -37,6 +40,14 @@ function App() {
                              "/search/:title/health/:health1/health/:health2/health/:health3/details/:id",
                              "/search/:title/health/:health1/health/:health2/health/:health3/health/:health4/details/:id"]}>
                       <Details/>
+                  </Route>
+                  <Route exact={true}
+                         path={["/login"]}>
+                      <LoginPage/>
+                  </Route>
+                  <Route exact={true}
+                         path={["/register"]}>
+                      <Register/>
                   </Route>
               </BrowserRouter>
           </div>
