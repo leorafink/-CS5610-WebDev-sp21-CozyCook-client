@@ -13,3 +13,12 @@
     border: #bc6400;
     color: whitesmoke;
 }
+
+.wbdv-home-image-container {
+    text-align: center;
+}
+
+.wbdv-home-image {
+    margin: 5px;
+    padding: 5px;
+}

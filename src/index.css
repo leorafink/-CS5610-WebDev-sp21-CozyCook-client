@@ -168,11 +168,6 @@ code {
   background-color: darkred;
 }
 
-.wbdv-home-image-container {
-  text-align: center;
-}
-
-.wbdv-home-image {
-  margin: 5px;
-  padding: 5px;
+.wbdv-label {
+  color: whitesmoke;
 }
