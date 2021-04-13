@@ -29,6 +29,10 @@ const Home = () => {
                 <Link to = "/search" className="btn wbdv-home-button">
                     Search
                 </Link>
+                <br/>
+                <Link to = "/users" className="btn wbdv-home-button">
+                    Go to User List
+                </Link>
             </div>
         </div>
     )

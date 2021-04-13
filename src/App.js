@@ -7,6 +7,7 @@ import {combineReducers, createStore} from 'redux';
 import RecipeReducer from "./reducers/recipe-reducer";
 import LoginPage from "./components/login/login-page";
 import Register from "./components/register/register";
+import UserList from "./components/users/user-list";
 
 const reducer = combineReducers({recipeReducer: RecipeReducer});
 const store = createStore(reducer);
@@ -48,6 +49,10 @@ function App() {
                   <Route exact={true}
                          path={["/register"]}>
                       <Register/>
+                  </Route>
+                  <Route exact={true}
+                         path={["/users"]}>
+                      <UserList/>
                   </Route>
               </BrowserRouter>
           </div>
