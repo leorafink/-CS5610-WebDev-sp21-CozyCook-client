@@ -4,17 +4,21 @@ import {BrowserRouter, Route} from "react-router-dom";
 import Home from "./components/home/home";
 import {Provider} from 'react-redux';
 import {combineReducers, createStore} from 'redux';
+import UserReducer from "./reducers/user-reducer"
 import RecipeReducer from "./reducers/recipe-reducer";
 import LoginPage from "./components/login/login-page";
 import Register from "./components/register/register";
 import UserList from "./components/users/user-list";
 
-const reducer = combineReducers({recipeReducer: RecipeReducer});
+const reducer = combineReducers({
+                                    recipeReducer: RecipeReducer,
+                                    userReducer: UserReducer
+});
 const store = createStore(reducer);
 
 function App() {
   return(
-      <Provider store={store}>
+      <Provider store = {store}>
           <div className = "container-fluid">
               <BrowserRouter>
                   <Route
@@ -52,7 +56,7 @@ function App() {
                   </Route>
                   <Route exact={true}
                          path={["/users"]}>
-                      <UserList/>
+                      <UserList store = {store}/>
                   </Route>
               </BrowserRouter>
           </div>

@@ -6,10 +6,6 @@ import userService from "../../services/user-service"
 import {createStore} from "redux";
 import {Provider} from "react-redux";
 
-
-const store = createStore(UserReducer)
-
-
 const UserList = (
     {
         users = [],
@@ -33,7 +29,6 @@ const UserList = (
     }, [])
 
     return (
-        <Provider store={store}>
         <div className="container-fluid">
             <h1>user list</h1>
             <table>
@@ -62,7 +57,6 @@ const UserList = (
                 </tbody>
             </table>
         </div>
-    </Provider>
     )
 }
 
@@ -101,4 +95,5 @@ const dtpm = (dispatch) => ({
 
 })
 
-export default connect(stpm, dtpm)(UserList)
+export default connect(stpm, dtpm)
+(UserList)
