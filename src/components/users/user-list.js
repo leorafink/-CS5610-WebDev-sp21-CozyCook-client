@@ -23,7 +23,7 @@ const UserList = (
     const [currentUsers, setCurrentUsers] = useState([])
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
-    const [type, setType] = useState("General User")
+    const [type, setType] = useState("GENERAL")
 
     useEffect(() => {
         findAllUsers()
@@ -50,8 +50,8 @@ const UserList = (
                 <div className="col align-middle">
                     <select className="form-control"
                             onChange={(e) => setType(e.target.value)}>
-                        <option value="General User">General User</option>
-                        <option value="Admin">Admin</option>
+                        <option value="GENERAL">General User</option>
+                        <option value="ADMIN">Admin</option>
                     </select>
                 </div>
                 <div className="col align-middle ">
@@ -92,7 +92,8 @@ const UserList = (
                         return (
                             <User key={user.id}
                                   user={user}
-                                  deleteUser={deleteUser}/>
+                                  deleteUser={deleteUser}
+                                  updateUser={updateUser}/>
                         )
                     })
                 }
@@ -132,7 +133,7 @@ const dtpm = (dispatch) => ({
     },
     updateUser: (newItem) => {
         userService.updateUser(newItem._id, newItem)
-            .then(status => dispatch({type: "UPDATE_USER", updateUser: newItem}))
+            .then(status => dispatch({type: "UPDATE_USER", updatedUser: newItem}))
 
     },
 

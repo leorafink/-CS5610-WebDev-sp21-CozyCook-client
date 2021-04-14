@@ -100,7 +100,7 @@ const stpm = (state) => ({
 
 const dtpm = (dispatch) => ({
     createUser: (username, password) => {
-        const newUser = {username: username, password: password, type: "General User"}
+        const newUser = {username: username, password: password, type: "GENERAL"}
         userService.createUser(newUser)
             .then(user => dispatch({
                                        type: "CREATE_USER",
