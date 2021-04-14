@@ -1,8 +1,16 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Link} from "react-router-dom";
 import './register.style.css'
+import userService from "../../services/user-service";
+import {connect} from "react-redux";
 
-const Register = () => {
+
+const Register = ({createUser}) => {
+
+    const [username, setUsername] = useState("")
+    const [password, setPassword] = useState("")
+
+
     return (
         <div>
             <div className="container-fluid">
@@ -27,7 +35,8 @@ const Register = () => {
                             <div className="col-sm-10">
                                 <input className="form-control"
                                        id="usernameFld"
-                                       placeholder="Alice"/>
+                                       placeholder="Alice"
+                                       onChange={(e) => setUsername(e.target.value)}/>
                             </div>
                         </div>
                         <div className="form-group row">
@@ -39,7 +48,8 @@ const Register = () => {
                                 <input type="password"
                                        className="form-control"
                                        id="passwordFld"
-                                       placeholder="123qwe#$%"/>
+                                       placeholder="123qwe#$%"
+                                       onChange={(e) => setPassword(e.target.value)}/>
                             </div>
                         </div>
                         <div className="form-group row">
@@ -55,7 +65,7 @@ const Register = () => {
                         <div className="form-group row">
                             <label className="col-sm-2 col-form-label"></label>
                             <div className="col-sm-10">
-                                <Link to=""
+                                <Link to="" onClick={() => createUser(username, password)}
                                       className="btn btn-block wbdv-login-button">
                                     Sign Up
                                 </Link>
@@ -84,4 +94,19 @@ const Register = () => {
 )
 }
 
-export default Register;
+const stpm = (state) => ({
+    users: state.userReducer.users
+})
+
+const dtpm = (dispatch) => ({
+    createUser: (username, password) => {
+        const newUser = {username: username, password: password, type: "General User"}
+        userService.createUser(newUser)
+            .then(user => dispatch({
+                                       type: "CREATE_USER",
+                                       user: user
+                                   }))
+    }
+})
+
+export default connect(stpm, dtpm)(Register);

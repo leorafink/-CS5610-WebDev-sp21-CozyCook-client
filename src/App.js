@@ -52,7 +52,7 @@ function App() {
                   </Route>
                   <Route exact={true}
                          path={["/register"]}>
-                      <Register/>
+                      <Register store={store}/>
                   </Route>
                   <Route exact={true}
                          path={["/users"]}>

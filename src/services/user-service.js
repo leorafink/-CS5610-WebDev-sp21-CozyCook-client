@@ -7,13 +7,14 @@
     const url = 'https://wbdv-generic-server.herokuapp.com/api/cozycook/users';
 
 export const createUser = (user) => {
+    alert(JSON.stringify(user))
     return(
         fetch(url, {
             method: "POST",
-            body: JSON.stringify(user),
             headers: {
                 "content-type": "application/json"
-            }
+            },
+            body: JSON.stringify(user)
         })
             .then(response => response.json())
     )
