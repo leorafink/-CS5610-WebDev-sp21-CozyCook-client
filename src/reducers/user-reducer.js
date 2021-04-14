@@ -1,10 +1,10 @@
-import React from 'react'
+//import React from 'react'
 
 const initialState = {
     users: []
 }
 
-const userReducer = (state = initialState, action) => {
+const UserReducer = (state = initialState, action) => {
     switch (action.type) {
         case "CREATE_USER":
             return {
@@ -14,13 +14,13 @@ const userReducer = (state = initialState, action) => {
                     action.user
                 ]
             }
-        /*case "FIND_ALL_WIDGETS_FOR_TOPIC":
+
+        case "FIND_ALL_USERS":
             return {
                 ...state,
-                widgets: action.widgets
-            }*/
-        case "FIND_USER":
-            return 0
+                users: action.users
+            }
+
         case "UPDATE_USER":
             return {
                 ...state,
@@ -50,4 +50,4 @@ const userReducer = (state = initialState, action) => {
     }
 }
 
-export default userReducer
+export default UserReducer

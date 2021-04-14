@@ -1,13 +1,14 @@
-import React from 'react'
+//import React from 'react'
 
 // const USERS_URL = "http://localhost:8080/api"
-const USERS_URL = "postgres://hkutlvbzodllyu:a8b1e2ea098fcac432b6c4e7976c75f587c3b774c6673023e5264bfe91175064@ec2-34-233-0-64.compute-1.amazonaws.com:5432/dep9tc9qn0pm1r/api"
-
+//const USERS_URL = "postgres://hkutlvbzodllyu:a8b1e2ea098fcac432b6c4e7976c75f587c3b774c6673023e5264bfe91175064@ec2-34-233-0-64.compute-1.amazonaws.com:5432/dep9tc9qn0pm1r/api"
 // const DATABASE_URL=$(heroku config:get DATABASE_URL -a your-app) your_process
+
+    const url = 'https://wbdv-generic-server.herokuapp.com/api/cozycook/users';
 
 export const createUser = (user) => {
     return(
-        fetch(`${USERS_URL}/users`, {
+        fetch(url, {
             method: "POST",
             body: JSON.stringify(user),
             headers: {
@@ -18,22 +19,25 @@ export const createUser = (user) => {
     )
 }
 
-/*export const findUsersForTopic = (tid) => {
+
+export const findUserById = (uid) => {
     return(
-        fetch(`${TOPICS_URL}/topics/${tid}/widgets`)
+        fetch(`${url}/${uid}`)
             .then(response => response.json())
     )
-}*/
+}
 
-export const findUser = (uid) => {
-    return(
-        0
-    )
+function findAllUsers() {
+    return fetch(url)
+        .then(function (response) {
+            return response.json()
+        })
+
 }
 
 export const updateUser = (uid, user) => {
     return(
-        fetch(`${USERS_URL}/users/${uid}`, {
+        fetch(`${url}/${uid}`, {
             method: "PUT",
             body: JSON.stringify(user),
             headers: {
@@ -44,21 +48,23 @@ export const updateUser = (uid, user) => {
     )
 }
 
+
 export const deleteUser = (uid) => {
-    return(
-        fetch(`${USERS_URL}/users/${uid}`, {
-            method: "DELETE"
-        })
+    return(fetch(`${url}/${uid}`,
+        {method: 'DELETE'})
             .then(response => response.json())
     )
 }
 
 const api = {
     createUser,
-    // findUsersForTopic,
-    findUser,
+    findUserById,
+    findAllUsers,
     updateUser,
     deleteUser
 }
 
 export default api
+
+
+

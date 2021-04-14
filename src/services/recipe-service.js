@@ -29,7 +29,9 @@ export const findRecipeById = (id) => {
     )
 }
 
-export default {
+const api = {
     findRecipesByTitle,
     findRecipeById
 }
+
+export default api
