@@ -21,6 +21,9 @@ const UserList = (
     // DATABASE_URL=$(heroku config:get DATABASE_URL -a your-app) your_process
 
     const [currentUsers, setCurrentUsers] = useState([])
+    const [username, setUsername] = useState("")
+    const [password, setPassword] = useState("")
+    const [type, setType] = useState("General User")
 
     useEffect(() => {
         findAllUsers()
@@ -36,21 +39,24 @@ const UserList = (
             <div className="row">
                 <div className="col align-middle">
                     <input className="form-control"
-                           placeholder="Username"/>
+                           placeholder="Username"
+                           onChange={(e) => setUsername(e.target.value)}/>
                 </div>
                 <div className="col align-middle">
                     <input className="form-control"
-                           placeholder="Password"/>
+                           placeholder="Password"
+                           onChange={(e) => setPassword(e.target.value)}/>
                 </div>
-                <div className="col align-middle ">
-                    <select className="form-control">
-                        <option value="Admin">Admin</option>
+                <div className="col align-middle">
+                    <select className="form-control"
+                            onChange={(e) => setType(e.target.value)}>
                         <option value="General User">General User</option>
+                        <option value="Admin">Admin</option>
                     </select>
                 </div>
                 <div className="col align-middle ">
                     <span className="">
-                        <button onClick={() => createUser()}
+                        <button onClick={() => createUser(username, password, type)}
                                 className="wbdv-user-crud-btn">
                             <i className="fa-2x fa fa-plus-circle"></i>
                         </button>
@@ -108,9 +114,9 @@ const dtpm = (dispatch) => ({
                                         users: users
                                     }))
     },
-    createUser: () => {
+    createUser: (username, password, type) => {
         userService.createUser(
-            {username: "NEW USERNAME", password: "NEW PASSWORD", type: "General User"})
+            {username: username, password: password, type: type})
             .then(user => dispatch({
                                        type: "CREATE_USER",
                                        user: user
