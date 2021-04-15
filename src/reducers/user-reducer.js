@@ -1,9 +1,7 @@
 //import React from 'react'
 
 const initialState = {
-    users: [/*{username: "aliceInWonderland", password: "whiteRabbit"},
-        {username: "snowWhite", password: "hiHo"},
-        {username: "arielOfTheSea", password: "partOfYourWorld"}*/]
+    users: []
 }
 
 const UserReducer = (state = initialState, action) => {
@@ -27,7 +25,7 @@ const UserReducer = (state = initialState, action) => {
             return {
                 ...state,
                 users: state.users.map(user => {
-                    if (user._id === action.updatedUser._id) {
+                    if (user.id === action.updatedUser.id) {
                         return action.updatedUser
                     }
                     else {
@@ -39,7 +37,7 @@ const UserReducer = (state = initialState, action) => {
             return {
                 ...state,
                 users: state.users.filter(user => {
-                    if (user._id !== action.userToDelete._id) {
+                    if (user.id !== action.userToDelete.id) {
                         return true
                     }
                     else {

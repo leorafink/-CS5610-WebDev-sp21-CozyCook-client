@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 
 
-const User = ({key, user, deleteUser, updateUser}) => {
+const User = ({user, deleteUser, updateUser}) => {
     const [editing, setEditing] = useState(false)
     // const [username, setUsername] = useState("")
     // const [password, setPassword] = useState("")

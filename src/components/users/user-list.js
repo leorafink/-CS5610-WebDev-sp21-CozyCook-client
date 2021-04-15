@@ -7,9 +7,7 @@ import './users.style.css'
 
 const UserList = (
     {
-        users = [{username: "aliceInWonderland", password: "whiteRabbit", id: "123"},
-            {username: "snowWhite", password: "hiHo", id: "1357"},
-            {username: "arielOfTheSea", password: "partOfYourWorld", id: "254"}],
+        users = [],
         createUser,
         updateUser,
         deleteUser,
@@ -124,7 +122,7 @@ const dtpm = (dispatch) => ({
                                    }))
     },
     deleteUser: (userToDelete) => {
-        userService.deleteUser(userToDelete._id)
+        userService.deleteUser(userToDelete.id)
             .then(status => dispatch({
                                          type: "DELETE_USER",
                                          userToDelete: userToDelete
@@ -132,7 +130,7 @@ const dtpm = (dispatch) => ({
 
     },
     updateUser: (newItem) => {
-        userService.updateUser(newItem._id, newItem)
+        userService.updateUser(newItem.id, newItem)
             .then(status => dispatch({type: "UPDATE_USER", updatedUser: newItem}))
 
     },
