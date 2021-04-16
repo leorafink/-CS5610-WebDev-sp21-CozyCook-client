@@ -88,10 +88,12 @@ const UserList = (
                 {
                     users && users.map((user) => {
                         return (
-                            <User key={user.id}
-                                  user={user}
-                                  deleteUser={deleteUser}
-                                  updateUser={updateUser}/>
+                            <tr>
+                                <User key={user.id}
+                                      user={user}
+                                      deleteUser={deleteUser}
+                                      updateUser={updateUser}/>
+                            </tr>
                         )
                     })
                 }

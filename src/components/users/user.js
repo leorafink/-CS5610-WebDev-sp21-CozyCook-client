@@ -8,7 +8,8 @@ const User = ({user, deleteUser, updateUser}) => {
     // const [type, setType] = useState("")
     const [currentUser, setCurrentUser] = useState(user);
     return(
-        <tr>
+        <>
+
             {
                 !editing &&
                 <>
@@ -60,8 +61,8 @@ const User = ({user, deleteUser, updateUser}) => {
                     </td>
                 </>
             }
+        </>
 
-        </tr>
     )
 }
 
