@@ -6,7 +6,7 @@
 
 //const url = 'https://wbdv-generic-server.herokuapp.com/api/cozycook/';
 
-const url = 'https://cs5610-charlotteswebdev-server.herokuapp.com/api'
+const url = 'http://cs5610-charlotteswebdev-server.herokuapp.com/api'
 
 export const createUser = (user) => {
     return(
