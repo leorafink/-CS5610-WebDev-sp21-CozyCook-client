@@ -30,7 +30,7 @@ export const findUserById = (uid) => {
 }
 
 function findAllUsers() {
-    return fetch(`${url}/users`)
+    return fetch(`https://cs5610-charlotteswebdev-server.herokuapp.com/api/users`)
         .then((response) => response.json())
 }
 
