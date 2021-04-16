@@ -86,7 +86,7 @@ const UserList = (
                 <tbody>
 
                 {
-                    users.map((user) => {
+                    users && users.map((user) => {
                         return (
                             <User key={user.id}
                                   user={user}
