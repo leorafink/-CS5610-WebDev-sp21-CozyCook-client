@@ -31,10 +31,7 @@ export const findUserById = (uid) => {
 
 function findAllUsers() {
     return fetch(`${url}/users`)
-        .then(function (response) {
-            return response.json()
-        })
-
+        .then((response) => response.json())
 }
 
 export const updateUser = (uid, user) => {
