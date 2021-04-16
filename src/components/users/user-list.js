@@ -28,7 +28,7 @@ const UserList = (
         /* fetch(`$(heroku config:get DATABASE_URL -a cs5610-charlotteswebdev-server) /api/users`)
              .then(response => console.log(response.json()))
              // .then((users) => setCurrentUsers(users))*/
-    }, [users])
+    }, [])
 
     return (
         <div className="container-fluid">
