@@ -171,3 +171,8 @@ code {
 .wbdv-label {
   color: whitesmoke;
 }
+
+.wbdv-back-button {
+  margin: 5px;
+  padding: 5px;
+}

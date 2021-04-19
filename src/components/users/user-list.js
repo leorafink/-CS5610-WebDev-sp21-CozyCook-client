@@ -4,6 +4,7 @@ import connect from "react-redux/lib/connect/connect";
 import UserReducer from "../../reducers/user-reducer";
 import userService from "../../services/user-service"
 import './users.style.css'
+import {Link} from "react-router-dom";
 
 const UserList = (
     {
@@ -32,6 +33,9 @@ const UserList = (
 
     return (
         <div className="container-fluid">
+            <Link to = "">
+                <i className = "fas fa-arrow-left fa-2x float-left wbdv-back-button"></i>
+            </Link>
             <h1>user list</h1>
 
             <div className="row">
