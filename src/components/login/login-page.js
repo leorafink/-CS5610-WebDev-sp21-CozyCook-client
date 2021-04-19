@@ -1,8 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import './login.style.css'
 
 const LoginPage = () => {
+    const [username, setUsername] = useState()
+    const [password, setPassword] = useState()
+
     return (
         <div className="container-fluid">
             <div className="wbdv-page-heading row">
@@ -17,6 +20,8 @@ const LoginPage = () => {
             </div>
             <br/>
             <div className="container-lg">
+                <h1>Current Username Value: {username}</h1>
+                <h1>Current Password Value: {password}</h1>
                 <form>
                     <div className="form-group row">
                         <label htmlFor="username" className="col-sm-2 col-form-label wbdv-label">
@@ -24,15 +29,20 @@ const LoginPage = () => {
                         <div className="col-sm-10">
                             <input className="form-control"
                                    id="username"
-                                   placeholder="Alice"/>
+                                   placeholder="Alice"
+                                   onChange = {(e) => setUsername(e.target.value)}/>
                         </div>
                     </div>
+
                     <div className="form-group row">
                         <label htmlFor="password" className="col-sm-2 col-form-label wbdv-label">
                             Password: </label>
                         <div className="col-sm-10">
-                            <input type="password" className="form-control"
-                                   id="password" placeholder="123qwe#$%"/>
+                            <input type="password"
+                                   className="form-control"
+                                   id="password"
+                                   placeholder="123qwe#$%"
+                                   onChange = {(e) => setPassword(e.target.value)}/>
                         </div>
                     </div>
 
@@ -40,12 +50,14 @@ const LoginPage = () => {
                         <label className="col-sm-2 col-form-label"></label>
                         <div className="col-sm-10">
                             <Link to=""
-                                  className="btn btn-block wbdv-login-button">
+                                  className="btn btn-block wbdv-login-button"
+                                  onClick = {() => 0}>
                                 Sign In
                             </Link>
                             <div className="row">
                                 <div className="col-6">
-                                    <Link to="/register" className=" btn wbdv-signup-pw-button">
+                                    <Link to="/register"
+                                          className=" btn wbdv-signup-pw-button">
                                         Sign Up
                                     </Link>
                                 </div>
@@ -55,14 +67,11 @@ const LoginPage = () => {
                                         Forgot Password?
                                     </Link>
                                 </div>
-
                             </div>
                         </div>
                     </div>
-
                 </form>
             </div>
-
         </div>
     )
 }
