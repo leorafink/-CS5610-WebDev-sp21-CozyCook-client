@@ -18,10 +18,10 @@ const Register = ({createUser}) => {
     const register = () => {
         userService.register(credentials)
             .then((user) => {
-                if (user === 0) {
+                if (user === undefined) {
                     alert("username already taken")
                 } else {
-                    history.push("/profile")
+                    window.location.href = "/profile"
                 }
             })
     };
@@ -112,10 +112,10 @@ const Register = ({createUser}) => {
                         <div className="form-group row">
                             <label className="col-sm-2 col-form-label"></label>
                             <div className="col-sm-10">
-                                <Link to="/profile" onClick={() => register()}
-                                      className="btn btn-block wbdv-login-button">
+                                <div onClick={() => register()}
+                                     className="btn btn-block wbdv-login-button">
                                     Sign Up
-                                </Link>
+                                </div>
                                 <div className="row">
                                     <div className="col-6">
                                         <Link to="/login"

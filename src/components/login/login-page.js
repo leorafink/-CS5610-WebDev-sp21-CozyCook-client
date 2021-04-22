@@ -15,7 +15,6 @@ const LoginPage = () => {
     const login = () => {
         userService.login(credentials)
             .then((user) => {
-                console.log("user: " + user)
                 if (user === undefined) {
                     alert("user is undefined")
                 } else {

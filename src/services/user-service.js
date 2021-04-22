@@ -65,6 +65,19 @@ const register = (credentials) => {
             'content-type': 'application/json'
         }
     }).then(response => response.json())
+        .catch(error => console.log(error))
+};
+
+const login = (credentials) => {
+    return fetch(`${USER_API}/login`, {
+        method: "POST",
+        credentials: "include",
+        body: JSON.stringify(credentials),
+        headers: {
+            'content-type': 'application/json'
+        }
+    }).then(response => response.json())
+        .catch(error => console.log(error))
 };
 
 const profile = () => {
@@ -85,18 +98,6 @@ const publicProfile = (userId) => {
             'content-type': 'application/json'
         }
     }).then(response => response.json())
-};
-
-const login = (credentials) => {
-    return fetch(`${USER_API}/login`, {
-        method: "POST",
-        credentials: "include",
-        body: JSON.stringify(credentials),
-        headers: {
-            'content-type': 'application/json'
-        }
-    }).then(response => response.json())
-        .catch(error => console.log(error))
 };
 
 const api = {
