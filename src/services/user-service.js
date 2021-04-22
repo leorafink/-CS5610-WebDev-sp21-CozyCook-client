@@ -37,8 +37,9 @@ function findAllUsers() {
 
 export const updateUser = (uid, user) => {
     return(
-        fetch(`${url}/users/${uid}`, {
+        fetch(`${USER_API}/users/${uid}`, {
             method: "PUT",
+            credentials: "include",
             headers: {
                 "content-type": "application/json"
             },
@@ -80,6 +81,16 @@ const login = (credentials) => {
         .catch(error => console.log(error))
 };
 
+const logout = (credentials) => {
+    return fetch(`${USER_API}/logout`, {
+        method: "GET",
+        credentials: "include",
+        headers: {
+            'content-type': 'application/json'
+        }
+    }).then(response => response.json())
+}
+
 const profile = () => {
     return fetch(`${USER_API}/profile`, {
         method: "GET",
@@ -100,6 +111,16 @@ const publicProfile = (userId) => {
     }).then(response => response.json())
 };
 
+const getSession = () => {
+    return fetch(`${USER_API}/session`, {
+        method: "GET",
+        credentials: "include",
+        headers: {
+            "content-type": "application/json"
+        }
+    }).then(response => response.json())
+}
+
 const api = {
     createUser,
     findUserById,
@@ -109,7 +130,9 @@ const api = {
     register,
     profile,
     publicProfile,
-    login
+    login,
+    logout,
+    getSession
 }
 
 export default api

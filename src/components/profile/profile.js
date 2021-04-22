@@ -17,6 +17,13 @@ const Profile = () => {
                 .then(otherUser => setOtherUser(otherUser))
         }
     }, [])
+
+    const updateUser = (id, user) => {
+        alert("got to update user on profi")
+        userService.updateUser(id, user)
+            .then((response) => setLoggedInUser(response))
+    }
+
     return(
         <div>
             <div className = "wbdv-go-back"
@@ -29,20 +36,24 @@ const Profile = () => {
             </h1>
             {
                 otherUser &&
-                <PublicContent user={otherUser}/>
+                <PublicContent user={otherUser}
+                               updateUser = {updateUser}/>
             }
             {
                 !otherUser &&
-                <PublicContent user={loggedInUser}/>
+                <PublicContent user={loggedInUser}
+                               updateUser = {updateUser}/>
 
             }
             {
                 ((loggedInUser && otherUser && loggedInUser.id === otherUser.id) || loggedInUser.role === "ADMIN") &&
-                <PrivateContent user={loggedInUser}/>
+                <PrivateContent user={loggedInUser}
+                                updateUser = {updateUser}/>
             }
             {
                 loggedInUser && !otherUser &&
-                <PrivateContent user={loggedInUser}/>
+                <PrivateContent user={loggedInUser}
+                                updateUser = {updateUser}/>
             }
             {
                 loggedInUser && loggedInUser.role === "ADMIN" &&

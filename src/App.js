@@ -10,6 +10,7 @@ import LoginPage from "./components/login/login-page";
 import Register from "./components/register/register";
 import UserList from "./components/users/user-list";
 import Profile from "./components/profile/profile";
+import Logout from "./components/logout/logout"
 
 
 const reducer = combineReducers({
@@ -65,6 +66,10 @@ function App() {
                   <Route exact={true}
                          path={["/users"]}>
                       <UserList store = {store}/>
+                  </Route>
+                  <Route exact={true}
+                         path={["/logout"]}>
+                      <Logout/>
                   </Route>
               </BrowserRouter>
           </div>
