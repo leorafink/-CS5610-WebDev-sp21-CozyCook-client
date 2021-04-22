@@ -1,10 +1,36 @@
 import React, {useState} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useHistory, Route, BrowserRouter} from 'react-router-dom';
 import './login.style.css'
+import userService from '../../services/user-service'
+import Profile from "../profile/profile";
 
 const LoginPage = () => {
-    const [username, setUsername] = useState()
-    const [password, setPassword] = useState()
+    const [credentials, setCredentials] = useState({username: '', password: ''})
+    const history = useHistory()
+
+    const [username, setUsername] = useState("")
+    const [password, setPassword] = useState("")
+    const [redirectPage, setRedirectPage] = useState("")
+
+    const login = () => {
+        userService.login(credentials)
+            .then((user) => {
+                console.log("user: " + user)
+                if (user === undefined) {
+                    alert("user is undefined")
+                } else {
+                    window.location.href = "/profile"
+
+                    // <BrowserRouter>
+                    //     <Route path={"/profile"}>
+                    //         <Profile/>
+                    //     </Route>
+                    // </BrowserRouter>
+
+                }
+            })
+
+    }
 
     return (
         <div className="container-fluid">
@@ -30,7 +56,7 @@ const LoginPage = () => {
                             <input className="form-control"
                                    id="username"
                                    placeholder="Alice"
-                                   onChange = {(e) => setUsername(e.target.value)}/>
+                                   onChange = {(e) => {setUsername(e.target.value); setCredentials({...credentials, username: e.target.value})}}/>
                         </div>
                     </div>
 
@@ -42,18 +68,18 @@ const LoginPage = () => {
                                    className="form-control"
                                    id="password"
                                    placeholder="123qwe#$%"
-                                   onChange = {(e) => setPassword(e.target.value)}/>
+                                   onChange = {(e) => {setPassword(e.target.value); setCredentials({...credentials, password: e.target.value})}}/>
                         </div>
                     </div>
 
                     <div className="form-group row">
                         <label className="col-sm-2 col-form-label"></label>
                         <div className="col-sm-10">
-                            <Link to=""
+                            <div
                                   className="btn btn-block wbdv-login-button"
-                                  onClick = {() => 0}>
+                                  onClick = {() => login()}>
                                 Sign In
-                            </Link>
+                            </div>
                             <div className="row">
                                 <div className="col-6">
                                     <Link to="/register"

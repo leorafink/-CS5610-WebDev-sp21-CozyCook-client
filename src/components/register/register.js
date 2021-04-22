@@ -1,14 +1,28 @@
 import React, {useState} from 'react';
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import './register.style.css'
 import userService from "../../services/user-service";
 import {connect} from "react-redux";
 
 
 const Register = ({createUser}) => {
+    const [credentials, setCredentials] = useState({username: '', password: '', role: "GENERAL_USER"})
+    const history = useHistory()
 
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const [role, setRole] = useState("")
+
+    const register = () => {
+        userService.register(credentials)
+            .then((user) => {
+                if (user === 0) {
+                    alert("username already taken")
+                } else {
+                    history.push("/profile")
+                }
+            })
+    };
 
 
     return (
@@ -36,7 +50,7 @@ const Register = ({createUser}) => {
                                 <input className="form-control"
                                        id="usernameFld"
                                        placeholder="Alice"
-                                       onChange={(e) => setUsername(e.target.value)}/>
+                                       onChange={(e) => {setUsername(e.target.value); setCredentials({...credentials, username:e.target.value})}}/>
                             </div>
                         </div>
                         <div className="form-group row">
@@ -49,7 +63,7 @@ const Register = ({createUser}) => {
                                        className="form-control"
                                        id="passwordFld"
                                        placeholder="123qwe#$%"
-                                       onChange={(e) => setPassword(e.target.value)}/>
+                                       onChange={(e) => {setPassword(e.target.value); setCredentials({...credentials, password: e.target.value})}}/>
                             </div>
                         </div>
                         <div className="form-group row">
@@ -62,10 +76,20 @@ const Register = ({createUser}) => {
                                        id="verifyPasswordFld" placeholder="123qwe#$%"/>
                             </div>
                         </div>
+                        <select id="roleFld"
+                                className="form-control"
+                                title="Select your role here"
+                                onChange={(e) => {
+                                    setRole(e.target.value)
+                                    setCredentials({...credentials, role: e.target.value})
+                                }}>
+                            <option value="GENERAL">General User</option>
+                            <option value="ADMIN">Admin</option>
+                        </select>
                         <div className="form-group row">
                             <label className="col-sm-2 col-form-label"></label>
                             <div className="col-sm-10">
-                                <Link to="" onClick={() => createUser(username, password)}
+                                <Link to="/profile" onClick={() => register()}
                                       className="btn btn-block wbdv-login-button">
                                     Sign Up
                                 </Link>
@@ -94,19 +118,21 @@ const Register = ({createUser}) => {
 )
 }
 
-const stpm = (state) => ({
-    users: state.userReducer.users
-})
+// const stpm = (state) => ({
+//     users: state.userReducer.users
+// })
+//
+// const dtpm = (dispatch) => ({
+//     createUser: (username, password) => {
+//         const newUser = {username: username, password: password, type: "GENERAL"}
+//         userService.createUser(newUser)
+//             .then(user => dispatch({
+//                                        type: "CREATE_USER",
+//                                        user: user
+//                                    }))
+//     }
+// })
 
-const dtpm = (dispatch) => ({
-    createUser: (username, password) => {
-        const newUser = {username: username, password: password, type: "GENERAL"}
-        userService.createUser(newUser)
-            .then(user => dispatch({
-                                       type: "CREATE_USER",
-                                       user: user
-                                   }))
-    }
-})
+//export default connect(stpm, dtpm)(Register);
 
-export default connect(stpm, dtpm)(Register);
+export default Register;

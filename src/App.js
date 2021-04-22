@@ -9,6 +9,7 @@ import RecipeReducer from "./reducers/recipe-reducer";
 import LoginPage from "./components/login/login-page";
 import Register from "./components/register/register";
 import UserList from "./components/users/user-list";
+import Profile from "./components/profile/profile";
 
 
 const reducer = combineReducers({
@@ -55,6 +56,12 @@ function App() {
                          path={["/register"]}>
                       <Register store={store}/>
                   </Route>
+                  <Route exact={true}
+                         path={["/profile",
+                                "/profile/:userId"]}>
+                      <Profile />
+                  </Route>
+
                   <Route exact={true}
                          path={["/users"]}>
                       <UserList store = {store}/>

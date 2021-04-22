@@ -27,7 +27,7 @@ const UserList = (
     const [type, setType] = useState("GENERAL")
 
     useEffect(() => {
-        findAllUsers()
+        userService.findAllUsers()
         /* fetch(`$(heroku config:get DATABASE_URL -a cs5610-charlotteswebdev-server) /api/users`)
              .then(response => console.log(response.json()))
              // .then((users) => setCurrentUsers(users))*/

@@ -7,6 +7,7 @@
 //const url = 'https://wbdv-generic-server.herokuapp.com/api/cozycook/';
 
 const url = 'https://wbdv-sp21-01-cozycook-server.herokuapp.com/api/'
+const USER_API = "http://localhost:8080/api";
 
 export const createUser = (user) => {
     return(
@@ -55,12 +56,59 @@ export const deleteUser = (uid) => {
     )
 }
 
+const register = (credentials) => {
+    return fetch(`${USER_API}/register`, {
+        method: "POST",
+        credentials: "include",
+        body: JSON.stringify(credentials),
+        headers: {
+            'content-type': 'application/json'
+        }
+    }).then(response => response.json())
+};
+
+const profile = () => {
+    return fetch(`${USER_API}/profile`, {
+        method: "GET",
+        credentials: "include",
+        headers: {
+            'content-type': 'application/json'
+        }
+    }).then(response => response.json())
+};
+
+const publicProfile = (userId) => {
+    return fetch(`${USER_API}/profile/${userId}`, {
+        method: "GET",
+        credentials: "include",
+        headers: {
+            'content-type': 'application/json'
+        }
+    }).then(response => response.json())
+};
+
+const login = (credentials) => {
+    return fetch(`${USER_API}/login`, {
+        method: "POST",
+        credentials: "include",
+        body: JSON.stringify(credentials),
+        headers: {
+            'content-type': 'application/json'
+        }
+    }).then(response => response.json())
+        .catch(error => console.log(error))
+};
+
 const api = {
     createUser,
     findUserById,
     findAllUsers,
     updateUser,
-    deleteUser
+    deleteUser,
+    register,
+    profile,
+    publicProfile,
+    login
 }
 
 export default api
