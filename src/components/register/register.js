@@ -6,12 +6,14 @@ import {connect} from "react-redux";
 
 
 const Register = ({createUser}) => {
-    const [credentials, setCredentials] = useState({username: '', password: '', role: "GENERAL_USER"})
+    const [credentials, setCredentials] = useState({username: '', password: '', email: '', role: "GENERAL_USER"})
     const history = useHistory()
 
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [role, setRole] = useState("")
+    const [email, setEmail] = useState("")
+
 
     const register = () => {
         userService.register(credentials)
@@ -54,6 +56,18 @@ const Register = ({createUser}) => {
                             </div>
                         </div>
                         <div className="form-group row">
+                            <label htmlFor="emailFld"
+                                   className="col-sm-2 col-form-label wbdv-label">
+                                Email:
+                            </label>
+                            <div className="col-sm-10">
+                                <input className="form-control"
+                                       id="emailFld"
+                                       placeholder="alice@wonderland.com"
+                                       onChange={(e) => {setEmail(e.target.value); setCredentials({...credentials, email:e.target.value})}}/>
+                            </div>
+                        </div>
+                        <div className="form-group row">
                             <label htmlFor="passwordFld"
                                    className="col-sm-2 col-form-label wbdv-label">
                                 Password:
@@ -76,16 +90,25 @@ const Register = ({createUser}) => {
                                        id="verifyPasswordFld" placeholder="123qwe#$%"/>
                             </div>
                         </div>
-                        <select id="roleFld"
-                                className="form-control"
-                                title="Select your role here"
-                                onChange={(e) => {
-                                    setRole(e.target.value)
-                                    setCredentials({...credentials, role: e.target.value})
-                                }}>
-                            <option value="GENERAL">General User</option>
-                            <option value="ADMIN">Admin</option>
-                        </select>
+                        <div className="row">
+                            <label htmlFor="emailFld"
+                                   className="col-sm-2 col-form-label wbdv-label">
+                                Role:
+                            </label>
+                            <div className="col-10">
+                                <select id="roleFld"
+                                        className="form-control"
+                                        title="Select your role here"
+                                        onChange={(e) => {
+                                            setRole(e.target.value)
+                                            setCredentials({...credentials, role: e.target.value})
+                                        }}>
+                                    <option value="GENERAL">General User</option>
+                                    <option value="ADMIN">Admin</option>
+                                </select>
+                            </div>
+                        </div>
+
                         <div className="form-group row">
                             <label className="col-sm-2 col-form-label"></label>
                             <div className="col-sm-10">
