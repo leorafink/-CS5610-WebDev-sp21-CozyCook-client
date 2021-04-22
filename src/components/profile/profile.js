@@ -19,7 +19,14 @@ const Profile = () => {
     }, [])
     return(
         <div>
-            <h1>Profile</h1>
+            <div className = "wbdv-go-back"
+                 onClick = {() => window.location.href = "/home"}>
+                <i className = "fas fa-arrow-left fa-2x wbdv-action-icon"/>
+                Go Back
+            </div>
+            <h1 className="wbdv-profile-header-main">
+                Profile
+            </h1>
             {
                 otherUser &&
                 <PublicContent user={otherUser}/>
