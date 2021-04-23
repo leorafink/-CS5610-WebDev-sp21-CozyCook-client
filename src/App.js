@@ -11,6 +11,7 @@ import Register from "./components/register/register";
 import UserList from "./components/users/user-list";
 import Profile from "./components/profile/profile";
 import Logout from "./components/logout/logout"
+import NavBar from "./components/nav-bar/nav-bar";
 
 
 const reducer = combineReducers({
@@ -24,6 +25,7 @@ function App() {
       <Provider store = {store}>
           <div className = "container-fluid">
               <BrowserRouter>
+                  <NavBar/>
                   <Route
                       exact={true}
                       path={["/",

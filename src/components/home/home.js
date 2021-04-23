@@ -27,7 +27,8 @@ const Home = () => {
 
     return(
         <div className = "container-fluid">
-            <div className="wbdv-page-heading row">
+            {/*OLD NAV BAR*/}
+            {/*<div className="wbdv-page-heading row">
                 <div className="col-1"></div>
                 <div className="col-10">
                     <h1>CozyCook</h1>
@@ -56,7 +57,7 @@ const Home = () => {
                             </Link>
                         </div>
                 }
-            </div>
+            </div>*/}
 
             <div className = "container-fluid wbdv-home-image-container">
                 <img className = "img-fluid wbdv-home-image"

@@ -19,7 +19,7 @@ const Register = ({createUser}) => {
         userService.register(credentials)
             .then((user) => {
                 if (user === undefined) {
-                    alert("username already taken")
+                    alert("Username already taken!  Please try another username.")
                 } else {
                     window.location.href = "/profile"
                 }
