@@ -1,4 +1,4 @@
-import React, {useEffect, useReducer, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import "./profile.style.css";
 
@@ -8,10 +8,10 @@ const PrivateContent = ({user, updateUser}) => {
     const [currentPassword, setCurrentPassword] = useState(user.password)
     const [currentEmail, setCurrentEmail] = useState(user.email)
 
-    /*useEffect(() => {
+    useEffect(() => {
         setCurrentPassword(user.password)
         setCurrentEmail(user.email)
-    }, [user])*/
+    }, [user])
 
     return(
         <div className="container-fluid">
@@ -24,7 +24,7 @@ const PrivateContent = ({user, updateUser}) => {
                                        className="wbdv-profile-label col-2">
                                     Password:
                                 </label>
-                                <input value = {user.password}
+                                <input value = {currentPassword}
                                        id = "passwordField"
                                        className = "form-control col-9">
                                 </input>
@@ -52,9 +52,6 @@ const PrivateContent = ({user, updateUser}) => {
                                            ...user,
                                            password: currentPassword
                                        })
-                                       setCurrentPassword(currentPassword)
-                                       console.log(currentPassword)
-                                       document.getElementById("passwordField").defaultValue = user.password
                                        setEditingPassword(false)
                                    }}/>
                             </>
@@ -83,14 +80,13 @@ const PrivateContent = ({user, updateUser}) => {
                                        className = "wbdv-profile-label col-2">
                                     Email:
                                 </label>
-                                <input defaultValue = {user.email}
+                                <input defaultValue = {currentEmail}
                                        id = "emailField"
                                        className = "form-control col-9"
                                        onChange = {(e) => setCurrentEmail(e.target.value)}>
                                 </input>
                                 <i className="fas fa-check fa-2x col-1"
                                    onClick = {() => {
-                                       setCurrentEmail(document.getElementById("emailField").value)
                                        updateUser(user.id, {
                                            ...user,
                                            email: currentEmail
