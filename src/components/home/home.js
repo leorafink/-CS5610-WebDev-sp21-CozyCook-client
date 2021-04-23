@@ -5,8 +5,10 @@ import './home.style.css'
 import userService from "../../services/user-service";
 
 const Home = () => {
+
     const [session, setSession] = useState(null)
-    const [currentUser, setCurrentUser] = useState(null)
+    const [currentUser, setCurrentUser] = useState({})
+    const [mostRecentUser, setMostRecentUser] = useState({})
 
     const logout = () => {
         userService.logout()
@@ -16,6 +18,10 @@ const Home = () => {
         userService.getSession()
             .then((session) => {
                 setSession(session)
+            })
+        userService.findMostRecentUser()
+            .then((user) => {
+                setMostRecentUser(user)
             })
     }, [])
 
@@ -64,6 +70,11 @@ const Home = () => {
                 <Link to = "/users" className="btn wbdv-home-button">
                     Go to User List
                 </Link>
+                <div className = "container-fluid">
+                    <h3 className = "wbdv-most-recent-user-greeting">
+                        Say hello to our most recent user, {mostRecentUser.username}!
+                    </h3>
+                </div>
             </div>
         </div>
     )

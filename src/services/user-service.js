@@ -49,6 +49,12 @@ export const updateUser = (uid, user) => {
     )
 }
 
+export const findMostRecentUser = () => {
+    return(
+        fetch(`${USER_API}/home/mostRecentUser`)
+            .then((response) => response.json())
+    )
+}
 
 export const deleteUser = (uid) => {
     return(fetch(`${url}/users/${uid}`,
@@ -132,7 +138,8 @@ const api = {
     publicProfile,
     login,
     logout,
-    getSession
+    getSession,
+    findMostRecentUser
 }
 
 export default api
