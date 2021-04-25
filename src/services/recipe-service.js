@@ -11,8 +11,9 @@
 // Edamam A App Key: c65adc373fa0821d289b38c395b4a129
 
 const EDAMAM_URL = "https://api.edamam.com/search?app_id=8bc332bb&app_key=c65adc373fa0821d289b38c395b4a129"
+const RECIPE_URL = "http://localhost:8080/api/users"
 
-export const findRecipesByTitle = (title, health) => {
+const findRecipesByTitle = (title, health) => {
     let url = EDAMAM_URL + `&q=${title}`
     for (let i = 0; i < health.length; i++) {
         url = url + `&health=${health[i]}`
@@ -22,16 +23,31 @@ export const findRecipesByTitle = (title, health) => {
             .then(response => response.json())
     )
 }
-export const findRecipeById = (id) => {
+const findRecipeById = (id) => {
     return(
         fetch(`https://api.edamam.com/search?r=http%3A%2F%2Fwww.edamam.com%2Fontologies%2Fedamam.owl%23recipe_${id}&app_id=d0cab371&app_key=de9c6b500612b05267393f89cd94df76`)
             .then(response => response.json())
     )
 }
 
+const createRecipeForUser = (userId, recipe) => {
+    alert("reached recipe service function, userId: " + userId)
+    return(
+        fetch(`${RECIPE_URL}/${userId}/recipes`, {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(recipe)
+        })
+            .then((response) => response.json())
+    )
+}
+
 const api = {
     findRecipesByTitle,
-    findRecipeById
+    findRecipeById,
+    createRecipeForUser
 }
 
 export default api

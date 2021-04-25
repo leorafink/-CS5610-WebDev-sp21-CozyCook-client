@@ -24,10 +24,11 @@ const UserList = (
     const [currentUsers, setCurrentUsers] = useState([])
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const [email, setEmail] = useState("")
     const [type, setType] = useState("GENERAL")
 
     useEffect(() => {
-        userService.findAllUsers()
+        findAllUsers()
         /* fetch(`$(heroku config:get DATABASE_URL -a cs5610-charlotteswebdev-server) /api/users`)
              .then(response => console.log(response.json()))
              // .then((users) => setCurrentUsers(users))*/
@@ -52,6 +53,11 @@ const UserList = (
                            onChange={(e) => setPassword(e.target.value)}/>
                 </div>
                 <div className="col align-middle">
+                    <input className="form-control"
+                           placeholder="Email"
+                           onChange={(e) => setEmail(e.target.value)}/>
+                </div>
+                <div className="col align-middle">
                     <select className="form-control"
                             onChange={(e) => setType(e.target.value)}>
                         <option value="GENERAL">General User</option>
@@ -60,7 +66,7 @@ const UserList = (
                 </div>
                 <div className="col align-middle ">
                     <span className="">
-                        <button onClick={() => createUser(username, password, type)}
+                        <button onClick={() => createUser(username, password, email, type)}
                                 className="wbdv-user-crud-btn">
                             <i className="fa-2x fa fa-plus-circle"></i>
                         </button>
@@ -121,9 +127,12 @@ const dtpm = (dispatch) => ({
                                         users: users
                                     }))
     },
-    createUser: (username, password, type) => {
-        userService.createUser(
-            {username: username, password: password, type: type})
+    createUser: (username, password, email, type) => {
+        userService.register(
+            {username: username,
+                password: password,
+                email: email,
+                role: type})
             .then(user => dispatch({
                                        type: "CREATE_USER",
                                        user: user

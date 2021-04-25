@@ -9,9 +9,9 @@
 const url = 'https://wbdv-sp21-01-cozycook-server.herokuapp.com/api/'
 const USER_API = "http://localhost:8080/api";
 
-export const createUser = (user) => {
+const createUser = (user) => {
     return(
-        fetch(`${url}/users`, {
+        fetch(`${USER_API}/users`, {
             method: "POST",
             headers: {
                 "content-type": "application/json"
@@ -23,19 +23,19 @@ export const createUser = (user) => {
 }
 
 
-export const findUserById = (uid) => {
+const findUserById = (uid) => {
     return(
-        fetch(`${url}/${uid}`)
+        fetch(`${USER_API}/${uid}`)
             .then(response => response.json())
     )
 }
 
-function findAllUsers() {
-    return fetch(`${url}/users`)
+const findAllUsers = () => {
+    return fetch(`${USER_API}/users`)
         .then((response) => response.json())
 }
 
-export const updateUser = (uid, user) => {
+const updateUser = (uid, user) => {
     return(
         fetch(`${USER_API}/users/${uid}`, {
             method: "PUT",
@@ -49,15 +49,15 @@ export const updateUser = (uid, user) => {
     )
 }
 
-export const findMostRecentUser = () => {
+const findMostRecentUser = () => {
     return(
         fetch(`${USER_API}/home/mostRecentUser`)
             .then((response) => response.json())
     )
 }
 
-export const deleteUser = (uid) => {
-    return(fetch(`${url}/users/${uid}`,
+const deleteUser = (uid) => {
+    return(fetch(`${USER_API}/users/${uid}`,
         {method: 'DELETE'})
             .then(response => response.json())
     )

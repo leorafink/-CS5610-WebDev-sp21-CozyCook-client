@@ -1,15 +1,33 @@
 import React, {useState, useEffect} from 'react'
 import {useParams, useHistory} from 'react-router-dom'
 import recipeService from '../services/recipe-service'
+import userService from "../services/user-service";
+import recipeActions from "../actions/recipes-actions";
+import {connect} from "react-redux";
 
-const Details = () => {
+const Details = ({createRecipeForUser}) => {
     const [recipe, setRecipe] = useState({})
+    const [userId, setUserId] = useState("")
     const {title, id} = useParams()
     const history = useHistory()
+    const [session, setSession] = useState({})
+    const [recipeObject, setRecipeObject] = useState({})
 
     useEffect(() => {
         recipeService.findRecipeById(id)
-            .then(recipe => setRecipe(recipe))
+            .then(recipe => {
+                setRecipe(recipe)
+                setRecipeObject({
+                                    ...recipeObject,
+                                    name: recipe[0].label,
+                                    link: recipe[0].url
+                                })
+            })
+        userService.getSession()
+            .then((session) => {
+                setSession(session)
+            })
+        setUserId(session.id)
     }, [])
 
     return(
@@ -43,6 +61,25 @@ const Details = () => {
                                       See Full Recipe
                                   </button>
                              </a>
+                             <span className = "col-1"/>
+                             <button type="button"
+                                     className="btn btn-primary wbdv-details-button-recipe"
+                                     onClick = {() => {
+                                         createRecipeForUser(session.id, recipeObject)
+                                     }}>
+                                 Favorite Recipe
+                             </button>
+                            <input className = "text-area"
+                                   id="notesField"
+                                    onChange={(e) => {
+                                        setRecipeObject({
+                                            ...recipeObject,
+                                            notes: e.target.value
+                                                        })
+                                    }}/>
+                            <h1>Session Username: {session.username}</h1>
+                            <h1>Recipe Object Name: {recipeObject.name}</h1>
+                            <h1>Recipe Object URL: {recipeObject.link}</h1>
                         </div>
                         </>
                     }
@@ -51,4 +88,14 @@ const Details = () => {
     )
 }
 
-export default Details
+const stateToPropMapper = (state) => {
+    return ({
+        recipes: state.recipeReducer.recipes
+    })
+}
+
+const dispatchToPropMapper = (dispatch) => ({
+    createRecipeForUser: (userId, recipe) => recipeActions.createRecipeForUser(dispatch, userId, recipe)
+})
+
+export default connect(stateToPropMapper, dispatchToPropMapper)(Details)
