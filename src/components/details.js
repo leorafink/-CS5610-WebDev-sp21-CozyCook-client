@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {useParams, useHistory} from 'react-router-dom'
+import {useParams, useHistory, Link} from 'react-router-dom'
 import recipeService from '../services/recipe-service'
 import userService from "../services/user-service";
 import recipeActions from "../actions/recipes-actions";
@@ -94,23 +94,39 @@ const Details = ({createRecipeForUser}) => {
                              </a>
                              <span className = "col-1"/>
                             {
-                                <button type="button"
-                                        className="btn btn-primary wbdv-details-button-recipe"
-                                        onClick = {() => {
-                                            recipeService.createRecipeForUser(session.id, recipeObject)
-                                            alert("Successfully added " + recipeObject.name + " to your favorite recipes!")
-                                        }}>
-                                    Favorite Recipe
-                                </button>
+                                session && session.id &&
+                                <>
+                                    <h1>{JSON.stringify(session)}</h1>
+                                    <button type="button"
+                                            className="btn btn-primary wbdv-details-button-recipe"
+                                            onClick = {() => {
+                                                recipeService.createRecipeForUser(session.id, recipeObject)
+                                                alert("Successfully added " + recipeObject.name + " to your favorite recipes!")
+                                            }}>
+                                        Favorite Recipe
+                                    </button>
+                                    <input className = "text-area"
+                                           id = "notesField"
+                                           onChange={(e) => {
+                                               setRecipeObject({
+                                                   ...recipeObject,
+                                                   notes: e.target.value
+                                               })
+                                           }}
+                                    />
+                                </>
                             }
-                            <input className = "text-area"
-                                   id="notesField"
-                                    onChange={(e) => {
-                                        setRecipeObject({
-                                            ...recipeObject,
-                                            notes: e.target.value
-                                                        })
-                                    }}/>
+                            {
+                                !session.id &&
+                                <>
+                                    <h1>{JSON.stringify(session)}</h1>
+                                    <Link type="button"
+                                          to = "/login"
+                                          className="btn btn-primary wbdv-details-button-recipe">
+                                        Log In to Add This Recipe to Your Favorites!
+                                    </Link>
+                                </>
+                            }
                             <h1>Session Username: {session.username}</h1>
                             <h1>Recipe Object Name: {recipeObject.name}</h1>
                             <h1>Recipe Object URL: {recipeObject.link}</h1>
