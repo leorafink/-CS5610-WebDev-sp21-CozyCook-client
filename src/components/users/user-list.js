@@ -26,6 +26,11 @@ const UserList = (
     const [password, setPassword] = useState("")
     const [email, setEmail] = useState("")
     const [type, setType] = useState("GENERAL")
+    const [currentUsersTemp, setCurrentUsersTemp] = useState([])
+
+    const refreshPage = () => {
+        window.location.reload(true)
+    }
 
     useEffect(() => {
         userService.findAllUsers()
@@ -33,7 +38,7 @@ const UserList = (
         /* fetch(`$(heroku config:get DATABASE_URL -a cs5610-charlotteswebdev-server) /api/users`)
              .then(response => console.log(response.json()))
              // .then((users) => setCurrentUsers(users))*/
-    }, [currentUsers])
+    }, [currentUsersTemp])
 
     return (
         <div className="container-fluid">
@@ -41,7 +46,8 @@ const UserList = (
                 <i className = "fas fa-arrow-left fa-2x float-left wbdv-back-button"></i>
             </Link>
             <h1>user list</h1>
-            {/*<h1>currentUsers: {JSON.stringify(currentUsers)}</h1>*/}
+            {/*<h1>currentUsers: {JSON.stringify(currentUsers)}</h1>
+            <h1>currentUsers length: {JSON.stringify(currentUsers.length)}</h1>*/}
             <div className="row">
                 <div className="col align-middle">
                     <input className="form-control"
@@ -78,6 +84,7 @@ const UserList = (
                                         ...currentUsers,
                                         response
                                                     ])
+                                    setCurrentUsersTemp(currentUsers)
                                 })
                         }}
                                 className="wbdv-user-crud-btn">
@@ -119,7 +126,10 @@ const UserList = (
                                       deleteUser={deleteUser}
                                       updateUser={updateUser}
                                       currentUsers={currentUsers}
-                                      setCurrentUsers={setCurrentUsers}/>
+                                      setCurrentUsers={setCurrentUsers}
+                                      currentUsersTemp={currentUsersTemp}
+                                      setCurrentUsersTemp={setCurrentUsersTemp}
+                                      refreshPage = {refreshPage}/>
                             </tr>
                         )
                     })

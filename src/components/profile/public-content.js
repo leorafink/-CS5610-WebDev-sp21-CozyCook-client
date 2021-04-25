@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 
 import "./profile.style.css";
 import recipeService from "../../services/recipe-service"
+import {Link} from "react-router-dom";
 
 const PublicContent = ({user}) => {
     const [editingRole, setEditingRole] = useState(false)
@@ -23,13 +24,17 @@ const PublicContent = ({user}) => {
             <h2 className="wbdv-profile-header-user">
                 {user.username}'s Profile
             </h2>
+            <h3>{user.username}'s Favorite Recipes</h3>
             <div className="container-fluid">
                 <ul className = "list-group">
                     {
                         user && favoriteRecipes && favoriteRecipes.length > 0 && favoriteRecipes.map((recipe) => {
                             return(
                                 <li className="list-group-item">
-                                    {recipe.name}
+                                    <Link to = {`/search/a/details/${recipe.id}`}>
+                                        {recipe.name}
+                                    </Link>
+                                    {JSON.stringify(recipe)}
                                 </li>
                             )
                         })

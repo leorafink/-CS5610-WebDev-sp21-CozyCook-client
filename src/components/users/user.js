@@ -1,12 +1,13 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import userService from "../../services/user-service"
 
-const User = ({user, deleteUser, updateUser, currentUsers, setCurrentUsers}) => {
+const User = ({user, deleteUser, updateUser, currentUsers, setCurrentUsers, currentUsersTemp, setCurrentUsersTemp, refreshPage}) => {
     const [editing, setEditing] = useState(false)
     // const [username, setUsername] = useState("")
     // const [password, setPassword] = useState("")
     // const [type, setType] = useState("")
     const [currentUser, setCurrentUser] = useState(user);
+
     return(
         <>
 
@@ -53,7 +54,7 @@ const User = ({user, deleteUser, updateUser, currentUsers, setCurrentUsers}) => 
                     <td>
                         <button onClick={() => {
                             userService.deleteUser(user.id)
-                            setCurrentUsers(currentUsers.filter(user => user.id !== currentUser.id))
+                            refreshPage()
                         }} className="wbdv-user-crud-btn" >
                             <i className="fa-2x fa fa-trash"></i>
                         </button>
