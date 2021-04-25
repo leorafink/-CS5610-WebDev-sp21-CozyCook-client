@@ -12,6 +12,8 @@ const Details = ({createRecipeForUser}) => {
     const history = useHistory()
     const [session, setSession] = useState({})
     const [recipeObject, setRecipeObject] = useState({})
+    const [isFavorite, setIsFavorite] = useState(false)
+    const [userRecipes, setUserRecipes] = useState([])
 
     useEffect(() => {
         recipeService.findRecipeById(id)
@@ -23,13 +25,37 @@ const Details = ({createRecipeForUser}) => {
                                     link: recipe[0].url,
                                     originalId: recipe[0].uri.substring(51)
                                 })
+                userService.getSession()
+                    .then((session) => {
+                        setSession(session)
+                        recipeService.findAllRecipesForUser(session.id)
+                            .then((response) => {
+                                setUserRecipes(response)
+                                for (let i = 0 ; i < userRecipes.length ; i++) {
+                                    console.log(userRecipes[i])
+                                    if (userRecipes[i].originalId === recipeObject.originalId) {
+                                        setIsFavorite(true)
+                                    }
+                                }
+                                alert("isFavorite: " + JSON.stringify(isFavorite))
+                            })
+                    })
             })
-        userService.getSession()
+        /*userService.getSession()
             .then((session) => {
                 setSession(session)
-            })
-        setUserId(session.id)
-    }, [])
+                recipeService.findAllRecipesForUser(session.id)
+                    .then((response) => {
+                        setUserRecipes(response)
+                        for (let i = 0 ; i < userRecipes.length ; i++) {
+                            if (userRecipes[i].id === recipeObject.id) {
+                                setIsFavorite(true)
+                            }
+                        }
+                        alert("isFavorite: " + JSON.stringify(isFavorite))
+                    })
+            })*/
+    }, [isFavorite])
 
     return(
         <div className="container-fluid">
@@ -38,7 +64,7 @@ const Details = ({createRecipeForUser}) => {
                     {
                         recipe && recipe[0] && recipe[0].ingredientLines && recipe[0].url && recipe[0].image &&
                         <>
-
+                        <h1>isFavorite: {JSON.stringify(isFavorite)}</h1>
                         <h1 className="wbdv-page-heading">{recipe[0].label}</h1>
                         <div className = "wbdv-go-back" onClick = {() => history.goBack()}>
                             <i className = "fas fa-arrow-left fa-2x wbdv-action-icon"/>
@@ -65,13 +91,16 @@ const Details = ({createRecipeForUser}) => {
                                   </button>
                              </a>
                              <span className = "col-1"/>
-                             <button type="button"
-                                     className="btn btn-primary wbdv-details-button-recipe"
-                                     onClick = {() => {
-                                         recipeService.createRecipeForUser(session.id, recipeObject)
-                                     }}>
-                                 Favorite Recipe
-                             </button>
+                            {
+                                <button type="button"
+                                        className="btn btn-primary wbdv-details-button-recipe"
+                                        onClick = {() => {
+                                            recipeService.createRecipeForUser(session.id, recipeObject)
+                                            alert("Successfully added " + recipeObject.name + " to your favorite recipes!")
+                                        }}>
+                                    Favorite Recipe
+                                </button>
+                            }
                             <input className = "text-area"
                                    id="notesField"
                                     onChange={(e) => {
