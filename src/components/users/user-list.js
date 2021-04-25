@@ -33,7 +33,7 @@ const UserList = (
         /* fetch(`$(heroku config:get DATABASE_URL -a cs5610-charlotteswebdev-server) /api/users`)
              .then(response => console.log(response.json()))
              // .then((users) => setCurrentUsers(users))*/
-    }, [])
+    }, [currentUsers])
 
     return (
         <div className="container-fluid">
@@ -117,7 +117,9 @@ const UserList = (
                                 <User key={user.id}
                                       user={user}
                                       deleteUser={deleteUser}
-                                      updateUser={updateUser}/>
+                                      updateUser={updateUser}
+                                      currentUsers={currentUsers}
+                                      setCurrentUsers={setCurrentUsers}/>
                             </tr>
                         )
                     })

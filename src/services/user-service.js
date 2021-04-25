@@ -57,6 +57,7 @@ const findMostRecentUser = () => {
 }
 
 const deleteUser = (uid) => {
+    alert("uid in deleteuser is: " + uid)
     return(fetch(`${USER_API}/users/${uid}`,
         {method: 'DELETE'})
             .then(response => response.json())

@@ -1,7 +1,7 @@
 import React, {useState} from "react";
+import userService from "../../services/user-service"
 
-
-const User = ({user, deleteUser, updateUser}) => {
+const User = ({user, deleteUser, updateUser, currentUsers, setCurrentUsers}) => {
     const [editing, setEditing] = useState(false)
     // const [username, setUsername] = useState("")
     // const [password, setPassword] = useState("")
@@ -51,7 +51,10 @@ const User = ({user, deleteUser, updateUser}) => {
                         </select>
                     </td>
                     <td>
-                        <button onClick={() => deleteUser(user)} className="wbdv-user-crud-btn" >
+                        <button onClick={() => {
+                            userService.deleteUser(user.id)
+                            setCurrentUsers(currentUsers.filter(user => user.id !== currentUser.id))
+                        }} className="wbdv-user-crud-btn" >
                             <i className="fa-2x fa fa-trash"></i>
                         </button>
                         <button className="wbdv-user-crud-btn" onClick={() => {updateUser(currentUser)
