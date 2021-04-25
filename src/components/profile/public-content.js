@@ -25,13 +25,13 @@ const PublicContent = ({user}) => {
     }
 
     return(
-        <div className="container-fluid">
-            <h2 className="wbdv-profile-header-user">
-                {user.username}'s Profile
-            </h2>
-            <h3>{user.username}'s Favorite Recipes</h3>
-            <div className="container-fluid">
-                <ul className = "list-group">
+        <div className="container-fluid ">
+
+            <div className="container-fluid container-lg wbdv-public-content">
+                <h3 className="wbdv-profile-section-label">
+                    {user.username}'s Favorite Recipes
+                </h3>
+                <ul className = "list-group wbdv-favorite-recipes">
                     {
                         user && favoriteRecipes && favoriteRecipes.length > 0 && favoriteRecipes.map((recipe) => {
                             return(
@@ -57,9 +57,16 @@ const PublicContent = ({user}) => {
                     }
                 </ul>
             </div>
-            <div className="row wbdv-profile-row">
-                {
-                    !editingRole &&
+            <div className="container-fluid container-lg wbdv-public-content">
+                <div>
+                    <h3 className="wbdv-profile-section-label">
+                        {user.username}'s Public Info
+                    </h3>
+                </div>
+                <div className="row wbdv-profile-row">
+
+                    {
+                        !editingRole &&
                         <>
                             <label htmlFor = "roleField"
                                    className = "wbdv-profile-label col-2">
@@ -72,9 +79,9 @@ const PublicContent = ({user}) => {
                             <i className="fas fa-edit fa-2x col-1"
                                onClick = {() => setEditingRole(true)}/>
                         </>
-                }
-                {
-                    editingRole &&
+                    }
+                    {
+                        editingRole &&
                         <>
                             <label htmlFor = "roleField"
                                    className = "wbdv-profile-label col-2">
@@ -87,8 +94,11 @@ const PublicContent = ({user}) => {
                             <i className="fas fa-check fa-2x col-1"
                                onClick = {() => setEditingRole(false)}/>
                         </>
-                }
+                    }
+                </div>
+
             </div>
+
         </div>
     )
 }

@@ -31,9 +31,6 @@ const Profile = () => {
                 <i className = "fas fa-arrow-left fa-2x wbdv-action-icon"/>
                 Go Back
             </div>
-            <h1 className="wbdv-profile-header-main">
-                Profile
-            </h1>
 
             {
                 // There is a user currently logged in.
@@ -51,6 +48,9 @@ const Profile = () => {
                                         // The logged in Administrator is viewing another user's profile with an ID in the URL.
                                         loggedInUser.id !== otherUser.id &&
                                         <>
+                                            <h1 className="wbdv-profile-header-main">
+                                                {otherUser.username}'s Profile
+                                            </h1>
                                             <PublicContent user={otherUser}
                                                            updateUser={updateUser} />
                                             <PrivateContent user={otherUser}
@@ -62,6 +62,9 @@ const Profile = () => {
                                         // The logged in Administrator is viewing their own profile with their id in the URL.
                                         loggedInUser.id === otherUser.id &&
                                         <>
+                                            <h1 className="wbdv-profile-header-main">
+                                                {loggedInUser.username}'s Profile
+                                            </h1>
                                             <PublicContent user={loggedInUser}
                                                            updateUser={updateUser} />
                                             <PrivateContent user={loggedInUser}
@@ -75,6 +78,9 @@ const Profile = () => {
                                 // The logged in Administrator is viewing their own profile withOUT their ID in the URL.
                                 !otherUser &&
                                 <>
+                                    <h1 className="wbdv-profile-header-main">
+                                        {loggedInUser.username}'s Profile
+                                    </h1>
                                     <PublicContent user={loggedInUser}
                                                    updateUser={updateUser} />
                                     <PrivateContent user={loggedInUser}
@@ -96,6 +102,9 @@ const Profile = () => {
                                         // The logged in General User is viewing another user's profile with an ID in the URL.
                                         loggedInUser.id !== otherUser.id &&
                                         <>
+                                            <h1 className="wbdv-profile-header-main">
+                                                {otherUser.username}'s Profile
+                                            </h1>
                                             <PublicContent user={otherUser}
                                                            updateUser={updateUser}/>
                                         </>
@@ -104,6 +113,9 @@ const Profile = () => {
                                         // The logged in General User is viewing their own profile with their id in the URL.
                                         loggedInUser.id === otherUser.id &&
                                         <>
+                                            <h1 className="wbdv-profile-header-main">
+                                                {loggedInUser.username}'s Profile
+                                            </h1>
                                             <PublicContent user={loggedInUser}
                                                            updateUser={updateUser} />
                                             <PrivateContent user={loggedInUser}
@@ -116,6 +128,9 @@ const Profile = () => {
                                 // The logged in General User is viewing their own profile withOUT their ID in the URL.
                                 !otherUser &&
                                 <>
+                                    <h1 className="wbdv-profile-header-main">
+                                        {loggedInUser.username}'s Profile
+                                    </h1>
                                     <PublicContent user={loggedInUser}
                                                    updateUser={updateUser} />
                                     <PrivateContent user={loggedInUser}
@@ -134,6 +149,9 @@ const Profile = () => {
                         // The Anonymous user is viewing an existing user's profile. (With the user's userID in the URL).
                         otherUser &&
                         <>
+                            <h1 className="wbdv-profile-header-main">
+                                {otherUser.username}'s Profile
+                            </h1>
                             <PublicContent user={otherUser}
                                          updateUser={updateUser} />
                         </>

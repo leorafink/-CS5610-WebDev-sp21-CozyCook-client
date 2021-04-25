@@ -14,8 +14,13 @@ const PrivateContent = ({user, updateUser}) => {
     }, [user])
 
     return(
-        <div className="container-fluid">
+        <div className="container-fluid container-lg wbdv-private-content">
             <>
+                <div>
+                    <h3 className="wbdv-profile-section-label">
+                        {user.username}'s Private Info
+                    </h3>
+                </div>
                 <div className="row wbdv-profile-row">
                     {
                         !editingPassword &&

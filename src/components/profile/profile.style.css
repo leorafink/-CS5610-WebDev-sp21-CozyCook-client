@@ -15,3 +15,44 @@
 .wbdv-profile-header-user {
     color: white;
 }
+
+.wbdv-admin-btn {
+    background-color: darkorange;
+    border: darkorange;
+    color: whitesmoke !important;
+}
+
+.wbdv-admin-btn:hover {
+    background-color: #bc6400;
+    border: #bc6400;
+    color: whitesmoke;
+}
+
+.wbdv-favorite-recipes {
+
+}
+
+.wbdv-profile-section-label {
+
+}
+
+.wbdv-public-content {
+    align-content: center;
+    text-align: center;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+.wbdv-private-content {
+    align-content: center;
+    text-align: center;
+    margin-bottom: 50px;
+
+}
+
+.wbdv-admin-content {
+    align-content: center;
+    text-align: center;
+    margin-bottom: 50px;
+
+}
