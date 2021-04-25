@@ -31,8 +31,10 @@ const Details = ({createRecipeForUser}) => {
                         recipeService.findAllRecipesForUser(session.id)
                             .then((response) => {
                                 setUserRecipes(response)
+                                console.log(userRecipes)
                                 for (let i = 0 ; i < userRecipes.length ; i++) {
-                                    console.log(userRecipes[i])
+                                    console.log(userRecipes[i].originalId)
+                                    console.log(recipeObject.originalId)
                                     if (userRecipes[i].originalId === recipeObject.originalId) {
                                         setIsFavorite(true)
                                     }
