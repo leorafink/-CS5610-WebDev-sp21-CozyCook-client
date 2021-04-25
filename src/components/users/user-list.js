@@ -35,9 +35,6 @@ const UserList = (
     useEffect(() => {
         userService.findAllUsers()
             .then(users => setCurrentUsers(users))
-        /* fetch(`$(heroku config:get DATABASE_URL -a cs5610-charlotteswebdev-server) /api/users`)
-             .then(response => console.log(response.json()))
-             // .then((users) => setCurrentUsers(users))*/
     }, [currentUsersTemp])
 
     return (

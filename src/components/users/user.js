@@ -1,16 +1,25 @@
 import React, {useEffect, useState} from "react";
 import userService from "../../services/user-service"
 
-const User = ({user, deleteUser, updateUser, currentUsers, setCurrentUsers, currentUsersTemp, setCurrentUsersTemp, refreshPage}) => {
+const User = ({user,
+                  updateUser,
+                  currentUsers, setCurrentUsersTemp
+}) => {
+
     const [editing, setEditing] = useState(false)
-    // const [username, setUsername] = useState("")
-    // const [password, setPassword] = useState("")
-    // const [type, setType] = useState("")
-    const [currentUser, setCurrentUser] = useState(user);
+    const [currentUser, setCurrentUser] = useState({});
+
+    useEffect(() => {
+        setCurrentUser(user)
+    }, [])
+
+    const resetCurrentUsers = () => {
+        let resetUsers = currentUsers.filter(user => user.id !== currentUser.id)
+        setCurrentUsersTemp(resetUsers)
+    }
 
     return(
         <>
-
             {
                 !editing &&
                 <>
@@ -18,7 +27,8 @@ const User = ({user, deleteUser, updateUser, currentUsers, setCurrentUsers, curr
                     <td>{user.password}</td>
                     <td>{user.type}</td>
                     <td>
-                        <button onClick={() => deleteUser(user)} className="wbdv-user-crud-btn" >
+                        <button onClick={() => {resetCurrentUsers(); userService.deleteUser(currentUser.id)}}
+                                className="wbdv-user-crud-btn" >
                             <i className="fa-2x fa fa-trash"></i>
                         </button>
                         <button className="wbdv-user-crud-btn" onClick={() => setEditing(true)}>
@@ -52,10 +62,8 @@ const User = ({user, deleteUser, updateUser, currentUsers, setCurrentUsers, curr
                         </select>
                     </td>
                     <td>
-                        <button onClick={() => {
-                            userService.deleteUser(user.id)
-                            refreshPage()
-                        }} className="wbdv-user-crud-btn" >
+                        <button onClick={() => {resetCurrentUsers(); userService.deleteUser(currentUser.id)}}
+                                className="wbdv-user-crud-btn" >
                             <i className="fa-2x fa fa-trash"></i>
                         </button>
                         <button className="wbdv-user-crud-btn" onClick={() => {updateUser(currentUser)
@@ -68,6 +76,6 @@ const User = ({user, deleteUser, updateUser, currentUsers, setCurrentUsers, curr
         </>
 
     )
-}
+};
 
 export default User;
