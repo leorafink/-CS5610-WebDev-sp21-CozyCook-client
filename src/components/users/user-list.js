@@ -28,7 +28,8 @@ const UserList = (
     const [type, setType] = useState("GENERAL")
 
     useEffect(() => {
-        findAllUsers()
+        userService.findAllUsers()
+            .then(users => setCurrentUsers(users))
         /* fetch(`$(heroku config:get DATABASE_URL -a cs5610-charlotteswebdev-server) /api/users`)
              .then(response => console.log(response.json()))
              // .then((users) => setCurrentUsers(users))*/
@@ -40,7 +41,7 @@ const UserList = (
                 <i className = "fas fa-arrow-left fa-2x float-left wbdv-back-button"></i>
             </Link>
             <h1>user list</h1>
-
+            {/*<h1>currentUsers: {JSON.stringify(currentUsers)}</h1>*/}
             <div className="row">
                 <div className="col align-middle">
                     <input className="form-control"
@@ -66,7 +67,19 @@ const UserList = (
                 </div>
                 <div className="col align-middle ">
                     <span className="">
-                        <button onClick={() => createUser(username, password, email, type)}
+                        <button onClick={() => {
+                            // createUser(username, password, email, type)
+                            userService.register({username: username,
+                                                     password: password,
+                                                     email: email,
+                                                     role: type})
+                                .then((response) => {
+                                    setCurrentUsers([
+                                        ...currentUsers,
+                                        response
+                                                    ])
+                                })
+                        }}
                                 className="wbdv-user-crud-btn">
                             <i className="fa-2x fa fa-plus-circle"></i>
                         </button>
@@ -98,7 +111,7 @@ const UserList = (
                 <tbody>
 
                 {
-                    users && users.map((user) => {
+                    currentUsers && currentUsers.length > 0 && currentUsers.map((user) => {
                         return (
                             <tr>
                                 <User key={user.id}
