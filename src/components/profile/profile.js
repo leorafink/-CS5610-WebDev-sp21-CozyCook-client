@@ -47,7 +47,7 @@ const Profile = () => {
             }
             {
                 ((loggedInUser && otherUser && loggedInUser.id === otherUser.id) || loggedInUser.role === "ADMIN") &&
-                <PrivateContent user={loggedInUser}
+                <PrivateContent user={otherUser}
                                 updateUser = {updateUser}/>
             }
             {
