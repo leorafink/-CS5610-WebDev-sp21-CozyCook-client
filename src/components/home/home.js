@@ -3,12 +3,14 @@ import {Link} from "react-router-dom";
 import mainImage from "../icon-restaurant-4.png"
 import './home.style.css'
 import userService from "../../services/user-service";
+import recipeService from "../../services/recipe-service";
 
 const Home = () => {
 
     const [session, setSession] = useState(null)
     const [currentUser, setCurrentUser] = useState({})
     const [mostRecentUser, setMostRecentUser] = useState({})
+    const [mostRecentFavorite, setMostRecentFavorite] = useState({})
 
     const logout = () => {
         userService.logout()
@@ -18,6 +20,10 @@ const Home = () => {
         userService.getSession()
             .then((session) => {
                 setSession(session)
+                recipeService.findMostRecentRecipe(session.id)
+                    .then((recipe) => {
+                        setMostRecentFavorite(recipe)
+                    })
             })
         userService.findMostRecentUser()
             .then((user) => {
@@ -79,6 +85,17 @@ const Home = () => {
                         Say hello to our most recent user, {mostRecentUser.username}!
                     </h3>
                 </div>
+                {
+                    session && mostRecentFavorite &&
+                        <div className="container-fluid">
+                            <h3 className="wbdv-most-recent-user-greeting">
+                                Thinking of what to make? Try your most recent favorite recipe:
+                                <Link to = {`/search/recipe/details/${mostRecentFavorite.originalId}`}>
+                                    {"  " + mostRecentFavorite.name}
+                                </Link>
+                            </h3>
+                        </div>
+                }
             </div>
         </div>
     )
