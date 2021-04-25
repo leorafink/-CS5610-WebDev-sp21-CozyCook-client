@@ -26,7 +26,7 @@ const PublicContent = ({user}) => {
             <div className="container-fluid">
                 <ul className = "list-group">
                     {
-                        user && favoriteRecipes && favoriteRecipes.map((recipe) => {
+                        user && favoriteRecipes && favoriteRecipes.length > 0 && favoriteRecipes.map((recipe) => {
                             return(
                                 <li className="list-group-item">
                                     {recipe.name}
