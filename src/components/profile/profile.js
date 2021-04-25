@@ -34,33 +34,112 @@ const Profile = () => {
             <h1 className="wbdv-profile-header-main">
                 Profile
             </h1>
-            {
-                otherUser &&
-                <PublicContent user={otherUser}
-                               updateUser = {updateUser}/>
-            }
-            {
-                !otherUser &&
-                <PublicContent user={loggedInUser}
-                               updateUser = {updateUser}/>
 
+            {
+                // There is a user currently logged in.
+                loggedInUser &&
+                <>
+                    {
+                        // The logged in user is an administrator.
+                        loggedInUser.role == "ADMIN" &&
+                        <>
+                            {
+                                // There is a  logged in Administrator viewing A profile with A user ID in the URL "/api/profile/:userId".
+                                otherUser &&
+                                <>
+                                    {
+                                        // The logged in Administrator is viewing another user's profile with an ID in the URL.
+                                        loggedInUser.id !== otherUser.id &&
+                                        <>
+                                            <PublicContent user={otherUser}
+                                                           updateUser={updateUser} />
+                                            <PrivateContent user={otherUser}
+                                                            updateUser={updateUser} />
+                                            <AdminContent/>
+                                        </>
+                                    }
+                                    {
+                                        // The logged in Administrator is viewing their own profile with their id in the URL.
+                                        loggedInUser.id === otherUser.id &&
+                                        <>
+                                            <PublicContent user={loggedInUser}
+                                                           updateUser={updateUser} />
+                                            <PrivateContent user={loggedInUser}
+                                                            updateUser={updateUser}/>
+                                            <AdminContent/>
+                                        </>
+                                    }
+                                </>
+                            }
+                            {
+                                // The logged in Administrator is viewing their own profile withOUT their ID in the URL.
+                                !otherUser &&
+                                <>
+                                    <PublicContent user={loggedInUser}
+                                                   updateUser={updateUser} />
+                                    <PrivateContent user={loggedInUser}
+                                                    updateUser={updateUser}/>
+                                    <AdminContent/>
+                                </>
+                            }
+                        </>
+                    }
+                    {
+                        // The logged in user is NOT an administrator.
+                        loggedInUser.role !== "ADMIN" &&
+                        <>
+                            {
+                                // There is a logged in General User viewing A profile with A user ID in the URL "/api/profile/:userId".
+                                otherUser &&
+                                <>
+                                    {
+                                        // The logged in General User is viewing another user's profile with an ID in the URL.
+                                        loggedInUser.id !== otherUser.id &&
+                                        <>
+                                            <PublicContent user={otherUser}
+                                                           updateUser={updateUser}/>
+                                        </>
+                                    }
+                                    {
+                                        // The logged in General User is viewing their own profile with their id in the URL.
+                                        loggedInUser.id === otherUser.id &&
+                                        <>
+                                            <PublicContent user={loggedInUser}
+                                                           updateUser={updateUser} />
+                                            <PrivateContent user={loggedInUser}
+                                                            updateUser={updateUser}/>
+                                        </>
+                                    }
+                                </>
+                            }
+                            {
+                                // The logged in General User is viewing their own profile withOUT their ID in the URL.
+                                !otherUser &&
+                                <>
+                                    <PublicContent user={loggedInUser}
+                                                   updateUser={updateUser} />
+                                    <PrivateContent user={loggedInUser}
+                                                    updateUser={updateUser}/>
+                                </>
+                            }
+                        </>
+                    }
+                </>
             }
             {
-                ((loggedInUser && otherUser && loggedInUser.id === otherUser.id) || loggedInUser.role === "ADMIN") &&
-                <PrivateContent user={otherUser}
-                                updateUser = {updateUser}/>
+                // The user is Anonymous.
+                !loggedInUser &&
+                <>
+                    {
+                        // The Anonymous user is viewing an existing user's profile. (With the user's userID in the URL).
+                        otherUser &&
+                        <>
+                            <PublicContent user={otherUser}
+                                         updateUser={updateUser} />
+                        </>
+                    }
+                </>
             }
-            {
-                loggedInUser && !otherUser &&
-                <PrivateContent user={loggedInUser}
-                                updateUser = {updateUser}/>
-            }
-            {
-                loggedInUser && loggedInUser.role === "ADMIN" &&
-                <AdminContent/>
-            }
-
-
         </div>
     )
 }
