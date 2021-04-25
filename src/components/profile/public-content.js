@@ -7,17 +7,22 @@ import {Link} from "react-router-dom";
 const PublicContent = ({user}) => {
     const [editingRole, setEditingRole] = useState(false)
     const [favoriteRecipes, setFavoriteRecipes] = useState([])
+    const [favoriteRecipesTemp, setFavoriteRecipesTemp] = useState([])
+
 
     useEffect(() => {
         recipeService.findAllRecipesForUser(user.id)
             .then(recipes => {
                 setFavoriteRecipes(recipes)
-                console.log(recipes)
-                console.log(favoriteRecipes)
-                console.log(user)
-                console.log(user.id)
             })
-    }, [user])
+    }, [user, favoriteRecipesTemp])
+
+    const refreshRecipes = (recipeId) => {
+        console.log(recipeId)
+        let resetRecipes = favoriteRecipes.filter(recipe => recipe.id !== recipeId)
+
+        setFavoriteRecipesTemp(resetRecipes)
+    }
 
     return(
         <div className="container-fluid">
@@ -31,12 +36,21 @@ const PublicContent = ({user}) => {
                         user && favoriteRecipes && favoriteRecipes.length > 0 && favoriteRecipes.map((recipe) => {
                             return(
                                 <li className="list-group-item">
-                                    <Link to = {`/search/recipe/details/${recipe.originalId}`}>
-                                        {recipe.name}
-                                    </Link>
-                                    <div>
-                                        My Notes: {recipe.notes}
+                                    <div className="row">
+                                        <Link to = {`/search/recipe/details/${recipe.originalId}`} className="col-6">
+                                            {recipe.name}
+                                        </Link>
+                                        <div className="col-5">
+                                            My Notes: {recipe.notes}
+                                        </div>
+                                        <div className="col-1">
+                                            <i onClick={() => {recipeService.deleteRecipe(user.id, recipe.id);
+                                                refreshRecipes(recipe.id)}}
+                                               className="fa-2x fa fa-trash" />
+                                        </div>
                                     </div>
+
+
                                 </li>
                             )
                         })

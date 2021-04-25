@@ -50,11 +50,19 @@ const createRecipeForUser = (userId, recipe) => {
     )
 }
 
+const deleteRecipe = (userId, recipeId) => {
+    return(fetch(`${RECIPE_URL}/${userId}/recipes/${recipeId}`,
+                 {method: 'DELETE'})
+            .then(response => response.json())
+    )
+}
+
 const api = {
     findRecipesByTitle,
     findRecipeById,
     createRecipeForUser,
-    findAllRecipesForUser
+    findAllRecipesForUser,
+    deleteRecipe
 }
 
 export default api
