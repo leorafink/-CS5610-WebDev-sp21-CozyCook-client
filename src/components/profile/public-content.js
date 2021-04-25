@@ -31,10 +31,12 @@ const PublicContent = ({user}) => {
                         user && favoriteRecipes && favoriteRecipes.length > 0 && favoriteRecipes.map((recipe) => {
                             return(
                                 <li className="list-group-item">
-                                    <Link to = {`/search/a/details/${recipe.id}`}>
+                                    <Link to = {`/search/recipe/details/${recipe.originalId}`}>
                                         {recipe.name}
                                     </Link>
-                                    {JSON.stringify(recipe)}
+                                    <div>
+                                        My Notes: {recipe.notes}
+                                    </div>
                                 </li>
                             )
                         })

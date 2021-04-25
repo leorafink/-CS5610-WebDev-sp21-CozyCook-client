@@ -20,7 +20,8 @@ const Details = ({createRecipeForUser}) => {
                 setRecipeObject({
                                     ...recipeObject,
                                     name: recipe[0].label,
-                                    link: recipe[0].url
+                                    link: recipe[0].url,
+                                    originalId: recipe[0].uri.substring(51)
                                 })
             })
         userService.getSession()
@@ -33,9 +34,11 @@ const Details = ({createRecipeForUser}) => {
     return(
         <div className="container-fluid">
 
+
                     {
                         recipe && recipe[0] && recipe[0].ingredientLines && recipe[0].url && recipe[0].image &&
                         <>
+
                         <h1 className="wbdv-page-heading">{recipe[0].label}</h1>
                         <div className = "wbdv-go-back" onClick = {() => history.goBack()}>
                             <i className = "fas fa-arrow-left fa-2x wbdv-action-icon"/>
@@ -65,7 +68,7 @@ const Details = ({createRecipeForUser}) => {
                              <button type="button"
                                      className="btn btn-primary wbdv-details-button-recipe"
                                      onClick = {() => {
-                                         createRecipeForUser(session.id, recipeObject)
+                                         recipeService.createRecipeForUser(session.id, recipeObject)
                                      }}>
                                  Favorite Recipe
                              </button>

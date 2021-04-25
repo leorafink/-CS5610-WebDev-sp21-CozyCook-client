@@ -31,7 +31,6 @@ const findRecipeById = (id) => {
 }
 
 const findAllRecipesForUser = (uid) => {
-    alert("uid passed in to client recipe service: " + uid)
     return(
         fetch(`${RECIPE_URL}/${uid}/recipes`)
             .then((response) => response.json())

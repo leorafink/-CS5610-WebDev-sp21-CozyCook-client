@@ -27,7 +27,7 @@ const User = ({user,
                     <td>{user.password}</td>
                     <td>{user.type}</td>
                     <td>
-                        <button onClick={() => {resetCurrentUsers(); userService.deleteUser(currentUser.id)}}
+                        <button onClick={() => {userService.deleteUser(currentUser.id); resetCurrentUsers()}}
                                 className="wbdv-user-crud-btn" >
                             <i className="fa-2x fa fa-trash"></i>
                         </button>
