@@ -6,14 +6,13 @@ import {connect} from "react-redux";
 
 
 const Register = ({createUser}) => {
-    const [credentials, setCredentials] = useState({username: '', password: '', email: '', role: "GENERAL_USER"})
+    const [credentials, setCredentials] = useState({username: '', password: '', email: '', role: "GENERAL"})
     const history = useHistory()
 
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [role, setRole] = useState("")
     const [email, setEmail] = useState("")
-
 
     const register = () => {
         userService.register(credentials)

@@ -30,8 +30,15 @@ const findRecipeById = (id) => {
     )
 }
 
+const findAllRecipesForUser = (uid) => {
+    alert("uid passed in to client recipe service: " + uid)
+    return(
+        fetch(`${RECIPE_URL}/${uid}/recipes`)
+            .then((response) => response.json())
+    )
+}
+
 const createRecipeForUser = (userId, recipe) => {
-    alert("reached recipe service function, userId: " + userId)
     return(
         fetch(`${RECIPE_URL}/${userId}/recipes`, {
             method: "POST",
@@ -47,7 +54,8 @@ const createRecipeForUser = (userId, recipe) => {
 const api = {
     findRecipesByTitle,
     findRecipeById,
-    createRecipeForUser
+    createRecipeForUser,
+    findAllRecipesForUser
 }
 
 export default api

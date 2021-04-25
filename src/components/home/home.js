@@ -68,9 +68,12 @@ const Home = () => {
                     Search
                 </Link>
                 <br/>
-                <Link to = "/users" className="btn wbdv-home-button">
-                    Go to User List
-                </Link>
+                {
+                    session && session.role && session.role === "ADMIN" &&
+                        <Link to="/users" className="btn wbdv-home-button">
+                            Go to User List
+                        </Link>
+                }
                 <div className = "container-fluid">
                     <h3 className = "wbdv-most-recent-user-greeting">
                         Say hello to our most recent user, {mostRecentUser.username}!

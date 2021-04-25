@@ -86,7 +86,7 @@ const Details = ({createRecipeForUser}) => {
 
         </div>
     )
-}
+};
 
 const stateToPropMapper = (state) => {
     return ({
