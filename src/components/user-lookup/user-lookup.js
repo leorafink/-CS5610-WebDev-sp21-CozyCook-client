@@ -20,8 +20,16 @@ const UserLookup = () => {
 
     return (
         <>
-            <h1>User Lookup</h1>
-            <h4>Please Enter the Username of the User You Would Like to Lookup</h4>
+            <nav aria-label="breadcrumb">
+                <ol className="breadcrumb">
+                    <li className="breadcrumb-item"><a href="/home">Home</a></li>
+                    <li className="breadcrumb-item active" aria-current="page">User Lookup</li>
+
+                </ol>
+            </nav>
+
+            <h1 className="wbdv-page-title">User Lookup</h1>
+            <h4 className="wbdv-lightgrey">Please Enter the Username of the User You Would Like to Lookup:</h4>
             <input className="form-control"
                    title="Insert username here"
                    placeholder="username"
@@ -35,21 +43,10 @@ const UserLookup = () => {
                     className="btn wbdv-home-button"
                     onClick={() => {
                         findUser()
-                        // userService.findUserByUsername(username)
-                        //     .then(response => {
-                        //         alert(response.id)
-                        //         if (response.id === "null") {
-                        //             alert("user does not exist")
-                        //         } else {
-                        //             window.location.href = `/profile/${response.id}`
-                        //         }
-                        //     })
                     }}>
                 Lookup a User
             </button>
 
-
-            <h1>Username: {username}</h1>
         </>
     )
 }

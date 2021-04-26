@@ -87,7 +87,7 @@ const PublicContent = ({user}) => {
                 <h3 className="wbdv-profile-section-label">
                     {user.username}'s Favorite Recipes
                 </h3>
-                    <h5>This user has not added any recipes... yet!</h5>
+                    <h5 className="wbdv-lightgrey">This user has not added any recipes... yet!</h5>
                 </div>
             }
 
