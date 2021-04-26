@@ -64,7 +64,7 @@ const Search = ({recipes = [], findRecipesForSearch
                 </ol>
             </nav>
 
-            <h1 className="wbdv-page-title wbdv-page-heading">Search</h1>
+            <h1 className="wbdv-page-title">Search</h1>
             <div className="container-xl wbdv-search-main-area">
                 <div className="wbdv-input-area">
                     <input

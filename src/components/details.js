@@ -39,15 +39,11 @@ const Details = ({createRecipeForUser}) => {
                         recipeService.findAllRecipesForUser(session.id)
                             .then((response) => {
                                 setUserRecipes(response)
-                                console.log(userRecipes)
                                 for (let i = 0 ; i < userRecipes.length ; i++) {
-                                    console.log(userRecipes[i].originalId)
-                                    console.log(recipeObject.originalId)
                                     if (userRecipes[i].originalId === recipeObject.originalId) {
                                         setIsFavorite(true)
                                     }
                                 }
-                                alert("isFavorite: " + JSON.stringify(isFavorite))
                             })
                     })
             })
@@ -75,21 +71,23 @@ const Details = ({createRecipeForUser}) => {
             {
                         recipe && recipe[0] && recipe[0].ingredientLines && recipe[0].url && recipe[0].image &&
                         <>
+                        <nav aria-label="breadcrumb">
+                            <ol className="breadcrumb">
+                                <li className="breadcrumb-item"><a href="/home">Home</a></li>
+                                <li className="breadcrumb-item"><a href="/search">Search</a></li>
+                                <li className="breadcrumb-item active" aria-current="page">{recipe[0].label}</li>
 
-                            <nav aria-label="breadcrumb">
-                                <ol className="breadcrumb">
-                                    <li className="breadcrumb-item"><a href="/home">Home</a></li>
-                                    <li className="breadcrumb-item"><a href="/search">Search</a></li>
-                                    <li className="breadcrumb-item active" aria-current="page">{recipe[0].label}</li>
-
-                                </ol>
-                            </nav>
-
-                        <h1>isFavorite: {JSON.stringify(isFavorite)}</h1>
-                        <h1 className="wbdv-page-heading">{recipe[0].label}</h1>
-                        <div className = "wbdv-go-back" onClick = {() => history.goBack()}>
-                            <i className = "fas fa-arrow-left fa-2x wbdv-action-icon"/>
-                            Go Back
+                            </ol>
+                        </nav>
+                        <div className = "row">
+                            <div className = "wbdv-go-back col-2" onClick = {() => history.goBack()}>
+                                <i className = "fas fa-arrow-left fa-2x wbdv-action-icon"/>
+                                Go Back
+                            </div>
+                            <div className = "col-8">
+                                <h1 className="wbdv-page-title">{recipe[0].label}</h1>
+                            </div>
+                            <div className = "col-2"/>
                         </div>
                         <div className="wbdv-details-image-container">
                             <img className = "wbdv-details-image" src = {recipe[0].image}/>
@@ -111,28 +109,36 @@ const Details = ({createRecipeForUser}) => {
                                       See Full Recipe
                                   </button>
                              </a>
-                             <span className = "col-1"/>
                             {
                                 session && session.id &&
                                 <>
-                                    <h1>{JSON.stringify(session)}</h1>
-                                    <button type="button"
-                                            className="btn btn-primary wbdv-details-button-recipe"
-                                            onClick = {() => {
-                                                recipeService.createRecipeForUser(session.id, recipeObject)
-                                                alert("Successfully added " + recipeObject.name + " to your favorite recipes!")
-                                            }}>
-                                        Favorite Recipe
-                                    </button>
-                                    <input className = "text-area"
-                                           id = "notesField"
-                                           onChange={(e) => {
-                                               setRecipeObject({
-                                                   ...recipeObject,
-                                                   notes: e.target.value
-                                               })
-                                           }}
-                                    />
+                                    <div className = "container-fluid wbdv-details-button">
+                                        <h4 className = "wbdv-details-notes-header">
+                                            Take some notes and add this recipe to your favorites!
+                                        </h4>
+                                        <textarea className = "text-area form-control wbdv-notes-field"
+                                               id = "notesField"
+                                               title = "Enter your notes here"
+                                               placeholder = "Notes..."
+                                               rows = "5"
+                                               onChange={(e) => {
+                                                   setRecipeObject({
+                                                                       ...recipeObject,
+                                                                       notes: e.target.value
+                                                                   })
+                                               }}
+                                        />
+                                    </div>
+                                    <div className = "container-fluid wbdv-details-button">
+                                        <button type="button"
+                                                className="btn btn-primary wbdv-details-button-recipe"
+                                                onClick = {() => {
+                                                    recipeService.createRecipeForUser(session.id, recipeObject)
+                                                    alert("Successfully added " + recipeObject.name + " to your favorite recipes!")
+                                                }}>
+                                            Favorite Recipe
+                                        </button>
+                                    </div>
                                 </>
                             }
                             {
@@ -146,31 +152,30 @@ const Details = ({createRecipeForUser}) => {
                                     </Link>
                                 </>
                             }
-                            <h3>Other Users Who Have Liked This Recipe: </h3>
-                            <ul className="list-group">
-
                             {
-                                recipeFans && recipeFans.length > 0 && recipeFans.map(
-                                    (fan) => {
+                                recipeFans && recipeFans.length > 0 &&
+                                <>
+                                    <h4 className = "wbdv-other-favorites-header">
+                                        Users Who Have Liked This Recipe:
+                                    </h4>
+                                    <ul className="list-group wbdv-other-favorites-users">
+                                        {
+                                            recipeFans.map((fan) => {
+                                                userService.findUserByUsername(fan)
+                                                    .then(response => setFanId(response.id))
+                                                return (
+                                                    <li className="list-group-item">
+                                                        <Link to={`/profile/${fanId}`}>
+                                                            {fan}
+                                                        </Link>
+                                                    </li>
 
-                                        userService.findUserByUsername(fan)
-                                            .then(response => setFanId(response.id))
-                                            return (
-                                                <li className="list-group-item">
-                                                    <Link to={`/profile/${fanId}`}>
-                                                        {fan}
-                                                    </Link>
-                                                </li>
-
-                                            )
+                                                )
+                                            })
                                         }
-                                    )
+                                    </ul>
+                                </>
                             }
-                            </ul>
-
-                            <h1>Session Username: {session.username}</h1>
-                            <h1>Recipe Object Name: {recipeObject.name}</h1>
-                            <h1>Recipe Object URL: {recipeObject.link}</h1>
                         </div>
                         </>
                     }

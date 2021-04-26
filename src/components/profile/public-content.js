@@ -27,11 +27,11 @@ const PublicContent = ({user}) => {
     return(
         <div className="container-fluid ">
 
-            <div className="container-fluid container-lg wbdv-public-content">
+            <div className="container-fluid wbdv-public-content">
                 <h3 className="wbdv-profile-section-label">
                     {user.username}'s Favorite Recipes
                 </h3>
-                <ul className = "list-group wbdv-favorite-recipes">
+                <ul className = "list-group container-fluid wbdv-favorite-recipes">
                     {
                         user && favoriteRecipes && favoriteRecipes.length > 0 && favoriteRecipes.map((recipe) => {
                             return(

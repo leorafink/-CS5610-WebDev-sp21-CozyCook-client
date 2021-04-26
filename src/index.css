@@ -55,7 +55,7 @@ code {
 .wbdv-go-back {
   align-items: center;
   display: inline-flex;
-  color: white;
+  color: whitesmoke;
   font-weight: bold;
   float: left;
   width: 100%;
@@ -66,7 +66,7 @@ code {
 }
 
 .wbdv-ingredients-heading {
-  color: white;
+  color: whitesmoke;
   background-color: #1e5a37;
   padding: 5px;
 }
@@ -79,6 +79,7 @@ code {
 
 .wbdv-details-area {
   text-align: center;
+  margin-bottom: 10px;
 }
 
 .wbdv-home-heading-container {
@@ -120,6 +121,7 @@ code {
 .wbdv-details-button-recipe {
   background-color: darkorange;
   border: darkorange;
+  margin-bottom: 40px;
 }
 
 .wbdv-details-button-recipe:hover {
@@ -175,4 +177,25 @@ code {
 .wbdv-back-button {
   margin: 5px;
   padding: 5px;
+}
+
+.wbdv-details-button {
+  margin: 5px;
+  padding: 5px;
+}
+
+.wbdv-details-notes-header {
+  color: whitesmoke;
+}
+
+.wbdv-notes-field {
+  border-radius: 5px;
+}
+
+.wbdv-other-favorites-header {
+  color: whitesmoke;
+}
+
+.wbdv-other-favorites-users {
+  margin-bottom: 100px;
 }
