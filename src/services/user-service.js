@@ -30,6 +30,13 @@ const findUserById = (uid) => {
     )
 }
 
+const findUserByUsername = (username) => {
+    return(
+        fetch(`${USER_API}/users/${username}`)
+            .then(response => response.json())
+    )
+}
+
 const findAllUsers = () => {
     return fetch(`${USER_API}/users`)
         .then((response) => response.json())
@@ -139,7 +146,8 @@ const api = {
     login,
     logout,
     getSession,
-    findMostRecentUser
+    findMostRecentUser,
+    findUserByUsername
 }
 
 export default api

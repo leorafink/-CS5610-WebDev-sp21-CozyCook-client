@@ -14,8 +14,15 @@ const Details = ({createRecipeForUser}) => {
     const [recipeObject, setRecipeObject] = useState({})
     const [isFavorite, setIsFavorite] = useState(false)
     const [userRecipes, setUserRecipes] = useState([])
+    const [recipeFans, setRecipeFans] = useState([])
+    const [fanId, setFanId] = useState("")
 
     useEffect(() => {
+        recipeService.findUsersWhoLikeThisRecipe(id)
+            .then(users => {
+                setRecipeFans(users)
+                }
+            )
         recipeService.findRecipeById(id)
             .then(recipe => {
                 setRecipe(recipe)
@@ -25,6 +32,7 @@ const Details = ({createRecipeForUser}) => {
                                     link: recipe[0].url,
                                     originalId: recipe[0].uri.substring(51)
                                 })
+
                 userService.getSession()
                     .then((session) => {
                         setSession(session)
@@ -61,7 +69,6 @@ const Details = ({createRecipeForUser}) => {
 
     return(
         <div className="container-fluid">
-
 
                     {
                         recipe && recipe[0] && recipe[0].ingredientLines && recipe[0].url && recipe[0].image &&
@@ -127,6 +134,28 @@ const Details = ({createRecipeForUser}) => {
                                     </Link>
                                 </>
                             }
+                            <h3>Other Users Who Have Liked This Recipe: </h3>
+                            <ul className="list-group">
+
+                            {
+                                recipeFans && recipeFans.length > 0 && recipeFans.map(
+                                    (fan) => {
+
+                                        userService.findUserByUsername(fan)
+                                            .then(response => setFanId(response.id))
+                                            return (
+                                                <li className="list-group-item">
+                                                    <Link to={`/profile/${fanId}`}>
+                                                        {fan}
+                                                    </Link>
+                                                </li>
+
+                                            )
+                                        }
+                                    )
+                            }
+                            </ul>
+
                             <h1>Session Username: {session.username}</h1>
                             <h1>Recipe Object Name: {recipeObject.name}</h1>
                             <h1>Recipe Object URL: {recipeObject.link}</h1>

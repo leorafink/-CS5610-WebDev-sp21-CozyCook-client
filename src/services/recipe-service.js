@@ -66,13 +66,23 @@ const deleteRecipe = (userId, recipeId) => {
     )
 }
 
+const findUsersWhoLikeThisRecipe = (recipeId) => {
+    alert("recipeId in recipe-service: " + recipeId)
+    return(
+        fetch(`${RECIPE_URL_NO_USERS}/recipes/${recipeId}`)
+            .then(response => response.json())
+    )
+
+}
+
 const api = {
     findRecipesByTitle,
     findRecipeById,
     createRecipeForUser,
     findAllRecipesForUser,
     deleteRecipe,
-    findMostRecentRecipe
+    findMostRecentRecipe,
+    findUsersWhoLikeThisRecipe
 }
 
 export default api
