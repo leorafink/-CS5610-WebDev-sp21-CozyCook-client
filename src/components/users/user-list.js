@@ -33,7 +33,7 @@ const UserList = (
     }
 
     useEffect(() => {
-        //console.log("deleting user")
+        console.log("updating")
         userService.findAllUsers()
             .then(users => setCurrentUsers(users))
     }, [currentUsersTemp])
