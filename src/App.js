@@ -12,6 +12,7 @@ import UserList from "./components/users/user-list";
 import Profile from "./components/profile/profile";
 import Logout from "./components/logout/logout"
 import NavBar from "./components/nav-bar/nav-bar";
+import UserLookup from "./components/user-lookup/user-lookup";
 
 
 const reducer = combineReducers({
@@ -72,6 +73,10 @@ function App() {
                   <Route exact={true}
                          path={["/logout"]}>
                       <Logout/>
+                  </Route>
+                  <Route exact={true}
+                         path={["/userlookup"]}>
+                      <UserLookup/>
                   </Route>
               </BrowserRouter>
           </div>

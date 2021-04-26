@@ -34,6 +34,7 @@ const findUserByUsername = (username) => {
     return(
         fetch(`${USER_API}/users/${username}`)
             .then(response => response.json())
+            .catch(error => console.log(error))
     )
 }
 

@@ -71,7 +71,11 @@ const Home = () => {
             </div>
             <div className = "container-fluid wbdv-horizontal-center">
                 <Link to = "/search" className="btn wbdv-home-button">
-                    Search
+                    Search Recipes
+                </Link>
+                <br/>
+                <Link to = "/userlookup" className="btn wbdv-home-button">
+                    Lookup a User
                 </Link>
                 <br/>
                 {
