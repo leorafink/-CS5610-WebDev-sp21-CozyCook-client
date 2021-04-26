@@ -1,13 +1,5 @@
-//import React from 'react'
-
-// const url = "http://localhost:3306/api"
-// const USERS_URL = "postgres://hkutlvbzodllyu:a8b1e2ea098fcac432b6c4e7976c75f587c3b774c6673023e5264bfe91175064@ec2-34-233-0-64.compute-1.amazonaws.com:5432/dep9tc9qn0pm1r/api"
-// const DATABASE_URL=$(heroku config:get DATABASE_URL -a your-app) your_process
-
-//const url = 'https://wbdv-generic-server.herokuapp.com/api/cozycook/';
-
-const url = 'https://wbdv-sp21-01-cozycook-server.herokuapp.com/api/'
-const USER_API = "http://localhost:8080/api";
+// Local: const USER_API = "http://localhost:8080/api";
+const USER_API = "http://wbdv-sp21-01-cozycook-server.herokuapp.com/api";
 
 const createUser = (user) => {
     return(

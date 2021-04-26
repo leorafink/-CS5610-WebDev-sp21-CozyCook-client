@@ -11,8 +11,10 @@
 // Edamam A App Key: c65adc373fa0821d289b38c395b4a129
 
 const EDAMAM_URL = "https://api.edamam.com/search?app_id=8bc332bb&app_key=c65adc373fa0821d289b38c395b4a129"
-const RECIPE_URL = "http://localhost:8080/api/users"
-const RECIPE_URL_NO_USERS = "http://localhost:8080/api"
+// Local: const RECIPE_URL = "http://localhost:8080/api/users"
+// Local: const RECIPE_URL_NO_USERS = "http://localhost:8080/api"
+const RECIPE_URL = "http://wbdv-sp21-01-cozycook-server.herokuapp.com/api/users"
+const RECIPE_URL_NO_USERS = "http://wbdv-sp21-01-cozycook-server.herokuapp.com/api"
 
 const findRecipesByTitle = (title, health) => {
     let url = EDAMAM_URL + `&q=${title}`
