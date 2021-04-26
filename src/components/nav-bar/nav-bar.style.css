@@ -1,12 +1,18 @@
 .wbdv-nav-bar-button-area {
     margin: 2px;
     padding: 2px;
+
 }
 
 .wbdv-home-button {
     margin: 3px;
+    margin-top: 10px;
 }
 
 .wbdv-nav-bar-header {
     color: white;
+}
+
+.wbdv-hello {
+    margin-top: 16px
 }

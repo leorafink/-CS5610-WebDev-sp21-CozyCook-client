@@ -80,13 +80,18 @@ const Home = () => {
                             Go to User List
                         </Link>
                 }
-                <div className = "container-fluid">
-                    <h3 className = "wbdv-most-recent-user-greeting">
-                        Say hello to our most recent user, {mostRecentUser.username}!
+                {   mostRecentUser && mostRecentUser.username &&
+                    <div className="container-fluid">
+                    <h3 className="wbdv-most-recent-user-greeting">
+                        Say hello to our most recent user,
+                        <Link to={`/profile/${mostRecentUser.id}`}>
+                        {"  " + mostRecentUser.username + "!"}
+                        </Link>
                     </h3>
                 </div>
+                }
                 {
-                    session && mostRecentFavorite &&
+                    session && mostRecentFavorite && mostRecentFavorite.originalId && mostRecentFavorite.name &&
                         <div className="container-fluid">
                             <h3 className="wbdv-most-recent-user-greeting">
                                 Thinking of what to make? Try your most recent favorite recipe:

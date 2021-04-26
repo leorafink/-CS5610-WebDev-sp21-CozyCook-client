@@ -33,20 +33,22 @@ const LoginPage = () => {
 
     return (
         <div className="container-fluid">
-            <div className="wbdv-page-heading row">
-                <Link to="/home" className="col-1 wbdv-home-btn">
-                    <i className="fas fa-home fa-2x"></i>
-                </Link>
-                <div className="col-10">
-                    <h1>Sign In</h1>
-                </div>
-                <div className="col-1">
-                </div>
+
+            <nav aria-label="breadcrumb">
+                <ol className="breadcrumb">
+                    <li className="breadcrumb-item"><a href="/home">Home</a></li>
+                    <li className="breadcrumb-item active" aria-current="page">Sign In</li>
+
+                </ol>
+            </nav>
+
+            <div className="wbdv-login-heading">
+                <h1>Sign In</h1>
             </div>
+
+
             <br/>
             <div className="container-lg">
-                <h1>Current Username Value: {username}</h1>
-                <h1>Current Password Value: {password}</h1>
                 <form>
                     <div className="form-group row">
                         <label htmlFor="username" className="col-sm-2 col-form-label wbdv-label">

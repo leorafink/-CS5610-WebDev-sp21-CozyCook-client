@@ -70,9 +70,21 @@ const Details = ({createRecipeForUser}) => {
     return(
         <div className="container-fluid">
 
-                    {
+
+
+            {
                         recipe && recipe[0] && recipe[0].ingredientLines && recipe[0].url && recipe[0].image &&
                         <>
+
+                            <nav aria-label="breadcrumb">
+                                <ol className="breadcrumb">
+                                    <li className="breadcrumb-item"><a href="/home">Home</a></li>
+                                    <li className="breadcrumb-item"><a href="/search">Search</a></li>
+                                    <li className="breadcrumb-item active" aria-current="page">{recipe[0].label}</li>
+
+                                </ol>
+                            </nav>
+
                         <h1>isFavorite: {JSON.stringify(isFavorite)}</h1>
                         <h1 className="wbdv-page-heading">{recipe[0].label}</h1>
                         <div className = "wbdv-go-back" onClick = {() => history.goBack()}>

@@ -29,15 +29,19 @@ const Register = ({createUser}) => {
     return (
         <div>
             <div className="container-fluid">
-                <div className="wbdv-page-heading row">
-                    <Link to="/home" className="col-1 wbdv-home-btn">
-                        <i className="fas fa-home fa-2x"></i>
-                    </Link>
-                    <div className="col-10">
+
+                <nav aria-label="breadcrumb">
+                    <ol className="breadcrumb">
+                        <li className="breadcrumb-item"><a href="/home">Home</a></li>
+                        <li className="breadcrumb-item active" aria-current="page">Sign Up</li>
+
+                    </ol>
+                </nav>
+
+                <div className="wbdv-signup-heading">
+
                         <h1>Sign Up</h1>
-                    </div>
-                    <div className="col-1">
-                    </div>
+
                 </div>
                 <br/>
                 <div className="container-lg">

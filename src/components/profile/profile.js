@@ -26,11 +26,14 @@ const Profile = () => {
 
     return(
         <div>
-            <div className = "wbdv-go-back"
-                 onClick = {() => window.location.href = "/home"}>
-                <i className = "fas fa-arrow-left fa-2x wbdv-action-icon"/>
-                Go Back
-            </div>
+
+            <nav aria-label="breadcrumb">
+                <ol className="breadcrumb">
+                    <li className="breadcrumb-item"><a href="/home">Home</a></li>
+                    <li className="breadcrumb-item active" aria-current="page">Profile</li>
+
+                </ol>
+            </nav>
 
             {
                 // There is a user currently logged in.

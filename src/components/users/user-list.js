@@ -39,9 +39,15 @@ const UserList = (
 
     return (
         <div className="container-fluid">
-            <Link to = "">
-                <i className = "fas fa-arrow-left fa-2x float-left wbdv-back-button"></i>
-            </Link>
+
+            <nav aria-label="breadcrumb">
+                <ol className="breadcrumb">
+                    <li className="breadcrumb-item"><a href="/home">Home</a></li>
+                    <li className="breadcrumb-item active" aria-current="page">User List</li>
+
+                </ol>
+            </nav>
+
             <h1>user list</h1>
             {/*<h1>currentUsers: {JSON.stringify(currentUsers)}</h1>
             <h1>currentUsers length: {JSON.stringify(currentUsers.length)}</h1>*/}

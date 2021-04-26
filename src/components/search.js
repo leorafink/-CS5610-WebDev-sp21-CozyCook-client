@@ -55,6 +55,15 @@ const Search = ({recipes = [], findRecipesForSearch
 
     return(
         <div className = "container-fluid">
+
+            <nav aria-label="breadcrumb">
+                <ol className="breadcrumb">
+                    <li className="breadcrumb-item"><a href="/home">Home</a></li>
+                    <li className="breadcrumb-item active" aria-current="page">Search</li>
+
+                </ol>
+            </nav>
+
             <h1 className="wbdv-page-title wbdv-page-heading">Search</h1>
             <div className="container-xl wbdv-search-main-area">
                 <div className="wbdv-input-area">

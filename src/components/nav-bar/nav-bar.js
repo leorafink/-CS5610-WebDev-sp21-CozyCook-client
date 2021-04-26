@@ -23,16 +23,8 @@ const NavBar = () => {
             <div className="wbdv-page-heading row">
                 {
                     session &&
-                    <div className="col-2">
-                        <span>
-                                Hello, {session.username}!
-                        </span>
-                        <span className = "wbdv-nav-bar-button-area">
-                            <Link to="/home"
-                                  className="btn wbdv-home-button">
-                                Home
-                            </Link>
-                        </span>
+                    <div className="col-2 wbdv-hello">
+                         Hello, {session.username}!
                     </div>
                 }
                 {
