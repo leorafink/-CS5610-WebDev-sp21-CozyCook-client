@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import userService from "../../services/user-service"
+import {Link} from "react-router-dom";
 
 const User = ({user,
                   updateUser,
@@ -24,12 +25,18 @@ const User = ({user,
             {
                 !editing &&
                 <>
-                    <td>{user.username}</td>
-                    <td>{user.password}</td>
-                    <td>{user.type}</td>
                     <td>
-                        <button onClick={() => {userService.deleteUser(currentUser.id)
-                            resetCurrentUsers()}}
+                        <Link to = {`/profile/${user.id}`}>
+                            {user.username}
+                        </Link>
+                    </td>
+                    <td>{user.password}</td>
+                    <td>{user.role}</td>
+                    <td>
+                        <button onClick={() => {
+                            userService.deleteUser(currentUser.id)
+                            resetCurrentUsers()
+                        }}
                                 className="wbdv-user-crud-btn" >
                             <i className="fa-2x fa fa-trash"></i>
                         </button>
@@ -64,7 +71,10 @@ const User = ({user,
                         </select>
                     </td>
                     <td>
-                        <button onClick={() => {resetCurrentUsers(); userService.deleteUser(currentUser.id)}}
+                        <button onClick={() => {
+                            userService.deleteUser(currentUser.id)
+                            resetCurrentUsers()
+                        }}
                                 className="wbdv-user-crud-btn" >
                             <i className="fa-2x fa fa-trash"></i>
                         </button>
