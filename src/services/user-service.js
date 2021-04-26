@@ -83,7 +83,7 @@ const login = (credentials) => {
         headers: {
             'content-type': 'application/json'
         }
-    }).then(response => response.json())
+    }).then(response => console.log(response.json()))
         .catch(error => console.log(error))
 };
 
