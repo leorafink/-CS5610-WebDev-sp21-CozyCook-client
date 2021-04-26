@@ -27,11 +27,14 @@ const PublicContent = ({user}) => {
     return(
         <div className="container-fluid ">
 
-            <div className="container-fluid wbdv-public-content">
+            {
+                favoriteRecipes && favoriteRecipes.length > 0 &&
+                <>
+                <div className="container-fluid wbdv-public-content">
                 <h3 className="wbdv-profile-section-label">
                     {user.username}'s Favorite Recipes
                 </h3>
-                <ul className = "list-group container-fluid wbdv-favorite-recipes">
+                <ul className="list-group container-fluid wbdv-favorite-recipes">
                     <li className="list-group-item wbdv-recipe-row-title">
                         <div className="row">
                             <div className="col-6">
@@ -48,31 +51,47 @@ const PublicContent = ({user}) => {
                     </li>
                     {
                         user && favoriteRecipes && favoriteRecipes.length > 0 && favoriteRecipes.map((recipe) => {
-                            return(
+                            return (
                                 <>
-                                <li className="list-group-item">
-                                    <div className="row">
-                                        <Link to = {`/search/recipe/details/${recipe.originalId}`} className="col-6">
-                                            {recipe.name}
-                                        </Link>
-                                        <div className="col-5">
-                                            {recipe.notes}
+                                    <li className="list-group-item">
+                                        <div className="row">
+                                            <Link to={`/search/recipe/details/${recipe.originalId}`} className="col-6">
+                                                {recipe.name}
+                                            </Link>
+                                            <div className="col-5">
+                                                {recipe.notes}
+                                            </div>
+                                            <div className="col-1">
+                                                <i onClick={() => {
+                                                    recipeService.deleteRecipe(user.id, recipe.id);
+                                                    refreshRecipes(recipe.id)
+                                                }}
+                                                   className="fa-2x fa fa-trash"/>
+                                            </div>
                                         </div>
-                                        <div className="col-1">
-                                            <i onClick={() => {recipeService.deleteRecipe(user.id, recipe.id);
-                                                refreshRecipes(recipe.id)}}
-                                               className="fa-2x fa fa-trash" />
-                                        </div>
-                                    </div>
 
 
-                                </li>
+                                    </li>
                                 </>
                             )
                         })
                     }
                 </ul>
             </div>
+                </>
+            }
+
+            {
+                favoriteRecipes.length < 1 &&
+                <div className="container-fluid wbdv-public-content">
+                <h3 className="wbdv-profile-section-label">
+                    {user.username}'s Favorite Recipes
+                </h3>
+                    <h5>This user has not added any recipes... yet!</h5>
+                </div>
+            }
+
+
             <div className="container-fluid container-lg wbdv-public-content">
                 <div>
                     <h3 className="wbdv-profile-section-label">
