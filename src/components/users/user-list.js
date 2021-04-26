@@ -1,26 +1,15 @@
 import React, {useState, useEffect} from "react";
 import User from "./user"
 import connect from "react-redux/lib/connect/connect";
-import UserReducer from "../../reducers/user-reducer";
 import userService from "../../services/user-service"
 import './users.style.css'
-import {Link} from "react-router-dom";
-
-
 
 const UserList = (
     {
-        users = [],
-        createUser,
         updateUser,
-        deleteUser,
-        findAllUsers
-
+        deleteUser
     }
 ) => {
-
-    // DATABASE_URL=$(heroku config:get DATABASE_URL -a your-app) your_process
-
     const [currentUsers, setCurrentUsers] = useState([])
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
@@ -33,7 +22,6 @@ const UserList = (
     }
 
     useEffect(() => {
-        console.log("updating")
         userService.findAllUsers()
             .then(users => setCurrentUsers(users))
     }, [currentUsersTemp])
@@ -55,8 +43,6 @@ const UserList = (
                 </h1>
             </div>
             <br/>
-            {/*<h1>currentUsers: {JSON.stringify(currentUsers)}</h1>
-            <h1>currentUsers length: {JSON.stringify(currentUsers.length)}</h1>*/}
             <div className="row">
                 <div className="col align-middle">
                     <input className="form-control"
@@ -83,7 +69,6 @@ const UserList = (
                 <div className="col align-middle ">
                     <span className="">
                         <button onClick={() => {
-                            // createUser(username, password, email, type)
                             userService.register({username: username,
                                                      password: password,
                                                      email: email,
@@ -98,9 +83,6 @@ const UserList = (
                         }}
                                 className="wbdv-user-crud-btn">
                             <i className="fa-2x fa fa-plus-circle"></i>
-                        </button>
-                        <button className="wbdv-user-crud-btn">
-                            <i className="fa-2x fa fa-check-circle "></i>
                         </button>
                     </span>
                 </div>
@@ -123,7 +105,7 @@ const UserList = (
                         User Type
                     </th>
                     <th>
-                        Save/Delete
+                        Edit
                     </th>
                 </tr>
                 </thead>
@@ -131,8 +113,6 @@ const UserList = (
 
                 {
                     currentUsers && currentUsers.length > 0 && currentUsers.map((user) => {
-                        console.log("current users temp length: " + currentUsersTemp.length)
-                        console.log("current users length: " + currentUsers.length)
                         return (
                             <tr>
                                 <User key={user.id}

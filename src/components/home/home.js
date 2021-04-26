@@ -8,13 +8,8 @@ import recipeService from "../../services/recipe-service";
 const Home = () => {
 
     const [session, setSession] = useState(null)
-    const [currentUser, setCurrentUser] = useState({})
     const [mostRecentUser, setMostRecentUser] = useState({})
     const [mostRecentFavorite, setMostRecentFavorite] = useState({})
-
-    const logout = () => {
-        userService.logout()
-    }
 
     useEffect(() => {
         userService.getSession()
@@ -33,38 +28,6 @@ const Home = () => {
 
     return(
         <div className = "container-fluid">
-            {/*OLD NAV BAR*/}
-            {/*<div className="wbdv-page-heading row">
-                <div className="col-1"></div>
-                <div className="col-10">
-                    <h1>CozyCook</h1>
-                </div>
-                {
-                    !session &&
-                        <div className="col-1">
-                            <Link to="/login" className="btn wbdv-home-button">
-                                Login
-                            </Link>
-                            <Link to="/register" className="wbdv-link">
-                                Register
-                            </Link>
-                        </div>
-                }
-                {
-                    session &&
-                        <div className="col-1">
-                            <Link to="/logout"
-                                  className="btn wbdv-home-button"
-                                  onClick = {() => logout()}>
-                                Log Out
-                            </Link>
-                            <Link to="/profile" className="wbdv-link">
-                                Profile
-                            </Link>
-                        </div>
-                }
-            </div>*/}
-
             <div className = "container-fluid wbdv-home-image-container">
                 <img className = "img-fluid wbdv-home-image"
                      src = {mainImage}/>

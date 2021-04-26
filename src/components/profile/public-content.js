@@ -4,11 +4,11 @@ import "./profile.style.css";
 import recipeService from "../../services/recipe-service"
 import {Link} from "react-router-dom";
 
-const PublicContent = ({user}) => {
+const PublicContent = ({user, updateUser, canEdit}) => {
     const [editingRole, setEditingRole] = useState(false)
     const [favoriteRecipes, setFavoriteRecipes] = useState([])
     const [favoriteRecipesTemp, setFavoriteRecipesTemp] = useState([])
-
+    const [userTemp, setUserTemp] = useState({...user})
 
     useEffect(() => {
         recipeService.findAllRecipesForUser(user.id)
@@ -62,11 +62,14 @@ const PublicContent = ({user}) => {
                                                 {recipe.notes}
                                             </div>
                                             <div className="col-1">
-                                                <i onClick={() => {
-                                                    recipeService.deleteRecipe(user.id, recipe.id);
-                                                    refreshRecipes(recipe.id)
-                                                }}
-                                                   className="fa-2x fa fa-trash"/>
+                                                {
+                                                    canEdit &&
+                                                    <i onClick={() => {
+                                                        recipeService.deleteRecipe(user.id, recipe.id);
+                                                        refreshRecipes(recipe.id)
+                                                    }}
+                                                       className="fa-2x fa fa-trash"/>
+                                               }
                                             </div>
                                         </div>
 
@@ -111,8 +114,13 @@ const PublicContent = ({user}) => {
                                    id = "roleField"
                                    className = "form-control col-9">
                             </input>
-                            <i className="fas fa-edit fa-2x col-1"
-                               onClick = {() => setEditingRole(true)}/>
+                            {
+                                canEdit &&
+                                <i className="fas fa-edit fa-2x col-1"
+                                   onClick = {() => {
+                                       setEditingRole(true)
+                                   }}/>
+                            }
                         </>
                     }
                     {
@@ -122,12 +130,23 @@ const PublicContent = ({user}) => {
                                    className = "wbdv-profile-label col-2">
                                 Role:
                             </label>
-                            <input value = {user.role}
-                                   id = "roleField"
-                                   className = "form-control col-9">
-                            </input>
+                            <select defaultValue = {userTemp.role}
+                                    id = "roleField"
+                                    className = "form-control col-9"
+                                    onChange = {(e) => {
+                                        setUserTemp({
+                                            ...user,
+                                            role: e.target.value
+                                                    })
+                                    }}>
+                                <option value="GENERAL">GENERAL</option>
+                                <option value="ADMIN">ADMIN</option>
+                            </select>
                             <i className="fas fa-check fa-2x col-1"
-                               onClick = {() => setEditingRole(false)}/>
+                               onClick = {() => {
+                                   updateUser(userTemp.id, userTemp)
+                                   setEditingRole(false)
+                               }}/>
                         </>
                     }
                 </div>

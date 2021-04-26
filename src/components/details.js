@@ -5,10 +5,9 @@ import userService from "../services/user-service";
 import recipeActions from "../actions/recipes-actions";
 import {connect} from "react-redux";
 
-const Details = ({createRecipeForUser}) => {
+const Details = () => {
     const [recipe, setRecipe] = useState({})
-    const [userId, setUserId] = useState("")
-    const {title, id} = useParams()
+    const {id} = useParams()
     const history = useHistory()
     const [session, setSession] = useState({})
     const [recipeObject, setRecipeObject] = useState({})
@@ -47,20 +46,6 @@ const Details = ({createRecipeForUser}) => {
                             })
                     })
             })
-        /*userService.getSession()
-            .then((session) => {
-                setSession(session)
-                recipeService.findAllRecipesForUser(session.id)
-                    .then((response) => {
-                        setUserRecipes(response)
-                        for (let i = 0 ; i < userRecipes.length ; i++) {
-                            if (userRecipes[i].id === recipeObject.id) {
-                                setIsFavorite(true)
-                            }
-                        }
-                        alert("isFavorite: " + JSON.stringify(isFavorite))
-                    })
-            })*/
     }, [isFavorite])
 
     return(

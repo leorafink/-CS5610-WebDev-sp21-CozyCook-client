@@ -66,7 +66,7 @@ const NavBar = () => {
                             </Link>
                         </span>
                         <span className = "wbdv-nav-bar-button-area">
-                            <Link to="/profile"
+                            <Link to={`/profile/${session.id}`}
                                   className="btn wbdv-home-button">
                                 Profile
                             </Link>

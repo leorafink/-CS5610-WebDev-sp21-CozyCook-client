@@ -1,18 +1,16 @@
-import React, {useState, useEffect} from 'react'
-import recipeService from '../services/recipe-service'
+import React, {useState} from 'react'
 import {connect} from 'react-redux'
 import {Link, useParams, useHistory} from "react-router-dom";
 import ToggleButton from 'react-bootstrap/ToggleButton';
-import recipeActions, {FIND_RECIPES_FOR_SEARCH} from "../actions/recipes-actions";
+import recipeActions from "../actions/recipes-actions";
 
 import '../index.css'
 
 const Search = ({recipes = [], findRecipesForSearch
             }) => {
 
-    const {title, health} = useParams()
+    const {title} = useParams()
     const [searchTitle, setSearchTitle] = useState(title)
-    const [results, setResults] = useState({Search: []})
     const [isVegetarian, setVegetarian] = React.useState(false);
     const [isEggFree, setEggFree] = React.useState(false);
     const [isKosher, setKosher] = React.useState(false);
@@ -111,7 +109,7 @@ const Search = ({recipes = [], findRecipesForSearch
                     <div className = "wbdv-search-button-area">
                         <Link to={setPath()}>
                             <button
-                                onClick={() => {{history.push(`/search/${searchTitle}`)};{findRecipesForSearch(searchTitle, doSetFilters())}}}
+                                onClick={() => {{history.push(`/search/${searchTitle}`)}; {findRecipesForSearch(searchTitle, doSetFilters())}}}
                                 className="btn btn-block wbdv-search-btn">
                                 Search
                             </button>

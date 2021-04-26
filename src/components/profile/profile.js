@@ -9,24 +9,22 @@ const Profile = () => {
     const {userId} = useParams()
     const [loggedInUser, setLoggedInUser] = useState({})
     const [otherUser, setOtherUser] = useState(null)
+
     useEffect(() => {
         userService.profile()
             .then(currentLoggedInUser => setLoggedInUser(currentLoggedInUser))
-        if(userId) {
+        if (userId) {
             userService.publicProfile(userId)
                 .then(otherUser => setOtherUser(otherUser))
         }
-    }, [])
+    }, [userId])
 
     const updateUser = (id, user) => {
-        alert("got to update user on profi")
-        userService.updateUser(id, user)
-            .then((response) => setLoggedInUser(response))
+        userService.updateUser(user.id, user)
     }
 
     return(
         <div>
-
 
             <nav aria-label="breadcrumb">
                 <ol className="breadcrumb">
@@ -56,9 +54,11 @@ const Profile = () => {
                                                 {otherUser.username}'s Profile
                                             </h1>
                                             <PublicContent user={otherUser}
-                                                           updateUser={updateUser} />
+                                                           updateUser={updateUser}
+                                                           canEdit={true}/>
                                             <PrivateContent user={otherUser}
-                                                            updateUser={updateUser} />
+                                                            updateUser={updateUser}
+                                                            canEdit={true}/>
                                             <AdminContent/>
                                         </>
                                     }
@@ -70,9 +70,11 @@ const Profile = () => {
                                                 {loggedInUser.username}'s Profile
                                             </h1>
                                             <PublicContent user={loggedInUser}
-                                                           updateUser={updateUser} />
+                                                           updateUser={updateUser}
+                                                           canEdit={true}/>
                                             <PrivateContent user={loggedInUser}
-                                                            updateUser={updateUser}/>
+                                                            updateUser={updateUser}
+                                                            canEdit={true}/>
                                             <AdminContent/>
                                         </>
                                     }
@@ -86,9 +88,11 @@ const Profile = () => {
                                         {loggedInUser.username}'s Profile
                                     </h1>
                                     <PublicContent user={loggedInUser}
-                                                   updateUser={updateUser} />
+                                                   updateUser={updateUser}
+                                                   canEdit={true}/>
                                     <PrivateContent user={loggedInUser}
-                                                    updateUser={updateUser}/>
+                                                    updateUser={updateUser}
+                                                    canEdit={true}/>
                                     <AdminContent/>
                                 </>
                             }
@@ -110,7 +114,8 @@ const Profile = () => {
                                                 {otherUser.username}'s Profile
                                             </h1>
                                             <PublicContent user={otherUser}
-                                                           updateUser={updateUser}/>
+                                                           updateUser={updateUser}
+                                                           canEdit={false}/>
                                         </>
                                     }
                                     {
@@ -121,9 +126,11 @@ const Profile = () => {
                                                 {loggedInUser.username}'s Profile
                                             </h1>
                                             <PublicContent user={loggedInUser}
-                                                           updateUser={updateUser} />
+                                                           updateUser={updateUser}
+                                                           canEdit={true}/>
                                             <PrivateContent user={loggedInUser}
-                                                            updateUser={updateUser}/>
+                                                            updateUser={updateUser}
+                                                            canEdit={true}/>
                                         </>
                                     }
                                 </>
@@ -136,9 +143,11 @@ const Profile = () => {
                                         {loggedInUser.username}'s Profile
                                     </h1>
                                     <PublicContent user={loggedInUser}
-                                                   updateUser={updateUser} />
+                                                   updateUser={updateUser}
+                                                   canEdit={true}/>
                                     <PrivateContent user={loggedInUser}
-                                                    updateUser={updateUser}/>
+                                                    updateUser={updateUser}
+                                                    canEdit={true}/>
                                 </>
                             }
                         </>
@@ -157,7 +166,8 @@ const Profile = () => {
                                 {otherUser.username}'s Profile
                             </h1>
                             <PublicContent user={otherUser}
-                                         updateUser={updateUser} />
+                                           updateUser={updateUser}
+                                           canEdit={false}/>
                         </>
                     }
                 </>

@@ -1,34 +1,20 @@
 import React, {useState} from 'react';
-import {Link, useHistory, Route, BrowserRouter} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import './login.style.css'
 import userService from '../../services/user-service'
-import Profile from "../profile/profile";
 
 const LoginPage = () => {
     const [credentials, setCredentials] = useState({username: '', password: ''})
-    const history = useHistory()
-
-    const [username, setUsername] = useState("")
-    const [password, setPassword] = useState("")
-    const [redirectPage, setRedirectPage] = useState("")
 
     const login = () => {
         userService.login(credentials)
             .then((user) => {
                 if (user === undefined) {
-                    alert("user is undefined")
+                    alert("Username or password is incorrect!")
                 } else {
                     window.location.href = "/profile"
-
-                    // <BrowserRouter>
-                    //     <Route path={"/profile"}>
-                    //         <Profile/>
-                    //     </Route>
-                    // </BrowserRouter>
-
                 }
             })
-
     }
 
     return (
@@ -46,7 +32,6 @@ const LoginPage = () => {
                 <h1>Sign In</h1>
             </div>
 
-
             <br/>
             <div className="container-lg">
                 <div>
@@ -57,7 +42,7 @@ const LoginPage = () => {
                             <input className="form-control"
                                    id="username"
                                    placeholder="Alice"
-                                   onChange = {(e) => {setUsername(e.target.value); setCredentials({...credentials, username: e.target.value})}}/>
+                                   onChange = {(e) => {setCredentials({...credentials, username: e.target.value})}}/>
                         </div>
                     </div>
 
@@ -69,7 +54,7 @@ const LoginPage = () => {
                                    className="form-control"
                                    id="password"
                                    placeholder="123qwe#$%"
-                                   onChange = {(e) => {setPassword(e.target.value); setCredentials({...credentials, password: e.target.value})}}/>
+                                   onChange = {(e) => {setCredentials({...credentials, password: e.target.value})}}/>
                         </div>
                     </div>
 

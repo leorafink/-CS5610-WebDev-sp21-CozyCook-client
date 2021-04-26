@@ -4,7 +4,10 @@ import {Link} from "react-router-dom";
 
 const User = ({user,
                   updateUser,
-                  currentUsers, setCurrentUsers, setCurrentUsersTemp, currentUsersTemp
+                  currentUsers,
+                  setCurrentUsers,
+                  setCurrentUsersTemp,
+                  currentUsersTemp
               }) => {
 
     const [editing, setEditing] = useState(false)
@@ -45,22 +48,27 @@ const User = ({user,
                 editing &&
                 <>
                     <td>
-                        <input defaultValue={user.username}
+                        <input defaultValue={currentUser.username}
                                onChange={(e) => setCurrentUser(
                                    currentUser => ({...currentUser, username: e.target.value}))}>
                         </input>
                     </td>
                     <td>
-                        <input defaultValue={user.password}
+                        <input defaultValue={currentUser.password}
                                onChange={(e) => setCurrentUser(
                                    currentUser => ({...currentUser, password: e.target.value}))}>
                         </input>
                     </td>
-                    <td>{user.email}</td>
                     <td>
-                        <select defaultValue={user.type}
+                        <input defaultValue={currentUser.email}
+                               onChange={(e) => setCurrentUser(
+                                   currentUser => ({...currentUser, email: e.target.value}))}>
+                        </input>
+                    </td>
+                    <td>
+                        <select defaultValue={currentUser.role}
                                 onChange={(e) => setCurrentUser(
-                                    currentUser => ({...currentUser, type: e.target.value}))}>
+                                    currentUser => ({...currentUser, role: e.target.value}))}>
                             <option value="GENERAL">General User</option>
                             <option value="ADMIN">Admin</option>
                         </select>
@@ -73,9 +81,10 @@ const User = ({user,
                                 className="wbdv-user-crud-btn" >
                             <i className="fa-2x fa fa-trash"></i>
                         </button>
-                        <button className="wbdv-user-crud-btn" onClick={() => {updateUser(currentUser)
+                        <button className="wbdv-user-crud-btn" onClick={() => {
+                            updateUser(currentUser)
                             setEditing(false)}}>
-                            <i className="fa-2x fa fa-check"></i>
+                            <i className="fa-2x fa fa-check"/>
                         </button>
                     </td>
                 </>

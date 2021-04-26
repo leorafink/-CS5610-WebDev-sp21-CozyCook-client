@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 
 import "./profile.style.css";
 
-const PrivateContent = ({user, updateUser}) => {
+const PrivateContent = ({user, updateUser, canEdit}) => {
     const [editingPassword, setEditingPassword] = useState(false)
     const [editingEmail, setEditingEmail] = useState(false)
     const [currentPassword, setCurrentPassword] = useState(user.password)
