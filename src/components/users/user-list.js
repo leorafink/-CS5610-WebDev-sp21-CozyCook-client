@@ -33,6 +33,7 @@ const UserList = (
     }
 
     useEffect(() => {
+        //console.log("deleting user")
         userService.findAllUsers()
             .then(users => setCurrentUsers(users))
     }, [currentUsersTemp])
@@ -79,15 +80,15 @@ const UserList = (
                         <button onClick={() => {
                             // createUser(username, password, email, type)
                             userService.register({username: username,
-                                                     password: password,
-                                                     email: email,
-                                                     role: type})
+                                password: password,
+                                email: email,
+                                role: type})
                                 .then((response) => {
                                     setCurrentUsers([
                                         ...currentUsers,
                                         response
-                                                    ])
-                                    setCurrentUsersTemp(currentUsers)
+                                    ])
+                                    setCurrentUsersTemp([...currentUsers, response])
                                 })
                         }}
                                 className="wbdv-user-crud-btn">
@@ -122,6 +123,8 @@ const UserList = (
 
                 {
                     currentUsers && currentUsers.length > 0 && currentUsers.map((user) => {
+                        console.log("current users temp length: " + currentUsersTemp.length)
+                        console.log("current users length: " + currentUsers.length)
                         return (
                             <tr>
                                 <User key={user.id}
@@ -151,9 +154,9 @@ const dtpm = (dispatch) => ({
     findAllUsers: () => {
         userService.findAllUsers()
             .then(users => dispatch({
-                                        type: "FIND_ALL_USERS",
-                                        users: users
-                                    }))
+                type: "FIND_ALL_USERS",
+                users: users
+            }))
     },
     createUser: (username, password, email, type) => {
         userService.register(
@@ -162,16 +165,16 @@ const dtpm = (dispatch) => ({
                 email: email,
                 role: type})
             .then(user => dispatch({
-                                       type: "CREATE_USER",
-                                       user: user
-                                   }))
+                type: "CREATE_USER",
+                user: user
+            }))
     },
     deleteUser: (userToDelete) => {
         userService.deleteUser(userToDelete.id)
             .then(status => dispatch({
-                                         type: "DELETE_USER",
-                                         userToDelete: userToDelete
-                                     }))
+                type: "DELETE_USER",
+                userToDelete: userToDelete
+            }))
 
     },
     updateUser: (newItem) => {

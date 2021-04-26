@@ -3,15 +3,16 @@ import userService from "../../services/user-service"
 
 const User = ({user,
                   updateUser,
-                  currentUsers, setCurrentUsersTemp
-}) => {
+                  currentUsers, setCurrentUsers, setCurrentUsersTemp, currentUsersTemp
+              }) => {
 
     const [editing, setEditing] = useState(false)
     const [currentUser, setCurrentUser] = useState({});
 
     useEffect(() => {
         setCurrentUser(user)
-    }, [])
+        setCurrentUsers(currentUsers)
+    }, [currentUsersTemp])
 
     const resetCurrentUsers = () => {
         let resetUsers = currentUsers.filter(user => user.id !== currentUser.id)
@@ -27,7 +28,8 @@ const User = ({user,
                     <td>{user.password}</td>
                     <td>{user.type}</td>
                     <td>
-                        <button onClick={() => {userService.deleteUser(currentUser.id); resetCurrentUsers()}}
+                        <button onClick={() => {userService.deleteUser(currentUser.id)
+                            resetCurrentUsers()}}
                                 className="wbdv-user-crud-btn" >
                             <i className="fa-2x fa fa-trash"></i>
                         </button>
