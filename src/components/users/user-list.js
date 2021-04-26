@@ -49,7 +49,12 @@ const UserList = (
                 </ol>
             </nav>
 
-            <h1>user list</h1>
+            <div className = "container-fluid wbdv-user-list-header-container">
+                <h1 className = "wbdv-user-list-header">
+                    User List
+                </h1>
+            </div>
+            <br/>
             {/*<h1>currentUsers: {JSON.stringify(currentUsers)}</h1>
             <h1>currentUsers length: {JSON.stringify(currentUsers.length)}</h1>*/}
             <div className="row">
