@@ -31,15 +31,9 @@ const User = ({user,
                         </Link>
                     </td>
                     <td>{user.password}</td>
+                    <td>{user.email}</td>
                     <td>{user.role}</td>
                     <td>
-                        <button onClick={() => {
-                            userService.deleteUser(currentUser.id)
-                            resetCurrentUsers()
-                        }}
-                                className="wbdv-user-crud-btn" >
-                            <i className="fa-2x fa fa-trash"></i>
-                        </button>
                         <button className="wbdv-user-crud-btn" onClick={() => setEditing(true)}>
                             <i className="fa-2x fa fa-pencil-alt"></i>
                         </button>
@@ -62,6 +56,7 @@ const User = ({user,
                                    currentUser => ({...currentUser, password: e.target.value}))}>
                         </input>
                     </td>
+                    <td>{user.email}</td>
                     <td>
                         <select defaultValue={user.type}
                                 onChange={(e) => setCurrentUser(

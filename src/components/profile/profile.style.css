@@ -33,6 +33,7 @@
 }
 
 .wbdv-profile-section-label {
+    color: whitesmoke;
 
 }
 
@@ -55,4 +56,9 @@
     text-align: center;
     margin-bottom: 50px;
 
+}
+
+.wbdv-recipe-row-title {
+    background-color: #1e5a37;
+    color: whitesmoke;
 }

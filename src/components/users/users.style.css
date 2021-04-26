@@ -14,3 +14,27 @@
 .wbdv-user-list-header {
     color: white;
 }
+
+.wbdv-add-user {
+}
+
+.wbdv-add-user-btn {
+    float: right;
+}
+
+.wbdv-add-input {
+    margin-top: 8px;
+}
+
+.wbdv-add-user-btn-title {
+    float: right;
+    margin-right: 30px;
+}
+
+.wbdv-delete-btn-title {
+
+}
+
+.wbdv-edit {
+    text-align: right;
+}

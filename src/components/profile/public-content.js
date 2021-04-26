@@ -32,16 +32,31 @@ const PublicContent = ({user}) => {
                     {user.username}'s Favorite Recipes
                 </h3>
                 <ul className = "list-group container-fluid wbdv-favorite-recipes">
+                    <li className="list-group-item wbdv-recipe-row-title">
+                        <div className="row">
+                            <div className="col-6">
+                                Recipe Title
+                            </div>
+                            <div className="col-5">
+                                My Notes
+                            </div>
+                            <div className="col-1">
+                                Discard
+                            </div>
+                        </div>
+
+                    </li>
                     {
                         user && favoriteRecipes && favoriteRecipes.length > 0 && favoriteRecipes.map((recipe) => {
                             return(
+                                <>
                                 <li className="list-group-item">
                                     <div className="row">
                                         <Link to = {`/search/recipe/details/${recipe.originalId}`} className="col-6">
                                             {recipe.name}
                                         </Link>
                                         <div className="col-5">
-                                            My Notes: {recipe.notes}
+                                            {recipe.notes}
                                         </div>
                                         <div className="col-1">
                                             <i onClick={() => {recipeService.deleteRecipe(user.id, recipe.id);
@@ -52,6 +67,7 @@ const PublicContent = ({user}) => {
 
 
                                 </li>
+                                </>
                             )
                         })
                     }
