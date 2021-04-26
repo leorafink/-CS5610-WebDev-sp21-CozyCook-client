@@ -83,16 +83,6 @@ const Register = ({createUser}) => {
                                        onChange={(e) => {setPassword(e.target.value); setCredentials({...credentials, password: e.target.value})}}/>
                             </div>
                         </div>
-                        <div className="form-group row">
-                            <label htmlFor="verifyPasswordFld"
-                                   className="col-sm-2 col-form-label wbdv-label">
-                                Verify Password:
-                            </label>
-                            <div className="col-sm-10">
-                                <input type="password" className="form-control"
-                                       id="verifyPasswordFld" placeholder="123qwe#$%"/>
-                            </div>
-                        </div>
                         <div className="row">
                             <label htmlFor="emailFld"
                                    className="col-sm-2 col-form-label wbdv-label">
