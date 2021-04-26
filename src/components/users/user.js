@@ -77,13 +77,17 @@ const User = ({user,
                         <button onClick={() => {
                             userService.deleteUser(currentUser.id)
                             resetCurrentUsers()
+                            alert("User successfully deleted!")
                         }}
                                 className="wbdv-user-crud-btn" >
                             <i className="fa-2x fa fa-trash"></i>
                         </button>
                         <button className="wbdv-user-crud-btn" onClick={() => {
                             updateUser(currentUser)
-                            setEditing(false)}}>
+                            setEditing(false)
+                            resetCurrentUsers()
+                            alert("User successfully updated!")
+                        }}>
                             <i className="fa-2x fa fa-check"/>
                         </button>
                     </td>
