@@ -124,7 +124,7 @@ const getSession = () => {
         headers: {
             "content-type": "application/json"
         }
-    }).then(response => response.json())
+    }).then(response => console.log(response.json()))
 }
 
 const api = {
