@@ -49,7 +49,7 @@ const LoginPage = () => {
 
             <br/>
             <div className="container-lg">
-                <form>
+                <div>
                     <div className="form-group row">
                         <label htmlFor="username" className="col-sm-2 col-form-label wbdv-label">
                             Username: </label>
@@ -97,7 +97,7 @@ const LoginPage = () => {
                             </div>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     )
