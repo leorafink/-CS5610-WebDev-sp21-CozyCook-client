@@ -9,6 +9,7 @@ const Profile = () => {
     const {userId} = useParams()
     const [loggedInUser, setLoggedInUser] = useState({})
     const [otherUser, setOtherUser] = useState(null)
+    const [currentUser, setCurrentUser] = useState({})
 
     useEffect(() => {
         userService.profile()
@@ -17,7 +18,15 @@ const Profile = () => {
             userService.publicProfile(userId)
                 .then(otherUser => setOtherUser(otherUser))
         }
-    }, [userId])
+    }, [currentUser])
+
+    const resetCurrentUser = (userBeingReset) => {
+        /*userService.findUserById(userId)
+            .then((response) => {
+                setCurrentUser(response)
+            })*/
+        setCurrentUser(userBeingReset)
+    }
 
     const updateUser = (id, user) => {
         userService.updateUser(user.id, user)
@@ -55,10 +64,14 @@ const Profile = () => {
                                             </h1>
                                             <PublicContent user={otherUser}
                                                            updateUser={updateUser}
-                                                           canEdit={true}/>
+                                                           canEdit={true}
+                                                           currentUser={currentUser}
+                                                           resetCurrentUser={resetCurrentUser}/>
                                             <PrivateContent user={otherUser}
                                                             updateUser={updateUser}
-                                                            canEdit={true}/>
+                                                            canEdit={true}
+                                                            currentUser={currentUser}
+                                                            resetCurrentUser={resetCurrentUser}/>
                                             <AdminContent/>
                                         </>
                                     }
@@ -69,12 +82,16 @@ const Profile = () => {
                                             <h1 className="wbdv-profile-header-main">
                                                 {loggedInUser.username}'s Profile
                                             </h1>
-                                            <PublicContent user={loggedInUser}
+                                            <PublicContent user={otherUser}
                                                            updateUser={updateUser}
-                                                           canEdit={true}/>
-                                            <PrivateContent user={loggedInUser}
+                                                           canEdit={true}
+                                                           currentUser={currentUser}
+                                                           resetCurrentUser={resetCurrentUser}/>
+                                            <PrivateContent user={otherUser}
                                                             updateUser={updateUser}
-                                                            canEdit={true}/>
+                                                            canEdit={true}
+                                                            currentUser={currentUser}
+                                                            resetCurrentUser={resetCurrentUser}/>
                                             <AdminContent/>
                                         </>
                                     }
@@ -89,10 +106,14 @@ const Profile = () => {
                                     </h1>
                                     <PublicContent user={loggedInUser}
                                                    updateUser={updateUser}
-                                                   canEdit={true}/>
+                                                   canEdit={true}
+                                                   currentUser={currentUser}
+                                                   resetCurrentUser={resetCurrentUser}/>
                                     <PrivateContent user={loggedInUser}
                                                     updateUser={updateUser}
-                                                    canEdit={true}/>
+                                                    canEdit={true}
+                                                    currentUser={currentUser}
+                                                    resetCurrentUser={resetCurrentUser}/>
                                     <AdminContent/>
                                 </>
                             }
@@ -115,7 +136,9 @@ const Profile = () => {
                                             </h1>
                                             <PublicContent user={otherUser}
                                                            updateUser={updateUser}
-                                                           canEdit={false}/>
+                                                           canEdit={false}
+                                                           currentUser={currentUser}
+                                                           resetCurrentUser={resetCurrentUser}/>
                                         </>
                                     }
                                     {
@@ -125,12 +148,16 @@ const Profile = () => {
                                             <h1 className="wbdv-profile-header-main">
                                                 {loggedInUser.username}'s Profile
                                             </h1>
-                                            <PublicContent user={loggedInUser}
+                                            <PublicContent user={otherUser}
                                                            updateUser={updateUser}
-                                                           canEdit={true}/>
-                                            <PrivateContent user={loggedInUser}
+                                                           canEdit={true}
+                                                           currentUser={currentUser}
+                                                           resetCurrentUser={resetCurrentUser}/>
+                                            <PrivateContent user={otherUser}
                                                             updateUser={updateUser}
-                                                            canEdit={true}/>
+                                                            canEdit={true}
+                                                            currentUser={currentUser}
+                                                            resetCurrentUser={resetCurrentUser}/>
                                         </>
                                     }
                                 </>
@@ -144,10 +171,14 @@ const Profile = () => {
                                     </h1>
                                     <PublicContent user={loggedInUser}
                                                    updateUser={updateUser}
-                                                   canEdit={true}/>
+                                                   canEdit={true}
+                                                   currentUser={currentUser}
+                                                   resetCurrentUser={resetCurrentUser}/>
                                     <PrivateContent user={loggedInUser}
                                                     updateUser={updateUser}
-                                                    canEdit={true}/>
+                                                    canEdit={true}
+                                                    currentUser={currentUser}
+                                                    resetCurrentUser={resetCurrentUser}/>
                                 </>
                             }
                         </>
@@ -167,7 +198,9 @@ const Profile = () => {
                             </h1>
                             <PublicContent user={otherUser}
                                            updateUser={updateUser}
-                                           canEdit={false}/>
+                                           canEdit={false}
+                                           currentUser={currentUser}
+                                           resetCurrentUser={resetCurrentUser}/>
                         </>
                     }
                 </>

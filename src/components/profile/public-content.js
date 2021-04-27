@@ -4,7 +4,7 @@ import "./profile.style.css";
 import recipeService from "../../services/recipe-service"
 import {Link} from "react-router-dom";
 
-const PublicContent = ({user, updateUser, canEdit}) => {
+const PublicContent = ({user, updateUser, canEdit, currentUser, resetCurrentUser}) => {
     const [editingRole, setEditingRole] = useState(false)
     const [favoriteRecipes, setFavoriteRecipes] = useState([])
     const [favoriteRecipesTemp, setFavoriteRecipesTemp] = useState([])
@@ -20,7 +20,6 @@ const PublicContent = ({user, updateUser, canEdit}) => {
     const refreshRecipes = (recipeId) => {
         console.log(recipeId)
         let resetRecipes = favoriteRecipes.filter(recipe => recipe.id !== recipeId)
-
         setFavoriteRecipesTemp(resetRecipes)
     }
 
@@ -67,6 +66,7 @@ const PublicContent = ({user, updateUser, canEdit}) => {
                                                     <i onClick={() => {
                                                         recipeService.deleteRecipe(user.id, recipe.id);
                                                         refreshRecipes(recipe.id)
+                                                        alert("Recipe successfully deleted!")
                                                     }}
                                                        className="fa-2x fa fa-trash"/>
                                                }
@@ -135,7 +135,7 @@ const PublicContent = ({user, updateUser, canEdit}) => {
                                     className = "form-control col-9"
                                     onChange = {(e) => {
                                         setUserTemp({
-                                            ...user,
+                                            ...userTemp,
                                             role: e.target.value
                                                     })
                                     }}>
@@ -145,7 +145,9 @@ const PublicContent = ({user, updateUser, canEdit}) => {
                             <i className="fas fa-check fa-2x col-1"
                                onClick = {() => {
                                    updateUser(userTemp.id, userTemp)
+                                   resetCurrentUser(userTemp)
                                    setEditingRole(false)
+                                   alert("User successfully updated!")
                                }}/>
                         </>
                     }

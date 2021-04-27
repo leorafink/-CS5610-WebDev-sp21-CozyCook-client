@@ -2,11 +2,12 @@ import React, {useEffect, useState} from 'react';
 
 import "./profile.style.css";
 
-const PrivateContent = ({user, updateUser, canEdit}) => {
+const PrivateContent = ({user, updateUser, canEdit, currentUser, resetCurrentUser}) => {
     const [editingPassword, setEditingPassword] = useState(false)
     const [editingEmail, setEditingEmail] = useState(false)
     const [currentPassword, setCurrentPassword] = useState(user.password)
     const [currentEmail, setCurrentEmail] = useState(user.email)
+    const [userTemp, setUserTemp] = useState({...user})
 
     useEffect(() => {
         setCurrentPassword(user.password)
@@ -29,7 +30,7 @@ const PrivateContent = ({user, updateUser, canEdit}) => {
                                        className="wbdv-profile-label col-2">
                                     Password:
                                 </label>
-                                <input value = {currentPassword}
+                                <input value = {userTemp.password}
                                        id = "passwordField"
                                        className = "form-control col-9">
                                 </input>
@@ -46,17 +47,20 @@ const PrivateContent = ({user, updateUser, canEdit}) => {
                                        className="wbdv-profile-label col-2">
                                     Password:
                                 </label>
-                                <input defaultValue = {currentPassword}
+                                <input defaultValue = {userTemp.password}
                                        id = "passwordField"
                                        className = "form-control col-9"
-                                       onChange = {(e) => setCurrentPassword(e.target.value)}>
+                                       onChange = {(e) => {
+                                           setUserTemp({
+                                                           ...userTemp,
+                                                           password: e.target.value
+                                                       })
+                                       }}>
                                 </input>
                                 <i className="fas fa-check fa-2x col-1"
                                    onClick = {() => {
-                                       updateUser(user.id, {
-                                           ...user,
-                                           password: currentPassword
-                                       })
+                                       updateUser(userTemp.id, userTemp)
+                                       resetCurrentUser()
                                        setEditingPassword(false)
                                    }}/>
                             </>
@@ -70,7 +74,7 @@ const PrivateContent = ({user, updateUser, canEdit}) => {
                                        className = "wbdv-profile-label col-2">
                                     Email:
                                 </label>
-                                <input value = {currentEmail}
+                                <input value = {userTemp.email}
                                        id = "emailField"
                                        className = "form-control col-9">
                                 </input>
@@ -85,17 +89,20 @@ const PrivateContent = ({user, updateUser, canEdit}) => {
                                        className = "wbdv-profile-label col-2">
                                     Email:
                                 </label>
-                                <input defaultValue = {currentEmail}
+                                <input defaultValue = {userTemp.email}
                                        id = "emailField"
                                        className = "form-control col-9"
-                                       onChange = {(e) => setCurrentEmail(e.target.value)}>
+                                       onChange = {(e) => {
+                                           setUserTemp({
+                                               ...userTemp,
+                                               email: e.target.value
+                                                       })
+                                       }}>
                                 </input>
                                 <i className="fas fa-check fa-2x col-1"
                                    onClick = {() => {
-                                       updateUser(user.id, {
-                                           ...user,
-                                           email: currentEmail
-                                       })
+                                       updateUser(user.id, userTemp)
+                                       resetCurrentUser()
                                        setEditingEmail(false)
                                    }}/>
                             </>

@@ -20,7 +20,7 @@ const Register = ({createUser}) => {
                 if (user === undefined) {
                     alert("Username already taken!  Please try another username.")
                 } else {
-                    window.location.href = "/profile"
+                    window.location.href = `/profile/${user.id}`
                 }
             })
     };
