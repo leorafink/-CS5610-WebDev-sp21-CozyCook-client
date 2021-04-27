@@ -11,7 +11,7 @@ const UserLookup = () => {
         userService.findUserByUsername(username)
             .then(response => {
                 if (response === undefined) {
-                    alert("user does not exist")
+                    alert("User does not exist!")
                 } else {
                    window.location.href = `/profile/${response.id}`
                 }
