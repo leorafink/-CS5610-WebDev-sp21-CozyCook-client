@@ -1,5 +1,5 @@
-const USER_API = "http://localhost:8080/api";
-// Remote: const USER_API = "http://wbdv-sp21-01-cozycook-server.herokuapp.com/api";
+// local: const USER_API = "http://localhost:8080/api";
+const USER_API = "http://wbdv-sp21-01-cozycook-server.herokuapp.com/api";
 
 const createUser = (user) => {
     return(
