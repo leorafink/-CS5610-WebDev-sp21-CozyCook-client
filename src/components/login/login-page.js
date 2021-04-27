@@ -12,7 +12,7 @@ const LoginPage = () => {
                 if (user === undefined) {
                     alert("Username or password is incorrect!")
                 } else {
-                    window.location.href = "/profile"
+                    window.location.href = `/profile/${user.id}`
                 }
             })
     }

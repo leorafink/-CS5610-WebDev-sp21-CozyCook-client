@@ -67,6 +67,7 @@ const PublicContent = ({user, updateUser, canEdit, currentUser, resetCurrentUser
                                                         recipeService.deleteRecipe(user.id, recipe.id);
                                                         refreshRecipes(recipe.id)
                                                         alert("Recipe successfully deleted!")
+                                                        window.location.reload()
                                                     }}
                                                        className="fa-2x fa fa-trash"/>
                                                }

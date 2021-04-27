@@ -61,8 +61,7 @@ function App() {
                       <Register store={store}/>
                   </Route>
                   <Route exact={true}
-                         path={["/profile",
-                                "/profile/:userId"]}>
+                         path={["/profile/:userId"]}>
                       <Profile/>
                   </Route>
 
