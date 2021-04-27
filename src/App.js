@@ -41,7 +41,7 @@ function App() {
                              "/search/:title/health/:health1/health/:health2",
                              "/search/:title/health/:health1/health/:health2/health/:health3",
                              "/search/:title/health/:health1/health/:health2/health/:health3/health/:health4"]}>
-                      <Search/>
+                      <Search store = {store}/>
                   </Route>
                   <Route
                       exact={true}

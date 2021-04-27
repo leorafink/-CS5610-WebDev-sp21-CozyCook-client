@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import {connect} from 'react-redux'
 import {Link, useParams, useHistory} from "react-router-dom";
 import ToggleButton from 'react-bootstrap/ToggleButton';
@@ -16,12 +16,6 @@ const Search = ({recipes = [], findRecipesForSearch
     const [isKosher, setKosher] = React.useState(false);
     const [isPeanutFree, setPeanutFree] = React.useState(false);
     const history = useHistory()
-
-    useEffect(() => {
-        if(searchTitle) {
-            findRecipesForSearch()
-        }
-    }, [])
 
     const doSetFilters = () => {
         let filterArray = []
@@ -115,7 +109,7 @@ const Search = ({recipes = [], findRecipesForSearch
                     <div className = "wbdv-search-button-area">
                         <Link to={setPath()}>
                             <button
-                                onClick={() => {history.push(`/search/${searchTitle}`); {findRecipesForSearch(searchTitle, doSetFilters())}}}
+                                onClick={() => {{history.push(`/search/${searchTitle}`)}; {findRecipesForSearch(searchTitle, doSetFilters())}}}
                                 className="btn btn-block wbdv-search-btn">
                                 Search
                             </button>
