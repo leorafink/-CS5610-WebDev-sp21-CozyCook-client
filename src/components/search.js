@@ -18,8 +18,13 @@ const Search = ({recipes = [], findRecipesForSearch
     const history = useHistory()
 
     useEffect(() => {
-        history.push(`/search/${title}`)
-        findRecipesForSearch(title, doSetFilters())
+        if (title != undefined) {
+            history.push(`/search/${title}`)
+            findRecipesForSearch(title, doSetFilters())
+        }
+        else {
+            history.push(`/search`)
+        }
     }, [])
 
     const doSetFilters = () => {
