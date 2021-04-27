@@ -84,11 +84,16 @@ const User = ({user,
                             <i className="fa-2x fa fa-trash"></i>
                         </button>
                         <button className="wbdv-user-crud-btn" onClick={() => {
-                            updateUser(currentUser)
-                            setEditing(false)
-                            resetCurrentUsers()
-                            alert("User successfully updated!")
-                            window.location.reload()
+                            if(currentUser.username !== "" && currentUser.password !== "" && currentUser.email !== "") {
+                                updateUser(currentUser)
+                                setEditing(false)
+                                resetCurrentUsers()
+                                alert("User successfully updated!")
+                                window.location.reload()
+                            } else {
+                                alert("You must enter a username, password, and email.")
+                            }
+
                         }}>
                             <i className="fa-2x fa fa-check"/>
                         </button>

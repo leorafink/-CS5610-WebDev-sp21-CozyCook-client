@@ -29,6 +29,7 @@ const Home = () => {
     return(
         <div className = "container-fluid">
             <div className = "container-fluid wbdv-home-image-container">
+                <h2 className="wbdv-page-title">A Cookbook Personalized by YOU!</h2>
                 <img className = "img-fluid wbdv-home-image"
                      src = {mainImage}/>
             </div>

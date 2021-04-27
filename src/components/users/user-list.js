@@ -69,7 +69,7 @@ const UserList = (
                 <div className="col align-middle ">
                     <span className="">
                         <button onClick={() => {
-                            userService.register({username: username,
+                            userService.createUser({username: username,
                                                      password: password,
                                                      email: email,
                                                      role: type})

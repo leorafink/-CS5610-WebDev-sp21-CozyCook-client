@@ -31,6 +31,7 @@ const PrivateContent = ({user, updateUser, canEdit, currentUser, resetCurrentUse
                                     Password:
                                 </label>
                                 <input value = {userTemp.password}
+                                       placeholder="password"
                                        id = "passwordField"
                                        className = "form-control col-9">
                                 </input>
@@ -48,6 +49,7 @@ const PrivateContent = ({user, updateUser, canEdit, currentUser, resetCurrentUse
                                     Password:
                                 </label>
                                 <input defaultValue = {userTemp.password}
+                                       placeholder="password"
                                        id = "passwordField"
                                        className = "form-control col-9"
                                        onChange = {(e) => {
@@ -59,9 +61,14 @@ const PrivateContent = ({user, updateUser, canEdit, currentUser, resetCurrentUse
                                 </input>
                                 <i className="fas fa-check fa-2x col-1"
                                    onClick = {() => {
-                                       updateUser(userTemp.id, userTemp)
-                                       resetCurrentUser()
-                                       setEditingPassword(false)
+                                       if(userTemp.password !== "") {
+                                           updateUser(userTemp.id, userTemp)
+                                           resetCurrentUser()
+                                           setEditingPassword(false)
+                                       } else {
+                                           alert("You must enter a password.")
+                                       }
+
                                    }}/>
                             </>
                     }
@@ -75,6 +82,7 @@ const PrivateContent = ({user, updateUser, canEdit, currentUser, resetCurrentUse
                                     Email:
                                 </label>
                                 <input value = {userTemp.email}
+                                       placeholder="email"
                                        id = "emailField"
                                        className = "form-control col-9">
                                 </input>
@@ -90,6 +98,7 @@ const PrivateContent = ({user, updateUser, canEdit, currentUser, resetCurrentUse
                                     Email:
                                 </label>
                                 <input defaultValue = {userTemp.email}
+                                       placeholder="email"
                                        id = "emailField"
                                        className = "form-control col-9"
                                        onChange = {(e) => {
@@ -101,9 +110,14 @@ const PrivateContent = ({user, updateUser, canEdit, currentUser, resetCurrentUse
                                 </input>
                                 <i className="fas fa-check fa-2x col-1"
                                    onClick = {() => {
-                                       updateUser(user.id, userTemp)
-                                       resetCurrentUser()
-                                       setEditingEmail(false)
+                                       if (userTemp.email !== "") {
+                                           updateUser(user.id, userTemp)
+                                           resetCurrentUser()
+                                           setEditingEmail(false)
+                                       } else {
+                                           alert("You must enter an email.")
+                                       }
+
                                    }}/>
                             </>
                     }

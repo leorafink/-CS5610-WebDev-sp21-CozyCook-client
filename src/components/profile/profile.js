@@ -25,10 +25,6 @@ const Profile = () => {
     }, [currentUser])
 
     const resetCurrentUser = (userBeingReset) => {
-        /*userService.findUserById(userId)
-            .then((response) => {
-                setCurrentUser(response)
-            })*/
         setCurrentUser(userBeingReset)
     }
 
@@ -38,7 +34,6 @@ const Profile = () => {
 
     return(
         <div>
-
             <nav aria-label="breadcrumb">
                 <ol className="breadcrumb">
                     <li className="breadcrumb-item"><a href="/home">Home</a></li>
