@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {connect} from 'react-redux'
 import {Link, useParams, useHistory} from "react-router-dom";
 import ToggleButton from 'react-bootstrap/ToggleButton';
@@ -16,6 +16,11 @@ const Search = ({recipes = [], findRecipesForSearch
     const [isKosher, setKosher] = React.useState(false);
     const [isPeanutFree, setPeanutFree] = React.useState(false);
     const history = useHistory()
+
+    useEffect(() => {
+        history.push(`/search/${title}`)
+        findRecipesForSearch(title, doSetFilters())
+    }, [])
 
     const doSetFilters = () => {
         let filterArray = []
