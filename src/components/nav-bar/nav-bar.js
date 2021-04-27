@@ -61,7 +61,10 @@ const NavBar = () => {
                         <span className = "wbdv-nav-bar-button-area">
                             <Link to="/logout"
                                   className="btn wbdv-home-button"
-                                  onClick = {() => logout()}>
+                                  onClick = {() => {
+                                      logout()
+                                      setSession(null)
+                                  }}>
                                 Log Out
                             </Link>
                         </span>
