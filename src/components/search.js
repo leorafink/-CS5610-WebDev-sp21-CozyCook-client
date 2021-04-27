@@ -21,7 +21,7 @@ const Search = ({recipes = [], findRecipesForSearch
         if(searchTitle) {
             findRecipesForSearch()
         }
-    })
+    }, [])
 
     const doSetFilters = () => {
         let filterArray = []
@@ -115,7 +115,7 @@ const Search = ({recipes = [], findRecipesForSearch
                     <div className = "wbdv-search-button-area">
                         <Link to={setPath()}>
                             <button
-                                onClick={() => {{history.push(`/search/${searchTitle}`)}; {findRecipesForSearch(searchTitle, doSetFilters())}}}
+                                onClick={() => {history.push(`/search/${searchTitle}`); {findRecipesForSearch(searchTitle, doSetFilters())}}}
                                 className="btn btn-block wbdv-search-btn">
                                 Search
                             </button>

@@ -69,17 +69,22 @@ const UserList = (
                 <div className="col align-middle ">
                     <span className="">
                         <button onClick={() => {
-                            userService.createUser({username: username,
-                                                     password: password,
-                                                     email: email,
-                                                     role: type})
-                                .then((response) => {
-                                    setCurrentUsers([
-                                                        ...currentUsers,
-                                                        response
-                                                    ])
-                                    setCurrentUsersTemp([...currentUsers, response])
-                                })
+                            if (username !== "" && password !== "" & email !== "") {
+                                userService.createUser({username: username,
+                                                           password: password,
+                                                           email: email,
+                                                           role: type})
+                                    .then((response) => {
+                                        setCurrentUsers([
+                                                            ...currentUsers,
+                                                            response
+                                                        ])
+                                        setCurrentUsersTemp([...currentUsers, response])
+                                    })
+                            } else {
+                                alert("You must enter all fields to create a user.")
+                            }
+
                         }}
                                 className="wbdv-user-crud-btn">
                             <i className="fa-2x fa fa-plus-circle"></i>
