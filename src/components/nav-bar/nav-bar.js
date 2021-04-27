@@ -65,7 +65,10 @@ const NavBar = () => {
                                 Log Out
                             </Link>
                         </span>
-                        <span className = "wbdv-nav-bar-button-area">
+                        <span className = "wbdv-nav-bar-button-area"
+                              onClick = {() => {
+                                    window.location.reload()
+                              }}>
                             <Link to={`/profile/${session.id}`}
                                   className="btn wbdv-home-button">
                                 Profile
