@@ -8,14 +8,19 @@ const UserLookup = () => {
     const [user, setUser] = useState({})
 
     const findUser = () => {
-        userService.findUserByUsername(username)
-            .then(response => {
-                if (response === undefined) {
-                    alert("User does not exist!")
-                } else {
-                   window.location.href = `/profile/${response.id}`
-                }
-            })
+        if (username !== "") {
+            userService.findUserByUsername(username)
+                .then(response => {
+                    if (response === undefined) {
+                        alert("User does not exist!")
+                    } else {
+                        window.location.href = `/profile/${response.id}`
+                    }
+                })
+        }
+        else {
+            alert("Please fill out the username field!")
+        }
     }
 
     return (

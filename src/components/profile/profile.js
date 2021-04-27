@@ -12,6 +12,10 @@ const Profile = () => {
     const [currentUser, setCurrentUser] = useState({})
 
     useEffect(() => {
+        if (userId === "undefined") {
+            window.location.href = "/userlookup"
+            alert("Username cannot be empty!")
+        }
         userService.profile()
             .then(currentLoggedInUser => setLoggedInUser(currentLoggedInUser))
         if (userId) {
