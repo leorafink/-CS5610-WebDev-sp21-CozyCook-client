@@ -15,14 +15,21 @@ const Register = ({createUser}) => {
     const [email, setEmail] = useState("")
 
     const register = () => {
-        userService.register(credentials)
-            .then((user) => {
-                if (user === undefined) {
-                    alert("Username already taken!  Please try another username.")
-                } else {
-                    window.location.href = `/profile/${user.id}`
-                }
-            })
+        if (credentials.username !== "" &&
+            credentials.password !== "" &&
+            credentials.email !== "") {
+            userService.register(credentials)
+                .then((user) => {
+                    if (user === undefined) {
+                        alert("Username already taken!  Please try another username.")
+                    } else {
+                        window.location.href = `/profile/${user.id}`
+                    }
+                })
+        }
+        else {
+            alert("Please fill out all fields!")
+        }
     };
 
 
