@@ -119,6 +119,7 @@ const Details = () => {
                                                 className="btn btn-primary wbdv-details-button-recipe"
                                                 onClick = {() => {
                                                     recipeService.createRecipeForUser(session.id, recipeObject)
+                                                    window.location.reload()
                                                     alert("Successfully added " + recipeObject.name + " to your favorite recipes!")
                                                 }}>
                                             Favorite Recipe
