@@ -74,9 +74,9 @@ const LoginPage = () => {
                                     </Link>
                                 </div>
                                 <div className="col-6">
-                                    <Link to=""
-                                          className="btn float-right wbdv-signup-pw-button">
-                                        Forgot Password?
+                                    <Link to="/home"
+                                          className="btn float-right wbdv-cancel-btn">
+                                        Cancel
                                     </Link>
                                 </div>
                             </div>

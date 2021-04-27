@@ -129,14 +129,13 @@ const Details = () => {
                             }
                             {
                                 !session.id &&
-                                <>
-                                    <h1>{JSON.stringify(session)}</h1>
+                                <div className = "container-fluid">
                                     <Link type="button"
                                           to = "/login"
                                           className="btn btn-primary wbdv-details-button-recipe">
                                         Log In to Add This Recipe to Your Favorites!
                                     </Link>
-                                </>
+                                </div>
                             }
                             {
                                 recipeFans && recipeFans.length > 0 &&

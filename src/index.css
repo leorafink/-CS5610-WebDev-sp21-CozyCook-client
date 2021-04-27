@@ -203,3 +203,8 @@ code {
 .wbdv-lightgrey {
   color: #514f4f;
 }
+
+.wbdv-cancel-btn {
+  background-color: #fc0335;
+  color: whitesmoke;
+}
