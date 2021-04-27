@@ -78,6 +78,7 @@ const User = ({user,
                             userService.deleteUser(currentUser.id)
                             resetCurrentUsers()
                             alert("User successfully deleted!")
+                            window.location.reload()
                         }}
                                 className="wbdv-user-crud-btn" >
                             <i className="fa-2x fa fa-trash"></i>
@@ -87,6 +88,7 @@ const User = ({user,
                             setEditing(false)
                             resetCurrentUsers()
                             alert("User successfully updated!")
+                            window.location.reload()
                         }}>
                             <i className="fa-2x fa fa-check"/>
                         </button>

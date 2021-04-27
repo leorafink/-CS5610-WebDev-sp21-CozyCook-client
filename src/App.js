@@ -1,5 +1,5 @@
 import Search from "./components/search";
-import Details from "./components/details";
+import Details from "./components/detailss";
 import {BrowserRouter, Route} from "react-router-dom";
 import Home from "./components/home/home";
 import {Provider} from 'react-redux';

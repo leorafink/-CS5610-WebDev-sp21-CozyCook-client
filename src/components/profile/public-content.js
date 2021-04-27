@@ -148,6 +148,7 @@ const PublicContent = ({user, updateUser, canEdit, currentUser, resetCurrentUser
                                    resetCurrentUser(userTemp)
                                    setEditingRole(false)
                                    alert("User successfully updated!")
+                                   window.location.reload()
                                }}/>
                         </>
                     }
