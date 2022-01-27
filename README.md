@@ -1,4 +1,4 @@
-CS5610 - Web Development
+# CS5610 - Web Development
 
 Term Project - CozyCook
 
@@ -8,7 +8,7 @@ Professor Annunziato
 
 
 
-Project Description
+# Project Description
 
 The Problem We are Trying to Solve:
 
