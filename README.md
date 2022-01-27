@@ -1,6 +1,9 @@
 CS5610 - Web Development
+
 Term Project - CozyCook
+
 Team: Leora Fink, Sina Salehi, Arielle Slatus
+
 Professor Annunziato
 
 Project Description
@@ -26,5 +29,3 @@ API: Spoonacular: https://spoonacular.com/food-api
 
 Spoonacular is an API that allows users to search for recipes according to the ingredients included in the recipe or the nutritional contents of the dish.  In addition, users may obtain random recipes or suitable wine pairings for a given dish.  Returned recipes also include pictures, allowing users to see if the dish looks appealing before preparing it.
 
-
-[Click Here to Access Project Description](https://docs.google.com/document/d/1vLYUszSv0T_UrVTtkw2SX4_aZxhqMX4q371GbSD__vA/edit?usp=sharing)
