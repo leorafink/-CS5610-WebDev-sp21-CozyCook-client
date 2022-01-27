@@ -6,6 +6,7 @@ Team: Leora Fink, Sina Salehi, Arielle Slatus
 
 Professor Annunziato
 
+
 Project Description
 
 The Problem We are Trying to Solve:
